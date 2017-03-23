@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tMealClass">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fRe_ID" Type="int" Nullable="false" />
+    <Property Name="fML_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMealList">
+    <Key>
+      <PropertyRef Name="fML_ID" />
+    </Key>
+    <Property Name="fML_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fML_Projrct" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMessageCode">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tRestaurant">
+    <Key>
+      <PropertyRef Name="fRe_ID" />
+    </Key>
+    <Property Name="fRe_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fRe_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fRe_Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fRe_Tel" Type="varchar" MaxLength="50" />
+    <Property Name="fRe_Addr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fRe_Delivery" Type="bit" />
+    <Property Name="fR_Price" Type="money" />
+    <Property Name="fEp_ID" Type="int" Nullable="false" />
+    <Property Name="fMC_ID" Type="int" Nullable="false" />
+    <Property Name="fRe_introduction" Type="nvarchar(max)" />
+    <Property Name="fRe_Image" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_tMealClass_tMealList">
+    <End Role="tMealList" Type="Self.tMealList" Multiplicity="1" />
+    <End Role="tMealClass" Type="Self.tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMealList">
+        <PropertyRef Name="fML_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fML_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMealClass_tRestaurant">
+    <End Role="tRestaurant" Type="Self.tRestaurant" Multiplicity="1" />
+    <End Role="tMealClass" Type="Self.tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRestaurant">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRestaurant_tMessageCode">
+    <End Role="tMessageCode" Type="Self.tMessageCode" Multiplicity="1" />
+    <End Role="tRestaurant" Type="Self.tRestaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tRestaurant">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelModelStoreContainer">
+    <EntitySet Name="tMealClass" EntityType="Self.tMealClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMealList" EntityType="Self.tMealList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMessageCode" EntityType="Self.tMessageCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tRestaurant" EntityType="Self.tRestaurant" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tMealClass_tMealList" Association="Self.FK_tMealClass_tMealList">
+      <End Role="tMealList" EntitySet="tMealList" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMealClass_tRestaurant" Association="Self.FK_tMealClass_tRestaurant">
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRestaurant_tMessageCode" Association="Self.FK_tRestaurant_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

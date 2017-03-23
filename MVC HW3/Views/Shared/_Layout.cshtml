@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/trycss.css" rel="stylesheet" />    
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    
+    @RenderSection("styles", false)
+</head>
+<body class="layout">
+
+    @* 導覽列 *@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                @Html.ActionLink("MSI113_5", "Index", "Home", new { area = "" }, new { @class = "navbar-try1" })
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="@Url.Action("Bulletin", "Home", new {area="",ID= (int?)null })" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">最新消息 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("Bulletin","Home",new{area="",ID=2})">一般公告</a></li>
+                            <li><a href="@Url.Action("Bulletin","Home",new { area="",ID = 1 })">旅遊公告</a></li>
+                            <li><a href="@Url.Action("Bulletin","Home",new{area="",ID=3})">重要公告</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">討論區 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">旅遊</a></li>
+                            <li><a href="#">美食</a></li>
+                            <li><a href="#">心情</a></li>
+                            <li><a href="#">技術</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">員工旅遊 <span class="caret"></span></a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="#">近期旅遊</a></li>
+                            <li><a href="#">過往旅遊</a></li>
+                            <li><a href="#">方案投票</a></li>
+                            <li><a href="#">簡易提案</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">美食地圖</a></li>
+                    <li><a href="#">旅遊指南</a></li>
+                    <li><a href="#" id="Connection" log_url="@Url.Action("Connection","Home", new { area = "" })" class="needlog">聯絡我們</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li id="login"><a href="#" class="needlog" log_url="@Request.Url.PathAndQuery">登入</a></li>
+                    <li id="logout">@Html.ActionLink("登出", "logout", "Home", new { area = "" },null)</li>
+                    <li id="edit" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">個人資訊<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">旅遊紀錄</a></li>
+                            <li><a href="#">發文管理</a></li>
+                            <li><a href="#">帳戶管理</a></li>
+                            <li><a href="#">訊息</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <form class="navbar-form navbar-right">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button type="submit" class="btn btn-default">GO</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @* 導覽列 End*@
+    @*@Url.Content("~/Images/news.jpg")*@
+    @* 跑馬燈區塊 *@
+    <div id="Marquee" class="div-white-bg"><img src="@Url.Content("~/Images/news.jpg")" /><span id="marload"></span></div>
+    @* 跑馬燈區塊 End *@
+
+    
+
+    <div class="container body-content div-rgba-bk">
+        
+        @RenderBody()
+        <hr />
+      
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @* 登入表單Dialog *@
+    <div id="dialog-form" title="登錄">
+
+        <form id="dialog-form2">
+            <fieldset>
+                <label for="EmployeeID">員工編號</label>
+                <br />
+                <input type="text" name="EmployeeID" id="EmployeeID" value="0000000003" class="text ui-widget-content ui-corner-all form-control">
+                <br />
+                <br />
+                <label for="password">密碼</label>
+                <br />
+                <input type="password" name="password" id="password" value="3333333333" class="text ui-widget-content ui-corner-all form-control">
+                <br />
+                <input type="checkbox" name="remember" id="remember" value="yes"> Remember me
+                <br />
+                <div id="errormessage" class="redfont"></div>
+            </fieldset>
+        </form>
+    </div>
+    @* 登入表單Dialog End *@
+
+    @* 福委確認表單Dialog *@
+    <div id="dialog-check" title="登錄身分">
+        <h3 class="center-h">以何種身分登錄?</h3>
+    </div>
+    @* 福委確認表單Dialog End *@
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.cookie-1.4.1.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            var dialog, //登錄dialog
+                dialogC,  //身分dialog
+                name = $("#EmployeeID"),  //登錄dialog中"#EmployeeID"
+                password = $("#password"),  //登錄dialog中"#password"
+                account = document.cookie.indexOf("account="),  //登錄者帳號是否存在cookie
+                identity = document.cookie.indexOf("identity="),  //登錄者帳號是否有福委權限
+                log_url,  //需登錄連結,登錄後跳轉網址
+                bulletinNo = Math.floor(Math.random() * 5), //開始時得隨機變數i,隨機第一張廣告
+                start = setInterval(setclock, 3000)
+                            
+
+
+            MarqueeShow();
+            function setclock() {
+                if (bulletinNo < 4) {
+                    bulletinNo++
+                }
+                else {
+                    bulletinNo = 0
+                }
+
+                MarqueeShow();
+            }
+            function MarqueeShow()
+            {
+                $("#marload").load("@Url.Action("Marquee","Home",new {area=""})?No="+bulletinNo)
+            }
+            
+            //清除身分cookie
+            identityclear()
+
+            //依登錄狀況顯示"登入","登出"...
+            if (account != -1) {
+                $("#login").remove();
+            }
+            else {
+                $("#logout,#edit").remove();
+            }
+
+            //導覽列Drapdown開啟
+            $('ul.nav li.dropdown').hover(function () {
+                $(this).find('.dropdown-menu').stop(true, true).show();
+            }, function () {
+                $(this).find('.dropdown-menu').stop(true, true).hide();
+            });
+
+
+            //檢查帳密、建立Cookies
+            function loginGo() {
+
+                $.post("@Url.Action("trylog", "Home", new { area = "" })", { EmployeeID: name.val(), password: password.val(), remember: $("#remember:checked").val() }).done(function () {
+                    loginturn()
+                })
+            }
+            //檢查是否已登錄
+            function loginturn() {
+
+                account = document.cookie.indexOf("account=")
+                identity = document.cookie.indexOf("identity=")
+                if (identity != -1) {
+                    dialog.dialog("close");
+                    dialogC.dialog("open");
+                    return;
+                }
+                pageturn()
+                $("#errormessage").text("帳號或密碼錯誤,請再試一次")
+
+            }
+            //跳轉登錄頁
+            function pageturn() {
+
+
+                if (account != -1) {
+
+                        window.location.href = log_url
+                        return
+                }
+            }
+            //清除identity
+            function identityclear() {
+                if (identity != -1) {
+                    $.cookie("identity", '', { expires: -1 })
+                }
+            }
+
+            //身分表單
+            dialogC = $("#dialog-check").dialog({
+                autoOpen: false,
+                resizable: false,
+                draggable: false,
+                height: 200,
+                width: 300,
+                modal: true,             
+              
+                buttons: {
+                    "員工(預設)": function () {
+                        dialogC.dialog("close");
+                    },
+                    "福委(無法紀錄登錄)": function () {
+                        identityclear()
+                        $.cookie("Manergers", "福委")
+                        var epID = $.cookie("account")
+                        $.cookie("account", epID)
+                        pageturn()
+                    }
+                },
+                close: function () {
+                    identityclear()
+                    pageturn()
+                }
+
+            })
+
+         
+
+            //登錄表單
+            dialog = $("#dialog-form").dialog({
+                autoOpen: false,
+                resizable: false,
+                draggable: false,
+                height: 380,
+                width: 380,
+                modal: true,
+                buttons: {
+                    "登錄":
+                        function () { loginGo(); },
+                    "取消": function () {
+                        dialog.dialog("close");
+                    }
+                },
+                close: function () {
+                    name.val("");
+                    password.val("");
+                    $("#errormessage").text("")
+
+                }
+            });
+
+           //跳轉登錄(class=.needlog && log_url=Url)
+            $(".needlog").click(function () {
+                log_url = $(this).attr("log_url")
+                if (account == -1) {
+                    dialog.dialog("open")
+                }
+                else {
+                    window.location.href = log_url
+                }
+            })
+            $(".needlog2").click(function () {
+                log_url = $(this).attr("log_url")
+                if (account == -1) {
+                    dialog.dialog("open")
+                }
+             
+            })
+        })
+
+
+    </script>
+    
+    @RenderSection("scripts", false)
+</body>
+
+</html>

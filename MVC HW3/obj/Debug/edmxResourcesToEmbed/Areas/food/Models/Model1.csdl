@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="TravelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tMealList" EntityType="TravelModel.tMealList" />
+    <EntitySet Name="tMealClass" EntityType="TravelModel.tMealClass" />
+    <AssociationSet Name="FK_tMealClass_tMealList" Association="TravelModel.FK_tMealClass_tMealList">
+      <End Role="tMealList" EntitySet="tMealList" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <EntitySet Name="tRestaurant" EntityType="TravelModel.tRestaurant" />
+    <AssociationSet Name="FK_tMealClass_tRestaurant" Association="TravelModel.FK_tMealClass_tRestaurant">
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <EntitySet Name="tMessageCode" EntityType="TravelModel.tMessageCode" />
+    <AssociationSet Name="FK_tRestaurant_tMessageCode" Association="TravelModel.FK_tRestaurant_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tMealList">
+    <Key>
+      <PropertyRef Name="fML_ID" />
+    </Key>
+    <Property Name="fML_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fML_Projrct" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tMealClass" Relationship="TravelModel.FK_tMealClass_tMealList" FromRole="tMealList" ToRole="tMealClass" />
+  </EntityType>
+  <EntityType Name="tMealClass">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fML_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tMealList" Relationship="TravelModel.FK_tMealClass_tMealList" FromRole="tMealClass" ToRole="tMealList" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tMealClass_tRestaurant" FromRole="tMealClass" ToRole="tRestaurant" />
+  </EntityType>
+  <Association Name="FK_tMealClass_tMealList">
+    <End Type="TravelModel.tMealList" Role="tMealList" Multiplicity="1" />
+    <End Type="TravelModel.tMealClass" Role="tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMealList">
+        <PropertyRef Name="fML_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fML_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tRestaurant">
+    <Key>
+      <PropertyRef Name="fRe_ID" />
+    </Key>
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRe_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fRe_Addr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Delivery" Type="Boolean" />
+    <Property Name="fR_Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRe_introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tMealClass" Relationship="TravelModel.FK_tMealClass_tRestaurant" FromRole="tRestaurant" ToRole="tMealClass" />
+    <NavigationProperty Name="tMessageCode" Relationship="TravelModel.FK_tRestaurant_tMessageCode" FromRole="tRestaurant" ToRole="tMessageCode" />
+  </EntityType>
+  <Association Name="FK_tMealClass_tRestaurant">
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="1" />
+    <End Type="TravelModel.tMealClass" Role="tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRestaurant">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tMessageCode">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tRestaurant_tMessageCode" FromRole="tMessageCode" ToRole="tRestaurant" />
+  </EntityType>
+  <Association Name="FK_tRestaurant_tMessageCode">
+    <End Type="TravelModel.tMessageCode" Role="tMessageCode" Multiplicity="1" />
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tRestaurant">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

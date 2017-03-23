@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tBulletin">
+    <Key>
+      <PropertyRef Name="fBu_ID" />
+    </Key>
+    <Property Name="fBu_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fBu_Date" Type="datetime" />
+    <Property Name="fBC_ID" Type="int" Nullable="false" />
+    <Property Name="fBu_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fBu_Content" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tBulletinClass">
+    <Key>
+      <PropertyRef Name="fBC_ID" />
+    </Key>
+    <Property Name="fBC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fBC_Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tConnection">
+    <Key>
+      <PropertyRef Name="fCo_ID" />
+    </Key>
+    <Property Name="fCo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fEp_ID" Type="int" Nullable="false" />
+    <Property Name="fCo_Date" Type="datetime" />
+    <Property Name="fCo_Theme" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fCC_ID" Type="int" Nullable="false" />
+    <Property Name="fCo_Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fCo_Image" Type="varbinary(max)" />
+    <Property Name="fCo_Clear" Type="datetime" />
+    <Property Name="fCo_Dad" Type="int" />
+  </EntityType>
+  <EntityType Name="tConnectionClass">
+    <Key>
+      <PropertyRef Name="fCC_ID" />
+    </Key>
+    <Property Name="fCC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fCC_Class" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tEmployee">
+    <Key>
+      <PropertyRef Name="fEp_ID" />
+    </Key>
+    <Property Name="fEp_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fEp_Code" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="fEp_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_SSNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="fEp_Addr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Tel" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fId_ID" Type="int" Nullable="false" />
+    <Property Name="fEp_Seniority" Type="datetime" Nullable="false" />
+    <Property Name="fSe_ID" Type="int" Nullable="false" />
+    <Property Name="fEp_Nickname" Type="nvarchar" MaxLength="50" />
+    <Property Name="fEp_Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Picture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="fEp_Birth" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tBulletin_tBulletinClass">
+    <End Role="tBulletinClass" Type="Self.tBulletinClass" Multiplicity="1" />
+    <End Role="tBulletin" Type="Self.tBulletin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tBulletinClass">
+        <PropertyRef Name="fBC_ID" />
+      </Principal>
+      <Dependent Role="tBulletin">
+        <PropertyRef Name="fBC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tConnection_tConnection">
+    <End Role="tConnection" Type="Self.tConnection" Multiplicity="0..1" />
+    <End Role="tConnection1" Type="Self.tConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tConnection">
+        <PropertyRef Name="fCo_ID" />
+      </Principal>
+      <Dependent Role="tConnection1">
+        <PropertyRef Name="fCo_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tConnection_tConnectionClass">
+    <End Role="tConnectionClass" Type="Self.tConnectionClass" Multiplicity="1" />
+    <End Role="tConnection" Type="Self.tConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tConnectionClass">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tConnection">
+        <PropertyRef Name="fCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tConnection_tEmployee">
+    <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+    <End Role="tConnection" Type="Self.tConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tConnection">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelModelStoreContainer">
+    <EntitySet Name="tBulletin" EntityType="Self.tBulletin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tBulletinClass" EntityType="Self.tBulletinClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tConnection" EntityType="Self.tConnection" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tConnectionClass" EntityType="Self.tConnectionClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tEmployee" EntityType="Self.tEmployee" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tBulletin_tBulletinClass" Association="Self.FK_tBulletin_tBulletinClass">
+      <End Role="tBulletinClass" EntitySet="tBulletinClass" />
+      <End Role="tBulletin" EntitySet="tBulletin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tConnection_tConnection" Association="Self.FK_tConnection_tConnection">
+      <End Role="tConnection" EntitySet="tConnection" />
+      <End Role="tConnection1" EntitySet="tConnection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tConnection_tConnectionClass" Association="Self.FK_tConnection_tConnectionClass">
+      <End Role="tConnectionClass" EntitySet="tConnectionClass" />
+      <End Role="tConnection" EntitySet="tConnection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tConnection_tEmployee" Association="Self.FK_tConnection_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tConnection" EntitySet="tConnection" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

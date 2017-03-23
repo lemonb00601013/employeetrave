@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TravelModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tCityCountry">
+          <Key>
+            <PropertyRef Name="fCC_ID" />
+          </Key>
+          <Property Name="fCC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fCC_Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fCC_Dad" Type="int" />
+        </EntityType>
+        <EntityType Name="tDayTravel">
+          <Key>
+            <PropertyRef Name="fDT_ID" />
+          </Key>
+          <Property Name="fDT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fTC_ID" Type="int" Nullable="false" />
+          <Property Name="fDT_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fDT_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tRegistrationOpen">
+          <Key>
+            <PropertyRef Name="fRO_ID" />
+          </Key>
+          <Property Name="fRO_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fRO_ODate" Type="datetime" Nullable="false" />
+          <Property Name="fRO_CDate" Type="datetime" Nullable="false" />
+          <Property Name="fTC_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tTravelCase">
+          <Key>
+            <PropertyRef Name="fTC_ID" />
+          </Key>
+          <Property Name="fTC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fTC_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fTC_Top" Type="int" Nullable="false" />
+          <Property Name="fTC_Gate" Type="int" Nullable="false" />
+          <Property Name="fTC_Cost" Type="money" Nullable="false" />
+          <Property Name="fTC_TDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="fTC_Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fTC_Notes" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="fTC_LorD" Type="int" Nullable="false" />
+          <Property Name="fTC_Picture" Type="varbinary(max)" />
+          <Property Name="fCC_ID" Type="int" Nullable="false" />
+          <Property Name="fTC_PerL" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tCityCountry_tCityCountry">
+          <End Role="tCityCountry" Type="Self.tCityCountry" Multiplicity="0..1" />
+          <End Role="tCityCountry1" Type="Self.tCityCountry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCityCountry">
+              <PropertyRef Name="fCC_ID" />
+            </Principal>
+            <Dependent Role="tCityCountry1">
+              <PropertyRef Name="fCC_Dad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tDayTravel_tTravelCase">
+          <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+          <End Role="tDayTravel" Type="Self.tDayTravel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTravelCase">
+              <PropertyRef Name="fTC_ID" />
+            </Principal>
+            <Dependent Role="tDayTravel">
+              <PropertyRef Name="fTC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tRegistrationOpen_tTravelCase">
+          <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+          <End Role="tRegistrationOpen" Type="Self.tRegistrationOpen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTravelCase">
+              <PropertyRef Name="fTC_ID" />
+            </Principal>
+            <Dependent Role="tRegistrationOpen">
+              <PropertyRef Name="fTC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTravelCase_tCityCountry">
+          <End Role="tCityCountry" Type="Self.tCityCountry" Multiplicity="1" />
+          <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCityCountry">
+              <PropertyRef Name="fCC_ID" />
+            </Principal>
+            <Dependent Role="tTravelCase">
+              <PropertyRef Name="fCC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelModel2StoreContainer">
+          <EntitySet Name="tCityCountry" EntityType="Self.tCityCountry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tDayTravel" EntityType="Self.tDayTravel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tRegistrationOpen" EntityType="Self.tRegistrationOpen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTravelCase" EntityType="Self.tTravelCase" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tCityCountry_tCityCountry" Association="Self.FK_tCityCountry_tCityCountry">
+            <End Role="tCityCountry" EntitySet="tCityCountry" />
+            <End Role="tCityCountry1" EntitySet="tCityCountry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tDayTravel_tTravelCase" Association="Self.FK_tDayTravel_tTravelCase">
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+            <End Role="tDayTravel" EntitySet="tDayTravel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tRegistrationOpen_tTravelCase" Association="Self.FK_tRegistrationOpen_tTravelCase">
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+            <End Role="tRegistrationOpen" EntitySet="tRegistrationOpen" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTravelCase_tCityCountry" Association="Self.FK_tTravelCase_tCityCountry">
+            <End Role="tCityCountry" EntitySet="tCityCountry" />
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TravelModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tDayTravel">
+          <Key>
+            <PropertyRef Name="fDT_ID" />
+          </Key>
+          <Property Name="fDT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+          <Property Name="fDT_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fDT_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tTravelCase" Relationship="Self.FK_tDayTravel_tTravelCase" FromRole="tDayTravel" ToRole="tTravelCase" />
+        </EntityType>
+        <EntityType Name="tRegistrationOpen">
+          <Key>
+            <PropertyRef Name="fRO_ID" />
+          </Key>
+          <Property Name="fRO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fRO_ODate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fRO_CDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tTravelCase" Relationship="Self.FK_tRegistrationOpen_tTravelCase" FromRole="tRegistrationOpen" ToRole="tTravelCase" />
+        </EntityType>
+        <EntityType Name="tTravelCase">
+          <Key>
+            <PropertyRef Name="fTC_ID" />
+          </Key>
+          <Property Name="fTC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fTC_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fTC_Top" Type="Int32" Nullable="false" />
+          <Property Name="fTC_Gate" Type="Int32" Nullable="false" />
+          <Property Name="fTC_Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="fTC_TDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fTC_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fTC_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fTC_LorD" Type="Int32" Nullable="false" />
+          <Property Name="fTC_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fCC_ID" Type="Int32" Nullable="false" />
+          <Property Name="fTC_PerL" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tDayTravel" Relationship="Self.FK_tDayTravel_tTravelCase" FromRole="tTravelCase" ToRole="tDayTravel" />
+          <NavigationProperty Name="tRegistrationOpen" Relationship="Self.FK_tRegistrationOpen_tTravelCase" FromRole="tTravelCase" ToRole="tRegistrationOpen" />
+          <NavigationProperty Name="tCityCountry" Relationship="TravelModel2.FK_tTravelCase_tCityCountry" FromRole="tTravelCase" ToRole="tCityCountry" />
+        </EntityType>
+        <Association Name="FK_tDayTravel_tTravelCase">
+          <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+          <End Role="tDayTravel" Type="Self.tDayTravel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTravelCase">
+              <PropertyRef Name="fTC_ID" />
+            </Principal>
+            <Dependent Role="tDayTravel">
+              <PropertyRef Name="fTC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tRegistrationOpen_tTravelCase">
+          <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+          <End Role="tRegistrationOpen" Type="Self.tRegistrationOpen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTravelCase">
+              <PropertyRef Name="fTC_ID" />
+            </Principal>
+            <Dependent Role="tRegistrationOpen">
+              <PropertyRef Name="fTC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TravelEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tDayTravel" EntityType="Self.tDayTravel" />
+          <EntitySet Name="tRegistrationOpen" EntityType="Self.tRegistrationOpen" />
+          <EntitySet Name="tTravelCase" EntityType="Self.tTravelCase" />
+          <AssociationSet Name="FK_tDayTravel_tTravelCase" Association="Self.FK_tDayTravel_tTravelCase">
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+            <End Role="tDayTravel" EntitySet="tDayTravel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tRegistrationOpen_tTravelCase" Association="Self.FK_tRegistrationOpen_tTravelCase">
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+            <End Role="tRegistrationOpen" EntitySet="tRegistrationOpen" />
+          </AssociationSet>
+          <EntitySet Name="tCityCountry" EntityType="TravelModel2.tCityCountry" />
+          <AssociationSet Name="FK_tCityCountry_tCityCountry" Association="TravelModel2.FK_tCityCountry_tCityCountry">
+            <End Role="tCityCountry" EntitySet="tCityCountry" />
+            <End Role="tCityCountry1" EntitySet="tCityCountry" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTravelCase_tCityCountry" Association="TravelModel2.FK_tTravelCase_tCityCountry">
+            <End Role="tCityCountry" EntitySet="tCityCountry" />
+            <End Role="tTravelCase" EntitySet="tTravelCase" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tCityCountry">
+          <Key>
+            <PropertyRef Name="fCC_ID" />
+          </Key>
+          <Property Name="fCC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fCC_Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fCC_Dad" Type="Int32" />
+          <NavigationProperty Name="tCityCountry1" Relationship="TravelModel2.FK_tCityCountry_tCityCountry" FromRole="tCityCountry" ToRole="tCityCountry1" />
+          <NavigationProperty Name="tCityCountry2" Relationship="TravelModel2.FK_tCityCountry_tCityCountry" FromRole="tCityCountry1" ToRole="tCityCountry" />
+          <NavigationProperty Name="tTravelCase" Relationship="TravelModel2.FK_tTravelCase_tCityCountry" FromRole="tCityCountry" ToRole="tTravelCase" />
+        </EntityType>
+        <Association Name="FK_tCityCountry_tCityCountry">
+          <End Type="TravelModel2.tCityCountry" Role="tCityCountry" Multiplicity="0..1" />
+          <End Type="TravelModel2.tCityCountry" Role="tCityCountry1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCityCountry">
+              <PropertyRef Name="fCC_ID" />
+            </Principal>
+            <Dependent Role="tCityCountry1">
+              <PropertyRef Name="fCC_Dad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTravelCase_tCityCountry">
+          <End Type="TravelModel2.tCityCountry" Role="tCityCountry" Multiplicity="1" />
+          <End Type="TravelModel2.tTravelCase" Role="tTravelCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tCityCountry">
+              <PropertyRef Name="fCC_ID" />
+            </Principal>
+            <Dependent Role="tTravelCase">
+              <PropertyRef Name="fCC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TravelModel2StoreContainer" CdmEntityContainer="TravelEntities2">
+          <EntitySetMapping Name="tDayTravel">
+            <EntityTypeMapping TypeName="TravelModel2.tDayTravel">
+              <MappingFragment StoreEntitySet="tDayTravel">
+                <ScalarProperty Name="fDT_ID" ColumnName="fDT_ID" />
+                <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+                <ScalarProperty Name="fDT_Content" ColumnName="fDT_Content" />
+                <ScalarProperty Name="fDT_Date" ColumnName="fDT_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tRegistrationOpen">
+            <EntityTypeMapping TypeName="TravelModel2.tRegistrationOpen">
+              <MappingFragment StoreEntitySet="tRegistrationOpen">
+                <ScalarProperty Name="fRO_ID" ColumnName="fRO_ID" />
+                <ScalarProperty Name="fRO_ODate" ColumnName="fRO_ODate" />
+                <ScalarProperty Name="fRO_CDate" ColumnName="fRO_CDate" />
+                <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTravelCase">
+            <EntityTypeMapping TypeName="TravelModel2.tTravelCase">
+              <MappingFragment StoreEntitySet="tTravelCase">
+                <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+                <ScalarProperty Name="fTC_Title" ColumnName="fTC_Title" />
+                <ScalarProperty Name="fTC_Top" ColumnName="fTC_Top" />
+                <ScalarProperty Name="fTC_Gate" ColumnName="fTC_Gate" />
+                <ScalarProperty Name="fTC_Cost" ColumnName="fTC_Cost" />
+                <ScalarProperty Name="fTC_TDate" ColumnName="fTC_TDate" />
+                <ScalarProperty Name="fTC_Content" ColumnName="fTC_Content" />
+                <ScalarProperty Name="fTC_Notes" ColumnName="fTC_Notes" />
+                <ScalarProperty Name="fTC_LorD" ColumnName="fTC_LorD" />
+                <ScalarProperty Name="fTC_Picture" ColumnName="fTC_Picture" />
+                <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+                <ScalarProperty Name="fTC_PerL" ColumnName="fTC_PerL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCityCountry">
+            <EntityTypeMapping TypeName="TravelModel2.tCityCountry">
+              <MappingFragment StoreEntitySet="tCityCountry">
+                <ScalarProperty Name="fCC_Dad" ColumnName="fCC_Dad" />
+                <ScalarProperty Name="fCC_Place" ColumnName="fCC_Place" />
+                <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

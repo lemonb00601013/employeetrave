@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravelModel2StoreContainer" CdmEntityContainer="TravelEntities2">
+    <EntitySetMapping Name="tDayTravel">
+      <EntityTypeMapping TypeName="TravelModel2.tDayTravel">
+        <MappingFragment StoreEntitySet="tDayTravel">
+          <ScalarProperty Name="fDT_ID" ColumnName="fDT_ID" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fDT_Content" ColumnName="fDT_Content" />
+          <ScalarProperty Name="fDT_Date" ColumnName="fDT_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRegistrationOpen">
+      <EntityTypeMapping TypeName="TravelModel2.tRegistrationOpen">
+        <MappingFragment StoreEntitySet="tRegistrationOpen">
+          <ScalarProperty Name="fRO_ID" ColumnName="fRO_ID" />
+          <ScalarProperty Name="fRO_ODate" ColumnName="fRO_ODate" />
+          <ScalarProperty Name="fRO_CDate" ColumnName="fRO_CDate" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTravelCase">
+      <EntityTypeMapping TypeName="TravelModel2.tTravelCase">
+        <MappingFragment StoreEntitySet="tTravelCase">
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fTC_Title" ColumnName="fTC_Title" />
+          <ScalarProperty Name="fTC_Top" ColumnName="fTC_Top" />
+          <ScalarProperty Name="fTC_Gate" ColumnName="fTC_Gate" />
+          <ScalarProperty Name="fTC_Cost" ColumnName="fTC_Cost" />
+          <ScalarProperty Name="fTC_TDate" ColumnName="fTC_TDate" />
+          <ScalarProperty Name="fTC_Content" ColumnName="fTC_Content" />
+          <ScalarProperty Name="fTC_Notes" ColumnName="fTC_Notes" />
+          <ScalarProperty Name="fTC_LorD" ColumnName="fTC_LorD" />
+          <ScalarProperty Name="fTC_Picture" ColumnName="fTC_Picture" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+          <ScalarProperty Name="fTC_PerL" ColumnName="fTC_PerL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCityCountry">
+      <EntityTypeMapping TypeName="TravelModel2.tCityCountry">
+        <MappingFragment StoreEntitySet="tCityCountry">
+          <ScalarProperty Name="fCC_Dad" ColumnName="fCC_Dad" />
+          <ScalarProperty Name="fCC_Place" ColumnName="fCC_Place" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

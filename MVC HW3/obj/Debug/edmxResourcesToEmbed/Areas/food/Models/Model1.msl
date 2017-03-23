@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravelModelStoreContainer" CdmEntityContainer="TravelEntities">
+    <EntitySetMapping Name="tMealList">
+      <EntityTypeMapping TypeName="TravelModel.tMealList">
+        <MappingFragment StoreEntitySet="tMealList">
+          <ScalarProperty Name="fML_Projrct" ColumnName="fML_Projrct" />
+          <ScalarProperty Name="fML_ID" ColumnName="fML_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMealClass">
+      <EntityTypeMapping TypeName="TravelModel.tMealClass">
+        <MappingFragment StoreEntitySet="tMealClass">
+          <ScalarProperty Name="fML_ID" ColumnName="fML_ID" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRestaurant">
+      <EntityTypeMapping TypeName="TravelModel.tRestaurant">
+        <MappingFragment StoreEntitySet="tRestaurant">
+          <ScalarProperty Name="fRe_Image" ColumnName="fRe_Image" />
+          <ScalarProperty Name="fRe_introduction" ColumnName="fRe_introduction" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fR_Price" ColumnName="fR_Price" />
+          <ScalarProperty Name="fRe_Delivery" ColumnName="fRe_Delivery" />
+          <ScalarProperty Name="fRe_Addr" ColumnName="fRe_Addr" />
+          <ScalarProperty Name="fRe_Tel" ColumnName="fRe_Tel" />
+          <ScalarProperty Name="fRe_Content" ColumnName="fRe_Content" />
+          <ScalarProperty Name="fRe_Name" ColumnName="fRe_Name" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMessageCode">
+      <EntityTypeMapping TypeName="TravelModel.tMessageCode">
+        <MappingFragment StoreEntitySet="tMessageCode">
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

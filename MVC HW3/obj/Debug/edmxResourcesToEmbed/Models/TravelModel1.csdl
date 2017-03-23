@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tConnection">
+    <Key>
+      <PropertyRef Name="fCo_ID" />
+    </Key>
+    <Property Name="fCo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fCo_Date" Type="DateTime" Precision="3" />
+    <Property Name="fCo_Theme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fCo_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tConnectionClass" Relationship="Self.FK_tConnection_tConnectionClass" FromRole="tConnection" ToRole="tConnectionClass" />
+    <NavigationProperty Name="tEmployee" Relationship="Self.FK_tConnection_tEmployee" FromRole="tConnection" ToRole="tEmployee" />
+    <Property Name="fCo_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fCo_Clear" Type="DateTime" Precision="3" />
+    <Property Name="fCo_Dad" Type="Int32" />
+    <NavigationProperty Name="tConnection1" Relationship="TravelModel.FK_tConnection_tConnection" FromRole="tConnection" ToRole="tConnection1" />
+    <NavigationProperty Name="tConnection2" Relationship="TravelModel.FK_tConnection_tConnection" FromRole="tConnection1" ToRole="tConnection" />
+  </EntityType>
+  <EntityType Name="tConnectionClass">
+    <Key>
+      <PropertyRef Name="fCC_ID" />
+    </Key>
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fCC_Class" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tConnection" Relationship="Self.FK_tConnection_tConnectionClass" FromRole="tConnectionClass" ToRole="tConnection" />
+  </EntityType>
+  <EntityType Name="tEmployee">
+    <Key>
+      <PropertyRef Name="fEp_ID" />
+    </Key>
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_Code" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fEp_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fEp_SSNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="fEp_Addr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fEp_Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fEp_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fId_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_Seniority" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fSe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_Nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fEp_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fEp_Picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="fEp_Birth" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tConnection" Relationship="Self.FK_tConnection_tEmployee" FromRole="tEmployee" ToRole="tConnection" />
+  </EntityType>
+  <Association Name="FK_tConnection_tConnectionClass">
+    <End Role="tConnectionClass" Type="Self.tConnectionClass" Multiplicity="1" />
+    <End Role="tConnection" Type="Self.tConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tConnectionClass">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tConnection">
+        <PropertyRef Name="fCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tConnection_tEmployee">
+    <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+    <End Role="tConnection" Type="Self.tConnection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tConnection">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tConnection" EntityType="Self.tConnection" />
+    <EntitySet Name="tConnectionClass" EntityType="Self.tConnectionClass" />
+    <EntitySet Name="tEmployee" EntityType="Self.tEmployee" />
+    <AssociationSet Name="FK_tConnection_tConnectionClass" Association="Self.FK_tConnection_tConnectionClass">
+      <End Role="tConnectionClass" EntitySet="tConnectionClass" />
+      <End Role="tConnection" EntitySet="tConnection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tConnection_tEmployee" Association="Self.FK_tConnection_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tConnection" EntitySet="tConnection" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tConnection_tConnection" Association="TravelModel.FK_tConnection_tConnection">
+      <End Role="tConnection" EntitySet="tConnection" />
+      <End Role="tConnection1" EntitySet="tConnection" />
+    </AssociationSet>
+    <EntitySet Name="tBulletin" EntityType="TravelModel.tBulletin" />
+    <EntitySet Name="tBulletinClass" EntityType="TravelModel.tBulletinClass" />
+    <AssociationSet Name="FK_tBulletin_tBulletinClass" Association="TravelModel.FK_tBulletin_tBulletinClass">
+      <End Role="tBulletinClass" EntitySet="tBulletinClass" />
+      <End Role="tBulletin" EntitySet="tBulletin" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_tConnection_tConnection">
+    <End Type="TravelModel.tConnection" Role="tConnection" Multiplicity="0..1" />
+    <End Type="TravelModel.tConnection" Role="tConnection1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tConnection">
+        <PropertyRef Name="fCo_ID" />
+      </Principal>
+      <Dependent Role="tConnection1">
+        <PropertyRef Name="fCo_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tBulletin">
+    <Key>
+      <PropertyRef Name="fBu_ID" />
+    </Key>
+    <Property Name="fBu_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fBu_Date" Type="DateTime" Precision="3" />
+    <Property Name="fBC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fBu_Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fBu_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tBulletinClass" Relationship="TravelModel.FK_tBulletin_tBulletinClass" FromRole="tBulletin" ToRole="tBulletinClass" />
+  </EntityType>
+  <EntityType Name="tBulletinClass">
+    <Key>
+      <PropertyRef Name="fBC_ID" />
+    </Key>
+    <Property Name="fBC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fBC_Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tBulletin" Relationship="TravelModel.FK_tBulletin_tBulletinClass" FromRole="tBulletinClass" ToRole="tBulletin" />
+  </EntityType>
+  <Association Name="FK_tBulletin_tBulletinClass">
+    <End Type="TravelModel.tBulletinClass" Role="tBulletinClass" Multiplicity="1" />
+    <End Type="TravelModel.tBulletin" Role="tBulletin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tBulletinClass">
+        <PropertyRef Name="fBC_ID" />
+      </Principal>
+      <Dependent Role="tBulletin">
+        <PropertyRef Name="fBC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

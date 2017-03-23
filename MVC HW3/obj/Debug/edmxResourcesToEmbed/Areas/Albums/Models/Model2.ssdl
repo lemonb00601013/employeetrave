@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tAlbum">
+    <Key>
+      <PropertyRef Name="fAl_ID" />
+    </Key>
+    <Property Name="fAl_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fTC_ID" Type="int" Nullable="false" />
+    <Property Name="fAl_Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tEmployee">
+    <Key>
+      <PropertyRef Name="fEp_ID" />
+    </Key>
+    <Property Name="fEp_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fEp_Code" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="fEp_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_SSNumber" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="fEp_Addr" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Tel" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fId_ID" Type="int" Nullable="false" />
+    <Property Name="fEp_Seniority" Type="datetime" Nullable="false" />
+    <Property Name="fSe_ID" Type="int" Nullable="false" />
+    <Property Name="fEp_Nickname" Type="nvarchar" MaxLength="50" />
+    <Property Name="fEp_Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="fEp_Picture" Type="varbinary(max)" Nullable="false" />
+    <Property Name="fEp_Birth" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tForumMessage">
+    <Key>
+      <PropertyRef Name="fFM_ID" />
+    </Key>
+    <Property Name="fFM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fFM_Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fEp_ID" Type="int" Nullable="false" />
+    <Property Name="fFM_Date" Type="datetime" />
+    <Property Name="fFM_Dad" Type="int" />
+    <Property Name="fMC_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tMessageCode">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tPhoto">
+    <Key>
+      <PropertyRef Name="fPh_ID" />
+    </Key>
+    <Property Name="fPh_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fPh_PicFile" Type="varbinary(max)" Nullable="false" />
+    <Property Name="fAl_ID" Type="int" Nullable="false" />
+    <Property Name="fPh_Date" Type="datetime" />
+    <Property Name="fPh_Notes" Type="nvarchar" MaxLength="50" />
+    <Property Name="fMC_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tTravelCase">
+    <Key>
+      <PropertyRef Name="fTC_ID" />
+    </Key>
+    <Property Name="fTC_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fTC_Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fTC_Top" Type="int" Nullable="false" />
+    <Property Name="fTC_Gate" Type="int" Nullable="false" />
+    <Property Name="fTC_Cost" Type="money" Nullable="false" />
+    <Property Name="fTC_TDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="fTC_Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fTC_Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fTC_LorD" Type="int" Nullable="false" />
+    <Property Name="fTC_Picture" Type="varbinary(max)" />
+    <Property Name="fCC_ID" Type="int" Nullable="false" />
+    <Property Name="fTC_PerL" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tAlbum_tTravelCase">
+    <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+    <End Role="tAlbum" Type="Self.tAlbum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tAlbum">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumArticle_tEmployee">
+    <End Role="tEmployee" Type="Self.tEmployee" Multiplicity="1" />
+    <End Role="tForumMessage" Type="Self.tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tForumMessage">
+    <End Role="tForumMessage" Type="Self.tForumMessage" Multiplicity="0..1" />
+    <End Role="tForumMessage1" Type="Self.tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumMessage">
+        <PropertyRef Name="fFM_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage1">
+        <PropertyRef Name="fFM_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tMessageCode1">
+    <End Role="tMessageCode" Type="Self.tMessageCode" Multiplicity="1" />
+    <End Role="tForumMessage" Type="Self.tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tAlbum">
+    <End Role="tAlbum" Type="Self.tAlbum" Multiplicity="1" />
+    <End Role="tPhoto" Type="Self.tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tAlbum">
+        <PropertyRef Name="fAl_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fAl_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tMessageCode">
+    <End Role="tMessageCode" Type="Self.tMessageCode" Multiplicity="1" />
+    <End Role="tPhoto" Type="Self.tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelModel1StoreContainer">
+    <EntitySet Name="tAlbum" EntityType="Self.tAlbum" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tEmployee" EntityType="Self.tEmployee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tForumMessage" EntityType="Self.tForumMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tMessageCode" EntityType="Self.tMessageCode" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tPhoto" EntityType="Self.tPhoto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tTravelCase" EntityType="Self.tTravelCase" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tAlbum_tTravelCase" Association="Self.FK_tAlbum_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tAlbum" EntitySet="tAlbum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumArticle_tEmployee" Association="Self.FK_tForumArticle_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tForumMessage" Association="Self.FK_tForumMessage_tForumMessage">
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+      <End Role="tForumMessage1" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tMessageCode1" Association="Self.FK_tForumMessage_tMessageCode1">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tAlbum" Association="Self.FK_tPhoto_tAlbum">
+      <End Role="tAlbum" EntitySet="tAlbum" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tMessageCode" Association="Self.FK_tPhoto_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

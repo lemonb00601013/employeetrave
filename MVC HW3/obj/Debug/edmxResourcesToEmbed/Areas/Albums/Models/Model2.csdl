@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TravelModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tAlbum">
+    <Key>
+      <PropertyRef Name="fAl_ID" />
+    </Key>
+    <Property Name="fAl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fAl_Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tTravelCase" Relationship="Self.FK_tAlbum_tTravelCase" FromRole="tAlbum" ToRole="tTravelCase" />
+    <NavigationProperty Name="tPhoto" Relationship="Self.FK_tPhoto_tAlbum" FromRole="tAlbum" ToRole="tPhoto" />
+  </EntityType>
+  <EntityType Name="tForumMessage">
+    <Key>
+      <PropertyRef Name="fFM_ID" />
+    </Key>
+    <Property Name="fFM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFM_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFM_Date" Type="DateTime" Precision="3" />
+    <Property Name="fFM_Dad" Type="Int32" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tForumMessage1" Relationship="Self.FK_tForumMessage_tForumMessage" FromRole="tForumMessage" ToRole="tForumMessage1" />
+    <NavigationProperty Name="tForumMessage2" Relationship="Self.FK_tForumMessage_tForumMessage" FromRole="tForumMessage1" ToRole="tForumMessage" />
+    <NavigationProperty Name="tMessageCode" Relationship="Self.FK_tForumMessage_tMessageCode1" FromRole="tForumMessage" ToRole="tMessageCode" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel1.FK_tForumArticle_tEmployee" FromRole="tForumMessage" ToRole="tEmployee" />
+  </EntityType>
+  <EntityType Name="tMessageCode">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tForumMessage" Relationship="Self.FK_tForumMessage_tMessageCode1" FromRole="tMessageCode" ToRole="tForumMessage" />
+    <NavigationProperty Name="tPhoto" Relationship="Self.FK_tPhoto_tMessageCode" FromRole="tMessageCode" ToRole="tPhoto" />
+  </EntityType>
+  <EntityType Name="tPhoto">
+    <Key>
+      <PropertyRef Name="fPh_ID" />
+    </Key>
+    <Property Name="fPh_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fPh_PicFile" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="fAl_ID" Type="Int32" Nullable="false" />
+    <Property Name="fPh_Date" Type="DateTime" Precision="3" />
+    <Property Name="fPh_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tAlbum" Relationship="Self.FK_tPhoto_tAlbum" FromRole="tPhoto" ToRole="tAlbum" />
+    <NavigationProperty Name="tMessageCode" Relationship="Self.FK_tPhoto_tMessageCode" FromRole="tPhoto" ToRole="tMessageCode" />
+  </EntityType>
+  <EntityType Name="tTravelCase">
+    <Key>
+      <PropertyRef Name="fTC_ID" />
+    </Key>
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fTC_Top" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Gate" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="fTC_TDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fTC_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fTC_Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fTC_LorD" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fTC_PerL" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tAlbum" Relationship="Self.FK_tAlbum_tTravelCase" FromRole="tTravelCase" ToRole="tAlbum" />
+  </EntityType>
+  <Association Name="FK_tAlbum_tTravelCase">
+    <End Role="tTravelCase" Type="Self.tTravelCase" Multiplicity="1" />
+    <End Role="tAlbum" Type="Self.tAlbum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tAlbum">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tAlbum">
+    <End Role="tAlbum" Type="Self.tAlbum" Multiplicity="1" />
+    <End Role="tPhoto" Type="Self.tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tAlbum">
+        <PropertyRef Name="fAl_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fAl_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tForumMessage">
+    <End Role="tForumMessage" Type="Self.tForumMessage" Multiplicity="0..1" />
+    <End Role="tForumMessage1" Type="Self.tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumMessage">
+        <PropertyRef Name="fFM_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage1">
+        <PropertyRef Name="fFM_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tMessageCode1">
+    <End Role="tMessageCode" Type="Self.tMessageCode" Multiplicity="1" />
+    <End Role="tForumMessage" Type="Self.tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tMessageCode">
+    <End Role="tMessageCode" Type="Self.tMessageCode" Multiplicity="1" />
+    <End Role="tPhoto" Type="Self.tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TravelEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tAlbum" EntityType="Self.tAlbum" />
+    <EntitySet Name="tForumMessage" EntityType="Self.tForumMessage" />
+    <EntitySet Name="tMessageCode" EntityType="Self.tMessageCode" />
+    <EntitySet Name="tPhoto" EntityType="Self.tPhoto" />
+    <EntitySet Name="tTravelCase" EntityType="Self.tTravelCase" />
+    <AssociationSet Name="FK_tAlbum_tTravelCase" Association="Self.FK_tAlbum_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tAlbum" EntitySet="tAlbum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tAlbum" Association="Self.FK_tPhoto_tAlbum">
+      <End Role="tAlbum" EntitySet="tAlbum" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tForumMessage" Association="Self.FK_tForumMessage_tForumMessage">
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+      <End Role="tForumMessage1" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tMessageCode1" Association="Self.FK_tForumMessage_tMessageCode1">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tMessageCode" Association="Self.FK_tPhoto_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+    <EntitySet Name="tEmployee" EntityType="TravelModel1.tEmployee" />
+    <AssociationSet Name="FK_tForumArticle_tEmployee" Association="TravelModel1.FK_tForumArticle_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tEmployee">
+    <Key>
+      <PropertyRef Name="fEp_ID" />
+    </Key>
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fEp_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_SSNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fEp_Addr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fEp_Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fId_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_Seniority" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fSe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_Nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fEp_Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fEp_Picture" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="fEp_Birth" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tForumMessage" Relationship="TravelModel1.FK_tForumArticle_tEmployee" FromRole="tEmployee" ToRole="tForumMessage" />
+  </EntityType>
+  <Association Name="FK_tForumArticle_tEmployee">
+    <End Type="TravelModel1.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel1.tForumMessage" Role="tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

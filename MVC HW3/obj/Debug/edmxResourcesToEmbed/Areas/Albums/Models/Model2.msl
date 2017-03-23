@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TravelModel1StoreContainer" CdmEntityContainer="TravelEntities1">
+    <EntitySetMapping Name="tAlbum">
+      <EntityTypeMapping TypeName="TravelModel1.tAlbum">
+        <MappingFragment StoreEntitySet="tAlbum">
+          <ScalarProperty Name="fAl_ID" ColumnName="fAl_ID" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fAl_Date" ColumnName="fAl_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForumMessage">
+      <EntityTypeMapping TypeName="TravelModel1.tForumMessage">
+        <MappingFragment StoreEntitySet="tForumMessage">
+          <ScalarProperty Name="fFM_ID" ColumnName="fFM_ID" />
+          <ScalarProperty Name="fFM_Content" ColumnName="fFM_Content" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fFM_Date" ColumnName="fFM_Date" />
+          <ScalarProperty Name="fFM_Dad" ColumnName="fFM_Dad" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMessageCode">
+      <EntityTypeMapping TypeName="TravelModel1.tMessageCode">
+        <MappingFragment StoreEntitySet="tMessageCode">
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPhoto">
+      <EntityTypeMapping TypeName="TravelModel1.tPhoto">
+        <MappingFragment StoreEntitySet="tPhoto">
+          <ScalarProperty Name="fPh_ID" ColumnName="fPh_ID" />
+          <ScalarProperty Name="fPh_PicFile" ColumnName="fPh_PicFile" />
+          <ScalarProperty Name="fAl_ID" ColumnName="fAl_ID" />
+          <ScalarProperty Name="fPh_Date" ColumnName="fPh_Date" />
+          <ScalarProperty Name="fPh_Notes" ColumnName="fPh_Notes" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTravelCase">
+      <EntityTypeMapping TypeName="TravelModel1.tTravelCase">
+        <MappingFragment StoreEntitySet="tTravelCase">
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fTC_Title" ColumnName="fTC_Title" />
+          <ScalarProperty Name="fTC_Top" ColumnName="fTC_Top" />
+          <ScalarProperty Name="fTC_Gate" ColumnName="fTC_Gate" />
+          <ScalarProperty Name="fTC_Cost" ColumnName="fTC_Cost" />
+          <ScalarProperty Name="fTC_TDate" ColumnName="fTC_TDate" />
+          <ScalarProperty Name="fTC_Content" ColumnName="fTC_Content" />
+          <ScalarProperty Name="fTC_Notes" ColumnName="fTC_Notes" />
+          <ScalarProperty Name="fTC_LorD" ColumnName="fTC_LorD" />
+          <ScalarProperty Name="fTC_Picture" ColumnName="fTC_Picture" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+          <ScalarProperty Name="fTC_PerL" ColumnName="fTC_PerL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tEmployee">
+      <EntityTypeMapping TypeName="TravelModel1.tEmployee">
+        <MappingFragment StoreEntitySet="tEmployee">
+          <ScalarProperty Name="fEp_Birth" ColumnName="fEp_Birth" />
+          <ScalarProperty Name="fEp_Picture" ColumnName="fEp_Picture" />
+          <ScalarProperty Name="fEp_Email" ColumnName="fEp_Email" />
+          <ScalarProperty Name="fEp_Password" ColumnName="fEp_Password" />
+          <ScalarProperty Name="fEp_Nickname" ColumnName="fEp_Nickname" />
+          <ScalarProperty Name="fSe_ID" ColumnName="fSe_ID" />
+          <ScalarProperty Name="fEp_Seniority" ColumnName="fEp_Seniority" />
+          <ScalarProperty Name="fId_ID" ColumnName="fId_ID" />
+          <ScalarProperty Name="fEp_Phone" ColumnName="fEp_Phone" />
+          <ScalarProperty Name="fEp_Tel" ColumnName="fEp_Tel" />
+          <ScalarProperty Name="fEp_Addr" ColumnName="fEp_Addr" />
+          <ScalarProperty Name="fEp_SSNumber" ColumnName="fEp_SSNumber" />
+          <ScalarProperty Name="fEp_Name" ColumnName="fEp_Name" />
+          <ScalarProperty Name="fEp_Code" ColumnName="fEp_Code" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
