@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c36aedf8386346b0b94426ed09874047" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelModel.tConnection" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tConnectionClass" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tEmployee" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tConnectionClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tConnection" />
+        <EntityTypeShape EntityType="TravelModel.tBulletin" Width="1.5" PointX="7.625" PointY="0.875" />
+        <EntityTypeShape EntityType="TravelModel.tBulletinClass" Width="1.5" PointX="5.375" PointY="1.25" />
+        <AssociationConnector Association="TravelModel.FK_tBulletin_tBulletinClass" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

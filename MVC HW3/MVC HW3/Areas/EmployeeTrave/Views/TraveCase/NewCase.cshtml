@@ -1,0 +1,53 @@
+﻿@* 員工旅遊 *@
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<MVC_HW3.Models.tTravelCase>
+@{
+    ViewBag.Title = "員工旅遊";
+}
+
+<h2>@ViewBag.Class</h2>
+<hr />
+<br />
+<br />
+@{int i = 0;}
+@foreach (var Case in Model)
+{
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <div class="homecase">
+                <img src="@Url.Action("GetImage", "TraveCase", new { area = "EmployeeTrave", id = Case.fTC_ID })" alt="@Case.fTC_Title">
+
+            </div>
+
+        </div>
+        <a href="@Url.Action("CaseDetail", "TraveCase", new { area = "EmployeeTrave", id = Case.fTC_ID })">
+            <div class="col-md-7">
+                <div class="news_subject">@if (ViewBag.status == null)
+                {<span>[第 @Case.fTC_LorD 期]</span> }  @Case.fTC_Title</div>
+                <div class="news_date">旅遊日期: @Case.fTC_TDate</div>
+                <div class="news_txt"></div>
+                <div class="text-right">
+                    <h4>@ViewBag.PerCount[i] (報名)  /  @Case.fTC_Top (上限)</h4>
+
+                </div>
+                <div class="text-right"><h3>基本費: @Html.DisplayFor(a => Case.fTC_Cost)/人</h3></div>
+                @if (ViewBag.status != null)
+                {
+                    <h2 class="text-right">@ViewBag.status[i]</h2>
+                }
+
+                @{i++; }
+               
+                <div class="news_more text-right">詳細內容>></div>
+
+            </div>
+        </a>
+    </div>
+    <hr />
+
+                    }
+
+<div class="text-center">@Html.PagedListPager(Model, page => Url.Action("NewCase", "TraveCase", new { page, area = "EmployeeTrave", ID = Request.QueryString["ID"] }), PagedListRenderOptions.ClassicPlusFirstAndLast)</div>

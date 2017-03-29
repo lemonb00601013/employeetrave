@@ -1,0 +1,97 @@
+﻿@model MVC_HW3.Models.tRestaurant
+@{
+    ViewBag.Title = "AddRestaurant";
+}
+
+<h2>AddPicture</h2>
+@using (Html.BeginForm("AddRestaurant", "Restaurant", FormMethod.Post, new {id="thisform", @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Name, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fRe_Name, new { @class = "form-control col-lg-8"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Content, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fRe_Content, new { @class = "form-control col-lg-8" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Tel, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fRe_Tel, new { @class = "form-control col-lg-8" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Addr, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fRe_Addr, new { @class = "form-control col-lg-8" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Delivery, new { @class = "control-label col-lg-4" })
+        <div>
+            <div class="row">
+                <p>
+                    @*@Html.RadioButtonFor(model=>model.fRe_Delivery, new {value="true", @class = "control-label col-sm-2" })YES
+                    @Html.RadioButtonFor(model => model.fRe_Delivery, new {value="false" ,@class = "control-label col-sm-2" })NO*@
+                    <input name="rd1" type="radio" value="Yes" />Yes
+                    <input name="rd1" type="radio" value="No" />NO
+                </p>
+            </div>
+            @*@Html.RadioButtonFor(model=>model.fRe_Delivery, new { @class = "form-control col-sm-12" })*@
+            @*@Html.TextBoxFor(model => model.fRe_Delivery, new { @class = "form-control col-sm-12" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        <label class = "control-label col-lg-4">膳食分類</label>
+        <div>
+                <div class="col-lg-8" id="chktest">
+                    @Html.Action("MealListSelecthorizontal", "FoodHome")
+                </div>
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fR_Price, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fR_Price, new { @class = "form-control col-lg-8" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_introduction, new { @class = "control-label col-lg-4" })
+        <div>
+            @Html.EditorFor(model => model.fRe_introduction, new { @class = "form-control col-lg-8" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.fRe_Image, new { @class = "control-label col-lg-4" })
+        <div>
+            <div class="col-lg-2">
+                   
+             </div>
+            <div class="col-lg-2"><input type="file" name="RestaurantImg"  /></div>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="col-lg-8">
+        </div>
+        <div class="col-lg-4">
+            @*<button id="btn1" class="col-lg-5" />新增*@
+            <label id="btn1" class="col-lg-5 btn btn-info">新增</label>
+        </div>
+    </div>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+}
+
+
+<script>
+    window.onload = function () {
+        document.getElementById("fRe_Name").onblur = chkname;
+        document.getElementById("fR_Price").onblur = chkprice;
+    }
+</script>

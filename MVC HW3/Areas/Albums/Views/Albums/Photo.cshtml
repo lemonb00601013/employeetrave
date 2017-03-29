@@ -1,6 +1,6 @@
 ﻿
 
-@model IEnumerable<MVC_HW3.Areas.Albums.Models.tPhoto>
+@model IEnumerable<MVC_HW3.Models.tPhoto>
 @{
     ViewBag.Title = "Photo";
 }
@@ -44,7 +44,7 @@
 <div class="row ">
     @foreach (var photo in Model)
     {
-        <div class="col-md-2 col-sm-3 col-xs-4" >            
+        <div class="@*col-md-2 col-sm-3 col-xs-4*@ col-try1" >            
             <a href="#">
                 <div class="divcss5">
                     <img name="photobt" messageid="@photo.fMC_ID" ptid="@photo.fPh_ID" photont="@photo.fPh_Notes" src="@Url.Action("GetImage","Albums",new {area="Albums",id=photo.fPh_ID})">

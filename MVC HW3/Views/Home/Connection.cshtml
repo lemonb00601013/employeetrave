@@ -55,13 +55,13 @@
     </div>
     <div class="form-group">
         <div>
-            <button type="submit" class="btn btn-default">送出</button>
+            <button type="submit" class="btn btn-default">送出</button><button id="Creset" class="btn btn-default">清除</button>
         </div>
     </div>
-    <br />
-    <h4 class="text-primary">@ViewBag.message</h4>
                 }
-<p>@ViewBag.datas2</p>
+    <h4 class="text-primary">@ViewBag.message</h4>
+               
+
     </div>
     <div class="col-md-7">
         <div id="cnote">
@@ -87,8 +87,15 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#fCC_ID,#fCo_Theme,#fCo_Content").val("");
+            $("#Creset").click(function (event) {
+                event.preventDefault();
+                $("#fCC_ID,#fCo_Theme,#fCo_Content").val("");
+            }).css("margin-left","10px")
 
+                
+           
+            
+        
         })
     </script>
    

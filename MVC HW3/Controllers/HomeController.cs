@@ -84,11 +84,13 @@ namespace MVC_HW3.Controllers
                 }
                 string epID = Request.Cookies["account"].Value;
                 Connect.fEp_ID = db.tEmployee.Where(a => a.fEp_Code == epID).Single().fEp_ID;
-                //Connect.fCo_Date = DateTime.Now;
+                Connect.fCo_Date = DateTime.Now;
                 db.tConnection.Add(Connect);
                 db.SaveChanges();
+                ViewBag.message = "訊息已送出,感謝您的聯絡!!";
+
             }
-            ViewBag.message = "訊息已送出,感謝您的聯絡!!";
+            
             ViewBag.datas = db.tConnectionClass.Where(a => a.fCC_Class != "訊息").ToList();
             return View();
         }

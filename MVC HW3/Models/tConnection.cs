@@ -22,7 +22,7 @@ namespace MVC_HW3.Models
     
         public int fCo_ID { get; set; }
         public int fEp_ID { get; set; }
-        public Nullable<System.DateTime> fCo_Date { get; set; }
+        public System.DateTime fCo_Date { get; set; }
         public string fCo_Theme { get; set; }
         public int fCC_ID { get; set; }
         public string fCo_Content { get; set; }
@@ -30,10 +30,10 @@ namespace MVC_HW3.Models
         public Nullable<System.DateTime> fCo_Clear { get; set; }
         public Nullable<int> fCo_Dad { get; set; }
     
-        public virtual tConnectionClass tConnectionClass { get; set; }
-        public virtual tEmployee tEmployee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tConnection> tConnection1 { get; set; }
         public virtual tConnection tConnection2 { get; set; }
+        public virtual tConnectionClass tConnectionClass { get; set; }
+        public virtual tEmployee tEmployee { get; set; }
     }
 }

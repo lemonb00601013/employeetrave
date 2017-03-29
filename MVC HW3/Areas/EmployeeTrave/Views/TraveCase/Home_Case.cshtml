@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MVC_HW3.Areas.EmployeeTrave.Models.tTravelCase>
+﻿@model IEnumerable<MVC_HW3.Models.tTravelCase>
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,16 +13,16 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/Images/slide_award2.jpg" class="height473" />
+        <div class="item active homecase">
+            <img src="~/Images/slide_award2.jpg"/>
         </div>
         @foreach (var Case in Model)
         {
-            <div class="item">
-                <img class="height473" src="@Url.Action("GetImage","TraveCase",new {area="EmployeeTrave",id=Case.fTC_ID })" alt="@Case.fTC_Title">
+            <div class="item homecase">
+                <img   src="@Url.Action("GetImage","TraveCase",new {area="EmployeeTrave",id=Case.fTC_ID })" alt="@Case.fTC_Title">
                 <div class="carousel-caption">
                     <h3>@Case.fTC_Title</h3>
-                    <p>旅遊日期: @Case.fTC_TDate 基本費: @Case.fTC_Cost $/人 上限人數: @Case.fTC_Top 人</p>
+                    <p>旅遊日期: @Case.fTC_TDate 基本費: @Html.DisplayFor(a=> Case.fTC_Cost)/人 上限人數: @Case.fTC_Top 人</p>
                 </div>
             </div>
         }      

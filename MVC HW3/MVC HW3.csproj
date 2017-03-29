@@ -107,49 +107,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Albums\Models\Model2.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\Albums\Models\Model2.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model2.edmx</DependentUpon>
-      <LastGenOutput>Model2.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\EmployeeTrave\Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Areas\EmployeeTrave\Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\buttons.gif" />
+    <Content Include="Content\images\toolbar.gif" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\jquery.cleditor.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\trycss.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\22222.png" />
+    <Content Include="Images\93.jpg" />
     <Content Include="Images\body_bg.jpg" />
+    <Content Include="Images\map.png" />
     <Content Include="Images\news.jpg" />
     <Content Include="Images\slide_award2.jpg" />
     <Content Include="Images\一般公告.png" />
     <Content Include="Images\重要公告.png" />
     <Content Include="Images\旅遊公告.png" />
-    <Content Include="Models\TravelModel1.Context.tt">
+    <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelModel1.edmx</DependentUpon>
-      <LastGenOutput>TravelModel1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TravelModel1.tt">
+    <Content Include="Models\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TravelModel1.edmx</DependentUpon>
-      <LastGenOutput>TravelModel1.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -157,13 +143,6 @@
     <Content Include="Areas\Albums\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Albums\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Albums\Views\Albums\Photo.cshtml" />
-    <EntityDeploy Include="Areas\Albums\Models\Model2.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model2.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Areas\Albums\Models\Model2.edmx.diagram">
-      <DependentUpon>Model2.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Albums\Views\Albums\Home_Photo.cshtml" />
     <Content Include="Areas\Albums\Views\Albums\Index.cshtml" />
     <Content Include="Areas\Albums\Views\Albums\PhotoMessage.cshtml" />
@@ -171,19 +150,60 @@
     <Content Include="Areas\EmployeeTrave\Views\_ViewStart.cshtml" />
     <Content Include="Areas\EmployeeTrave\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\EmployeeTrave\Views\TraveCase\Home_Case.cshtml" />
-    <EntityDeploy Include="Areas\EmployeeTrave\Models\Model1.edmx">
+    <Content Include="Areas\Food\Views\FoodHome\Index.cshtml" />
+    <Content Include="Areas\Food\Views\FoodHome\MealListSelect.cshtml" />
+    <Content Include="Areas\Food\Views\FoodHome\MealListSelecthorizontal.cshtml" />
+    <Content Include="Areas\Food\Views\Restaurant\AddRestaurant.cshtml" />
+    <Content Include="Areas\Food\Views\Restaurant\RestaurantDetail.cshtml" />
+    <Content Include="Areas\Food\Views\Restaurant\RestaurantSelect.cshtml" />
+    <Content Include="Areas\Food\Views\web.config" />
+    <Content Include="Areas\Food\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Activity\CreateActivity.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Activity\Index.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Activity\_ViewStart.cshtml" />
+    <Content Include="Areas\TravelMap\Views\TravelMapHome\country.cshtml" />
+    <Content Include="Areas\TravelMap\Views\TravelMapHome\Index.cshtml" />
+    <Content Include="Areas\TravelMap\Views\TravelMapHome\_ViewStart.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Travel\CreateDetail.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Travel\Index.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Travel\TravelClass.cshtml" />
+    <Content Include="Areas\TravelMap\Views\Travel\_ViewStart.cshtml" />
+    <Content Include="Areas\TravelMap\Views\web.config" />
+    <Content Include="Areas\Forum\Views\ForumHome\Create.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Detail.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\Message.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\partial_twitter.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumHome\partview.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Forum\Views\web.config" />
+    <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
+    <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Areas\EmployeeTrave\Models\Model1.edmx.diagram">
+    <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\EmployeeTrave\Views\TraveCase\NewCase.cshtml" />
+    <Content Include="Areas\EmployeeTrave\Views\TraveCase\CaseDetail.cshtml" />
+    <Content Include="Areas\EmployeeTrave\Views\TraveCase\Sign_up.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumMyself\EditDetail.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumMyself\EditMessage.cshtml" />
+    <Content Include="Areas\Forum\Views\ForumMyself\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\classie.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.cleditor.css" />
+    <Content Include="Scripts\jquery.cleditor.js" />
+    <Content Include="Scripts\jquery.cleditor.min.js" />
     <Content Include="Scripts\jquery.cookie-1.4.1.min.js" />
     <Content Include="Scripts\jquery.cookie.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -191,116 +211,182 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Albums\AlbumsAreaRegistration.cs" />
     <Compile Include="Areas\Albums\Controllers\AlbumsController.cs" />
-    <Compile Include="Areas\Albums\Models\Model2.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\Model2.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\Model2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model2.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tAlbum.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tEmployee.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tForumMessage.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tMessageCode.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tPhoto.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\Albums\Models\tTravelCase.cs">
-      <DependentUpon>Model2.tt</DependentUpon>
-    </Compile>
     <Compile Include="Areas\EmployeeTrave\Controllers\TraveCaseController.cs" />
     <Compile Include="Areas\EmployeeTrave\EmployeeTraveAreaRegistration.cs" />
-    <Compile Include="Areas\EmployeeTrave\Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\Partials\tTravelCase.cs" />
-    <Compile Include="Areas\EmployeeTrave\Models\tCityCountry.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\tDayTravel.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\tRegistrationOpen.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Areas\EmployeeTrave\Models\tTravelCase.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Areas\Food\Controllers\FoodHomeController.cs" />
+    <Compile Include="Areas\Food\Controllers\RestaurantController.cs" />
+    <Compile Include="Areas\Food\FoodAreaRegistration.cs" />
+    <Compile Include="Areas\Forum\Controllers\ForumHomeController.cs" />
+    <Compile Include="Areas\Forum\Controllers\ForumMyselfController.cs" />
+    <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
+    <Compile Include="Areas\TravelMap\Controllers\ActivityController.cs" />
+    <Compile Include="Areas\TravelMap\Controllers\TravelController.cs" />
+    <Compile Include="Areas\TravelMap\Controllers\TravelMapHomeController.cs" />
+    <Compile Include="Areas\TravelMap\TravelMapAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Partials\tCityCountry.cs" />
     <Compile Include="Models\Partials\tConnection.cs" />
+    <Compile Include="Models\Partials\tForumClass.cs" />
+    <Compile Include="Models\Partials\tForumMessage.cs" />
+    <Compile Include="Models\Partials\tForumTitle.cs" />
+    <Compile Include="Models\Partials\tRestaurant.cs" />
+    <Compile Include="Models\Partials\tSampleProposal.cs" />
+    <Compile Include="Models\Partials\tTravelCase.cs" />
+    <Compile Include="Models\Partials\tTravelDetail.cs" />
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tActivityList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tActivitySelect.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tAlbum.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tBulletin.cs">
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tBulletinClass.cs">
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tCityCountry.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tConnection.cs">
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tConnectionClass.cs">
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tDayTravel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tDependents.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tDependentsTravel.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tEmployee.cs">
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TravelModel1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TravelModel1.Context.tt</DependentUpon>
+    <Compile Include="Models\tFamily.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TravelModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TravelModel1.tt</DependentUpon>
+    <Compile Include="Models\tFieldValue.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TravelModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TravelModel1.edmx</DependentUpon>
+    <Compile Include="Models\tForumClass.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tForumField.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tForumMessage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tForumTitle.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tIdentity.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tManergerHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tMealClass.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tMealList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tMessageCode.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tOpenTime.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tPenalty.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tPhoto.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tPossibleDate.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tRegistrationDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tRegistrationOpen.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tRelationship.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tRestaurant.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tRestaurantScores.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tSampleProposal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tSector.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tSpecialIdentity.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tStatus.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tTraveEat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tTravelCase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tTravelClass.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tTravelDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tVote.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tVoteDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ActivityModel.cs" />
+    <Compile Include="ViewModel\ForumModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Models\TravelModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TravelModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TravelModel1.edmx.diagram">
-      <DependentUpon>TravelModel1.edmx</DependentUpon>
-    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -322,6 +408,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Albums\Models\" />
+    <Folder Include="Areas\EmployeeTrave\Models\" />
+    <Folder Include="Areas\Food\Models\" />
+    <Folder Include="Areas\Food\Views\Shared\" />
+    <Folder Include="Areas\Forum\Models\" />
+    <Folder Include="Areas\TravelMap\Models\" />
+    <Folder Include="Areas\TravelMap\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

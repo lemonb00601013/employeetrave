@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MVC_HW3.Models.tMealList>
+
+    @*動態生成CHECKBOX篩選飯麵*@
+        @*@Html.ActionLink("總覽","Index","FoodHome",new { id = 0}, new { @class = "list-group-item", style ="width:80px" })
+        <br/>*@
+
+    
+        @foreach (var a in Model)
+        {
+            <div style="margin-bottom:30px" id="chkview">
+                <input type="checkbox" id="@a.fML_ID" value="@a.fML_ID" name="chkfoodclass" class="checkbox-inline" style="width:20px;height:20px" />
+                <label for="@a.fML_ID" style="width:50px;height:50px;font-size:20px" class="label label-primary">@a.fML_Projrct</label>
+                <br />
+            </div>
+        }
+         
+
+
+
+
+@*<a href="" class="list-group"></a>*@
+@*expression = "@a.fML_ID"*@

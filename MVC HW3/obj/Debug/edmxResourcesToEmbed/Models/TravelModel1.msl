@@ -64,5 +64,427 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TravelModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tActivityList">
+      <EntityTypeMapping TypeName="TravelModel.tActivityList">
+        <MappingFragment StoreEntitySet="tActivityList">
+          <ScalarProperty Name="fAL_Projrct" ColumnName="fAL_Projrct" />
+          <ScalarProperty Name="fAL_ID" ColumnName="fAL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tActivitySelect">
+      <EntityTypeMapping TypeName="TravelModel.tActivitySelect">
+        <MappingFragment StoreEntitySet="tActivitySelect">
+          <ScalarProperty Name="fAL_ID" ColumnName="fAL_ID" />
+          <ScalarProperty Name="fSP_ID" ColumnName="fSP_ID" />
+          <ScalarProperty Name="fAS_ID" ColumnName="fAS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tAlbum">
+      <EntityTypeMapping TypeName="TravelModel.tAlbum">
+        <MappingFragment StoreEntitySet="tAlbum">
+          <ScalarProperty Name="fAl_Date" ColumnName="fAl_Date" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fAl_ID" ColumnName="fAl_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tCityCountry">
+      <EntityTypeMapping TypeName="TravelModel.tCityCountry">
+        <MappingFragment StoreEntitySet="tCityCountry">
+          <ScalarProperty Name="fCC_Dad" ColumnName="fCC_Dad" />
+          <ScalarProperty Name="fCC_Place" ColumnName="fCC_Place" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDayTravel">
+      <EntityTypeMapping TypeName="TravelModel.tDayTravel">
+        <MappingFragment StoreEntitySet="tDayTravel">
+          <ScalarProperty Name="fDT_Date" ColumnName="fDT_Date" />
+          <ScalarProperty Name="fDT_Content" ColumnName="fDT_Content" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fDT_ID" ColumnName="fDT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDependents">
+      <EntityTypeMapping TypeName="TravelModel.tDependents">
+        <MappingFragment StoreEntitySet="tDependents">
+          <ScalarProperty Name="fDe_Birth" ColumnName="fDe_Birth" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fDe_SSNumber" ColumnName="fDe_SSNumber" />
+          <ScalarProperty Name="fDe_Tel" ColumnName="fDe_Tel" />
+          <ScalarProperty Name="fDe_Name" ColumnName="fDe_Name" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fDe_ID" ColumnName="fDe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tDependentsTravel">
+      <EntityTypeMapping TypeName="TravelModel.tDependentsTravel">
+        <MappingFragment StoreEntitySet="tDependentsTravel">
+          <ScalarProperty Name="fDT_RMoney" ColumnName="fDT_RMoney" />
+          <ScalarProperty Name="fDT_Relief" ColumnName="fDT_Relief" />
+          <ScalarProperty Name="fDT_Hotel" ColumnName="fDT_Hotel" />
+          <ScalarProperty Name="fDT_Car" ColumnName="fDT_Car" />
+          <ScalarProperty Name="fTE_ID" ColumnName="fTE_ID" />
+          <ScalarProperty Name="fSI_ID" ColumnName="fSI_ID" />
+          <ScalarProperty Name="fDT_Insurance" ColumnName="fDT_Insurance" />
+          <ScalarProperty Name="fDT_UTel" ColumnName="fDT_UTel" />
+          <ScalarProperty Name="fDT_Urgent" ColumnName="fDT_Urgent" />
+          <ScalarProperty Name="fDT_Note" ColumnName="fDT_Note" />
+          <ScalarProperty Name="fSt_ID" ColumnName="fSt_ID" />
+          <ScalarProperty Name="fRD_ID" ColumnName="fRD_ID" />
+          <ScalarProperty Name="fDe_ID" ColumnName="fDe_ID" />
+          <ScalarProperty Name="fDT_ID" ColumnName="fDT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tFamily">
+      <EntityTypeMapping TypeName="TravelModel.tFamily">
+        <MappingFragment StoreEntitySet="tFamily">
+          <ScalarProperty Name="fFa_RMoney" ColumnName="fFa_RMoney" />
+          <ScalarProperty Name="fFa_Relief" ColumnName="fFa_Relief" />
+          <ScalarProperty Name="fFa_Hotel" ColumnName="fFa_Hotel" />
+          <ScalarProperty Name="fFa_Car" ColumnName="fFa_Car" />
+          <ScalarProperty Name="fTE_ID" ColumnName="fTE_ID" />
+          <ScalarProperty Name="fSI_ID" ColumnName="fSI_ID" />
+          <ScalarProperty Name="fFa_Birth" ColumnName="fFa_Birth" />
+          <ScalarProperty Name="fFa_Insurance" ColumnName="fFa_Insurance" />
+          <ScalarProperty Name="fFa_Note" ColumnName="fFa_Note" />
+          <ScalarProperty Name="fFa_UTel" ColumnName="fFa_UTel" />
+          <ScalarProperty Name="fFa_Urgent" ColumnName="fFa_Urgent" />
+          <ScalarProperty Name="fSt_ID" ColumnName="fSt_ID" />
+          <ScalarProperty Name="fFa_SSNumber" ColumnName="fFa_SSNumber" />
+          <ScalarProperty Name="fFa_Tel" ColumnName="fFa_Tel" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fFa_Name" ColumnName="fFa_Name" />
+          <ScalarProperty Name="fRD_ID" ColumnName="fRD_ID" />
+          <ScalarProperty Name="fFa_ID" ColumnName="fFa_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tFieldValue">
+      <EntityTypeMapping TypeName="TravelModel.tFieldValue">
+        <MappingFragment StoreEntitySet="tFieldValue">
+          <ScalarProperty Name="fFV_Value" ColumnName="fFV_Value" />
+          <ScalarProperty Name="fFF_ID" ColumnName="fFF_ID" />
+          <ScalarProperty Name="fFT_ID" ColumnName="fFT_ID" />
+          <ScalarProperty Name="fFV_ID" ColumnName="fFV_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForumClass">
+      <EntityTypeMapping TypeName="TravelModel.tForumClass">
+        <MappingFragment StoreEntitySet="tForumClass">
+          <ScalarProperty Name="fFC_Dad" ColumnName="fFC_Dad" />
+          <ScalarProperty Name="fFC_Class" ColumnName="fFC_Class" />
+          <ScalarProperty Name="fFC_ID" ColumnName="fFC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForumField">
+      <EntityTypeMapping TypeName="TravelModel.tForumField">
+        <MappingFragment StoreEntitySet="tForumField">
+          <ScalarProperty Name="tFC_ID" ColumnName="tFC_ID" />
+          <ScalarProperty Name="fFF_Field" ColumnName="fFF_Field" />
+          <ScalarProperty Name="fFF_ID" ColumnName="fFF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForumMessage">
+      <EntityTypeMapping TypeName="TravelModel.tForumMessage">
+        <MappingFragment StoreEntitySet="tForumMessage">
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+          <ScalarProperty Name="fFM_Dad" ColumnName="fFM_Dad" />
+          <ScalarProperty Name="fFM_Date" ColumnName="fFM_Date" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fFM_Content" ColumnName="fFM_Content" />
+          <ScalarProperty Name="fFM_ID" ColumnName="fFM_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tForumTitle">
+      <EntityTypeMapping TypeName="TravelModel.tForumTitle">
+        <MappingFragment StoreEntitySet="tForumTitle">
+          <ScalarProperty Name="fFT_Date" ColumnName="fFT_Date" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+          <ScalarProperty Name="fFC_ID" ColumnName="fFC_ID" />
+          <ScalarProperty Name="fFT_Popul" ColumnName="fFT_Popul" />
+          <ScalarProperty Name="fFT_Title" ColumnName="fFT_Title" />
+          <ScalarProperty Name="fFT_ID" ColumnName="fFT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tIdentity">
+      <EntityTypeMapping TypeName="TravelModel.tIdentity">
+        <MappingFragment StoreEntitySet="tIdentity">
+          <ScalarProperty Name="fId_Identity" ColumnName="fId_Identity" />
+          <ScalarProperty Name="fId_ID" ColumnName="fId_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMealClass">
+      <EntityTypeMapping TypeName="TravelModel.tMealClass">
+        <MappingFragment StoreEntitySet="tMealClass">
+          <ScalarProperty Name="fML_ID" ColumnName="fML_ID" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMealList">
+      <EntityTypeMapping TypeName="TravelModel.tMealList">
+        <MappingFragment StoreEntitySet="tMealList">
+          <ScalarProperty Name="fML_Projrct" ColumnName="fML_Projrct" />
+          <ScalarProperty Name="fML_ID" ColumnName="fML_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tMessageCode">
+      <EntityTypeMapping TypeName="TravelModel.tMessageCode">
+        <MappingFragment StoreEntitySet="tMessageCode">
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tOpenTime">
+      <EntityTypeMapping TypeName="TravelModel.tOpenTime">
+        <MappingFragment StoreEntitySet="tOpenTime">
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fOT_Close" ColumnName="fOT_Close" />
+          <ScalarProperty Name="fOT_Start" ColumnName="fOT_Start" />
+          <ScalarProperty Name="fOT_Day" ColumnName="fOT_Day" />
+          <ScalarProperty Name="fOT_ID" ColumnName="fOT_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPhoto">
+      <EntityTypeMapping TypeName="TravelModel.tPhoto">
+        <MappingFragment StoreEntitySet="tPhoto">
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+          <ScalarProperty Name="fPh_Notes" ColumnName="fPh_Notes" />
+          <ScalarProperty Name="fPh_Date" ColumnName="fPh_Date" />
+          <ScalarProperty Name="fAl_ID" ColumnName="fAl_ID" />
+          <ScalarProperty Name="fPh_PicFile" ColumnName="fPh_PicFile" />
+          <ScalarProperty Name="fPh_ID" ColumnName="fPh_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPossibleDate">
+      <EntityTypeMapping TypeName="TravelModel.tPossibleDate">
+        <MappingFragment StoreEntitySet="tPossibleDate">
+          <ScalarProperty Name="fPD_Date" ColumnName="fPD_Date" />
+          <ScalarProperty Name="fPD_ID" ColumnName="fPD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRegistrationDetail">
+      <EntityTypeMapping TypeName="TravelModel.tRegistrationDetail">
+        <MappingFragment StoreEntitySet="tRegistrationDetail">
+          <ScalarProperty Name="fRD_RMoney" ColumnName="fRD_RMoney" />
+          <ScalarProperty Name="fRD_Relief" ColumnName="fRD_Relief" />
+          <ScalarProperty Name="fRD_Fine" ColumnName="fRD_Fine" />
+          <ScalarProperty Name="fRD_Insurance" ColumnName="fRD_Insurance" />
+          <ScalarProperty Name="fRD_Note" ColumnName="fRD_Note" />
+          <ScalarProperty Name="fRD_UTel" ColumnName="fRD_UTel" />
+          <ScalarProperty Name="fRD_Urgent" ColumnName="fRD_Urgent" />
+          <ScalarProperty Name="fSt_ID" ColumnName="fSt_ID" />
+          <ScalarProperty Name="fRD_Date" ColumnName="fRD_Date" />
+          <ScalarProperty Name="fRD_Grant" ColumnName="fRD_Grant" />
+          <ScalarProperty Name="fRD_Eat" ColumnName="fRD_Eat" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fRD_ID" ColumnName="fRD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRegistrationOpen">
+      <EntityTypeMapping TypeName="TravelModel.tRegistrationOpen">
+        <MappingFragment StoreEntitySet="tRegistrationOpen">
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fRO_CDate" ColumnName="fRO_CDate" />
+          <ScalarProperty Name="fRO_ODate" ColumnName="fRO_ODate" />
+          <ScalarProperty Name="fRO_ID" ColumnName="fRO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRelationship">
+      <EntityTypeMapping TypeName="TravelModel.tRelationship">
+        <MappingFragment StoreEntitySet="tRelationship">
+          <ScalarProperty Name="fRe_Class" ColumnName="fRe_Class" />
+          <ScalarProperty Name="fRe_Relation" ColumnName="fRe_Relation" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRestaurant">
+      <EntityTypeMapping TypeName="TravelModel.tRestaurant">
+        <MappingFragment StoreEntitySet="tRestaurant">
+          <ScalarProperty Name="fRe_Image" ColumnName="fRe_Image" />
+          <ScalarProperty Name="fRe_introduction" ColumnName="fRe_introduction" />
+          <ScalarProperty Name="fMC_ID" ColumnName="fMC_ID" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fR_Price" ColumnName="fR_Price" />
+          <ScalarProperty Name="fRe_Delivery" ColumnName="fRe_Delivery" />
+          <ScalarProperty Name="fRe_Addr" ColumnName="fRe_Addr" />
+          <ScalarProperty Name="fRe_Tel" ColumnName="fRe_Tel" />
+          <ScalarProperty Name="fRe_Content" ColumnName="fRe_Content" />
+          <ScalarProperty Name="fRe_Name" ColumnName="fRe_Name" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tRestaurantScores">
+      <EntityTypeMapping TypeName="TravelModel.tRestaurantScores">
+        <MappingFragment StoreEntitySet="tRestaurantScores">
+          <ScalarProperty Name="fRS_Value" ColumnName="fRS_Value" />
+          <ScalarProperty Name="fRS_Like" ColumnName="fRS_Like" />
+          <ScalarProperty Name="fRe_ID" ColumnName="fRe_ID" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fRS_ID" ColumnName="fRS_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tSampleProposal">
+      <EntityTypeMapping TypeName="TravelModel.tSampleProposal">
+        <MappingFragment StoreEntitySet="tSampleProposal">
+          <ScalarProperty Name="fSP_Attraction" ColumnName="fSP_Attraction" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+          <ScalarProperty Name="fSP_Date" ColumnName="fSP_Date" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fSP_ID" ColumnName="fSP_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tSector">
+      <EntityTypeMapping TypeName="TravelModel.tSector">
+        <MappingFragment StoreEntitySet="tSector">
+          <ScalarProperty Name="fSe_Sector" ColumnName="fSe_Sector" />
+          <ScalarProperty Name="fSe_ID" ColumnName="fSe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tStatus">
+      <EntityTypeMapping TypeName="TravelModel.tStatus">
+        <MappingFragment StoreEntitySet="tStatus">
+          <ScalarProperty Name="fSt_Class" ColumnName="fSt_Class" />
+          <ScalarProperty Name="fSt_ID" ColumnName="fSt_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTravelCase">
+      <EntityTypeMapping TypeName="TravelModel.tTravelCase">
+        <MappingFragment StoreEntitySet="tTravelCase">
+          <ScalarProperty Name="fTC_hotel" ColumnName="fTC_hotel" />
+          <ScalarProperty Name="fTC_Eat" ColumnName="fTC_Eat" />
+          <ScalarProperty Name="fTC_Car" ColumnName="fTC_Car" />
+          <ScalarProperty Name="fTC_PerL" ColumnName="fTC_PerL" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+          <ScalarProperty Name="fTC_Picture" ColumnName="fTC_Picture" />
+          <ScalarProperty Name="fTC_LorD" ColumnName="fTC_LorD" />
+          <ScalarProperty Name="fTC_Notes" ColumnName="fTC_Notes" />
+          <ScalarProperty Name="fTC_Content" ColumnName="fTC_Content" />
+          <ScalarProperty Name="fTC_TDate" ColumnName="fTC_TDate" />
+          <ScalarProperty Name="fTC_Cost" ColumnName="fTC_Cost" />
+          <ScalarProperty Name="fTC_Gate" ColumnName="fTC_Gate" />
+          <ScalarProperty Name="fTC_Top" ColumnName="fTC_Top" />
+          <ScalarProperty Name="fTC_Title" ColumnName="fTC_Title" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTravelClass">
+      <EntityTypeMapping TypeName="TravelModel.tTravelClass">
+        <MappingFragment StoreEntitySet="tTravelClass">
+          <ScalarProperty Name="fTC_Class" ColumnName="fTC_Class" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTravelDetail">
+      <EntityTypeMapping TypeName="TravelModel.tTravelDetail">
+        <MappingFragment StoreEntitySet="tTravelDetail">
+          <ScalarProperty Name="fTD_site" ColumnName="fTD_site" />
+          <ScalarProperty Name="fTD_Image" ColumnName="fTD_Image" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fTD_Content" ColumnName="fTD_Content" />
+          <ScalarProperty Name="fTD_Title" ColumnName="fTD_Title" />
+          <ScalarProperty Name="fTC_ID" ColumnName="fTC_ID" />
+          <ScalarProperty Name="fCC_ID" ColumnName="fCC_ID" />
+          <ScalarProperty Name="fTD_ID" ColumnName="fTD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tVote">
+      <EntityTypeMapping TypeName="TravelModel.tVote">
+        <MappingFragment StoreEntitySet="tVote">
+          <ScalarProperty Name="fVt_Content" ColumnName="fVt_Content" />
+          <ScalarProperty Name="fVt_Gate" ColumnName="fVt_Gate" />
+          <ScalarProperty Name="fVt_DeadL" ColumnName="fVt_DeadL" />
+          <ScalarProperty Name="fVt_Proj" ColumnName="fVt_Proj" />
+          <ScalarProperty Name="fVt_ID" ColumnName="fVt_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tVoteDetail">
+      <EntityTypeMapping TypeName="TravelModel.tVoteDetail">
+        <MappingFragment StoreEntitySet="tVoteDetail">
+          <ScalarProperty Name="fVt_ID" ColumnName="fVt_ID" />
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fVD_ID" ColumnName="fVD_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tManergerHistory">
+      <EntityTypeMapping TypeName="TravelModel.tManergerHistory">
+        <MappingFragment StoreEntitySet="tManergerHistory">
+          <ScalarProperty Name="fEp_ID" ColumnName="fEp_ID" />
+          <ScalarProperty Name="fMH_Note" ColumnName="fMH_Note" />
+          <ScalarProperty Name="fMH_Time" ColumnName="fMH_Time" />
+          <ScalarProperty Name="fMH_ID" ColumnName="fMH_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tPenalty">
+      <EntityTypeMapping TypeName="TravelModel.tPenalty">
+        <MappingFragment StoreEntitySet="tPenalty">
+          <ScalarProperty Name="tPe_Fine" ColumnName="tPe_Fine" />
+          <ScalarProperty Name="tPe_Day" ColumnName="tPe_Day" />
+          <ScalarProperty Name="tTC_ID" ColumnName="tTC_ID" />
+          <ScalarProperty Name="tPe_ID" ColumnName="tPe_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tSpecialIdentity">
+      <EntityTypeMapping TypeName="TravelModel.tSpecialIdentity">
+        <MappingFragment StoreEntitySet="tSpecialIdentity">
+          <ScalarProperty Name="fSI_Identity" ColumnName="fSI_Identity" />
+          <ScalarProperty Name="fSI_ID" ColumnName="fSI_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tTraveEat">
+      <EntityTypeMapping TypeName="TravelModel.tTraveEat">
+        <MappingFragment StoreEntitySet="tTraveEat">
+          <ScalarProperty Name="fTE_Class" ColumnName="fTE_Class" />
+          <ScalarProperty Name="fTE_ID" ColumnName="fTE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

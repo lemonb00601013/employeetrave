@@ -1,0 +1,101 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+@{
+    ViewBag.Title = "ForumMyself.Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+
+<div class="col-lg-pull-12">
+    <div class="col-lg-4">
+        <nav>
+            <ul class="nav nav-justified">
+                @foreach (var classes in Model.Fclass)
+                {
+                    <li>@Html.ActionLink(classes.fFC_Class, "Index", "ForumMyself", new { id = classes.fFC_ID }, new { @class = "list-group-item" })</li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="list-group">
+            @*<button class="btn btn-primary" id="create">我要發文</button>
+            <button class="btn btn-primary" id="searchmyself">發文管理</button>*@
+        </div>
+    </div>
+
+    
+
+    <div class="col-lg-10">
+        <table id="TitleTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(p => p.Fclass.First().fFC_Class)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Title)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Popul)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fEp_ID)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Date)</th>
+                    <th>管理選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var title in Model.Ftitle)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(p => title.tForumClass.fFC_Class)</td>
+                        <td>
+                            @Html.ActionLink(title.fFT_Title, "EditDetail", "ForumMyself", new { id = title.fMC_ID }, null)
+                        </td>
+                        <td>@Html.DisplayFor(p => title.fFT_Popul)</td>
+                        <td>@Html.DisplayFor(p => title.tEmployee.fEp_Nickname)</td>
+                        <td>@Html.DisplayFor(p => title.fFT_Date)</td>
+
+                            @Html.HiddenFor(p => title.fMC_ID)
+
+                        <td>
+                            <button class="btn btn-primary" id="edit" name="edit">修改文章</button>
+                            <button class="btn btn-danger" id="delete" name="delete">刪除文章</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var path = location.pathname;
+            $('.nav').find('a[href ="' + path + '"]').addClass('active');
+
+            $('#TitleTable>tbody>tr').mouseenter(function () {
+                $(this).addClass("active");
+            })
+
+            $('#TitleTable>tbody>tr').mouseout(function () {
+                $(this).removeClass("active");
+            })
+
+            $(document).on('click', "#edit", function () {
+
+                var id = $(this).parent().parent().find('#title_fMC_ID').val();
+                location.href = ('@Url.Action("EditDetail", "ForumMyself")' + '/' + id);
+            });
+
+            $(document).on('click', "#delete", function () {
+
+            });
+
+        })
+
+    </script>
+}

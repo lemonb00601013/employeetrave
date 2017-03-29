@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,9 @@ namespace MVC_HW3.Models
             [DisplayName("主旨")]
             [Required(ErrorMessage = "請輸入主旨")]
             public string fCo_Theme { get; set; }
+
+            //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+            //public Nullable<System.DateTime> fCo_Date { get; set; }
 
             [DisplayName("內容")]
             [DataType(DataType.MultilineText)]

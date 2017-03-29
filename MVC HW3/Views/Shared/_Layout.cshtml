@@ -10,6 +10,7 @@
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
+    <link href="~/Content/jquery.cleditor.css" rel="stylesheet" />
     
     @RenderSection("styles", false)
 </head>
@@ -33,12 +34,11 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">討論區 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">旅遊</a></li>
-                            <li><a href="#">美食</a></li>
-                            <li><a href="#">心情</a></li>
-                            <li><a href="#">技術</a></li>
+                        <a href="@Url.Action("index", "ForumHome", new {area="Forum",ID= (int?)null},null)" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">討論區 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">                           
+                            <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=1})">近期旅遊</a></li>
+                            <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=2})">歷史回憶</a></li>
+                            <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=3})">旅遊推薦</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -46,14 +46,14 @@
                         <a href="#" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">員工旅遊 <span class="caret"></span></a>
 
                         <ul class="dropdown-menu">
-                            <li><a href="#">近期旅遊</a></li>
-                            <li><a href="#">過往旅遊</a></li>
+                            <li><a href="@Url.Action("NewCase","TraveCase",new { area = "EmployeeTrave", ID = (int?)null})">近期旅遊</a></li>
+                            <li><a href="@Url.Action("NewCase","TraveCase",new { area = "EmployeeTrave", ID = 1})">過往旅遊</a></li>
                             <li><a href="#">方案投票</a></li>
                             <li><a href="#">簡易提案</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">美食地圖</a></li>
-                    <li><a href="#">旅遊指南</a></li>
+                    <li><a href="@Url.Action("Index","FoodHome",new { area = "Food" }, null )">美食地圖</a></li>
+                    <li><a href="@Url.Action("Index","TravelMapHome",new { area = "TravelMap" }, null )">旅遊指南</a></li>
                     <li><a href="#" id="Connection" log_url="@Url.Action("Connection","Home", new { area = "" })" class="needlog">聯絡我們</a></li>
                 </ul>
 
@@ -91,6 +91,9 @@
     <div class="container body-content div-rgba-bk">
         
         @RenderBody()
+        @RenderSection("MAP", false)
+        @if (IsSectionDefined("Detail"))
+        { @RenderSection("Detail")}
         <hr />
       
         <footer>
@@ -131,6 +134,9 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/jquery.cookie-1.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script src="~/Scripts/jquery.cleditor.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -285,6 +291,7 @@
             })
             $(".needlog2").click(function () {
                 log_url = $(this).attr("log_url")
+               
                 if (account == -1) {
                     dialog.dialog("open")
                 }

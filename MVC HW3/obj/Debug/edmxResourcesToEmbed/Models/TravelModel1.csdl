@@ -46,6 +46,18 @@
     <Property Name="fEp_Picture" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
     <Property Name="fEp_Birth" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="tConnection" Relationship="Self.FK_tConnection_tEmployee" FromRole="tEmployee" ToRole="tConnection" />
+    <NavigationProperty Name="tDependents" Relationship="TravelModel.FK_tDependents_tEmployee" FromRole="tEmployee" ToRole="tDependents" />
+    <NavigationProperty Name="tRestaurantScores" Relationship="TravelModel.FK_fRestaurantScores_tEmployee" FromRole="tEmployee" ToRole="tRestaurantScores" />
+    <NavigationProperty Name="tIdentity" Relationship="TravelModel.FK_tEmployee_tIdentity" FromRole="tEmployee" ToRole="tIdentity" />
+    <NavigationProperty Name="tSector" Relationship="TravelModel.FK_tEmployee_tSector" FromRole="tEmployee" ToRole="tSector" />
+    <NavigationProperty Name="tForumMessage" Relationship="TravelModel.FK_tForumArticle_tEmployee" FromRole="tEmployee" ToRole="tForumMessage" />
+    <NavigationProperty Name="tForumTitle" Relationship="TravelModel.FK_tForumTitle_tEmployee" FromRole="tEmployee" ToRole="tForumTitle" />
+    <NavigationProperty Name="tRegistrationDetail" Relationship="TravelModel.FK_tRegistrationDetail_tEmployee" FromRole="tEmployee" ToRole="tRegistrationDetail" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tRestaurant_tEmployee" FromRole="tEmployee" ToRole="tRestaurant" />
+    <NavigationProperty Name="tSampleProposal" Relationship="TravelModel.FK_tSampleProposal_tEmployee" FromRole="tEmployee" ToRole="tSampleProposal" />
+    <NavigationProperty Name="tTravelDetail" Relationship="TravelModel.FK_tTravelDetail_tEmployee" FromRole="tEmployee" ToRole="tTravelDetail" />
+    <NavigationProperty Name="tVoteDetail" Relationship="TravelModel.FK_tVoteDetail_tEmployee" FromRole="tEmployee" ToRole="tVoteDetail" />
+    <NavigationProperty Name="tManergerHistory" Relationship="TravelModel.FK_tManergerHistory_tEmployee" FromRole="tEmployee" ToRole="tManergerHistory" />
   </EntityType>
   <Association Name="FK_tConnection_tConnectionClass">
     <End Role="tConnectionClass" Type="Self.tConnectionClass" Multiplicity="1" />
@@ -93,6 +105,252 @@
       <End Role="tBulletinClass" EntitySet="tBulletinClass" />
       <End Role="tBulletin" EntitySet="tBulletin" />
     </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="TravelModel.sysdiagrams" />
+    <EntitySet Name="tActivityList" EntityType="TravelModel.tActivityList" />
+    <EntitySet Name="tActivitySelect" EntityType="TravelModel.tActivitySelect" />
+    <EntitySet Name="tAlbum" EntityType="TravelModel.tAlbum" />
+    <EntitySet Name="tCityCountry" EntityType="TravelModel.tCityCountry" />
+    <EntitySet Name="tDayTravel" EntityType="TravelModel.tDayTravel" />
+    <EntitySet Name="tDependents" EntityType="TravelModel.tDependents" />
+    <EntitySet Name="tDependentsTravel" EntityType="TravelModel.tDependentsTravel" />
+    <EntitySet Name="tFamily" EntityType="TravelModel.tFamily" />
+    <EntitySet Name="tFieldValue" EntityType="TravelModel.tFieldValue" />
+    <EntitySet Name="tForumClass" EntityType="TravelModel.tForumClass" />
+    <EntitySet Name="tForumField" EntityType="TravelModel.tForumField" />
+    <EntitySet Name="tForumMessage" EntityType="TravelModel.tForumMessage" />
+    <EntitySet Name="tForumTitle" EntityType="TravelModel.tForumTitle" />
+    <EntitySet Name="tIdentity" EntityType="TravelModel.tIdentity" />
+    <EntitySet Name="tMealClass" EntityType="TravelModel.tMealClass" />
+    <EntitySet Name="tMealList" EntityType="TravelModel.tMealList" />
+    <EntitySet Name="tMessageCode" EntityType="TravelModel.tMessageCode" />
+    <EntitySet Name="tOpenTime" EntityType="TravelModel.tOpenTime" />
+    <EntitySet Name="tPhoto" EntityType="TravelModel.tPhoto" />
+    <EntitySet Name="tPossibleDate" EntityType="TravelModel.tPossibleDate" />
+    <EntitySet Name="tRegistrationDetail" EntityType="TravelModel.tRegistrationDetail" />
+    <EntitySet Name="tRegistrationOpen" EntityType="TravelModel.tRegistrationOpen" />
+    <EntitySet Name="tRelationship" EntityType="TravelModel.tRelationship" />
+    <EntitySet Name="tRestaurant" EntityType="TravelModel.tRestaurant" />
+    <EntitySet Name="tRestaurantScores" EntityType="TravelModel.tRestaurantScores" />
+    <EntitySet Name="tSampleProposal" EntityType="TravelModel.tSampleProposal" />
+    <EntitySet Name="tSector" EntityType="TravelModel.tSector" />
+    <EntitySet Name="tStatus" EntityType="TravelModel.tStatus" />
+    <EntitySet Name="tTravelCase" EntityType="TravelModel.tTravelCase" />
+    <EntitySet Name="tTravelClass" EntityType="TravelModel.tTravelClass" />
+    <EntitySet Name="tTravelDetail" EntityType="TravelModel.tTravelDetail" />
+    <EntitySet Name="tVote" EntityType="TravelModel.tVote" />
+    <EntitySet Name="tVoteDetail" EntityType="TravelModel.tVoteDetail" />
+    <AssociationSet Name="FK_tActivitySelect_fActivityList" Association="TravelModel.FK_tActivitySelect_fActivityList">
+      <End Role="tActivityList" EntitySet="tActivityList" />
+      <End Role="tActivitySelect" EntitySet="tActivitySelect" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tActivitySelect_tSampleProposal" Association="TravelModel.FK_tActivitySelect_tSampleProposal">
+      <End Role="tSampleProposal" EntitySet="tSampleProposal" />
+      <End Role="tActivitySelect" EntitySet="tActivitySelect" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tAlbum_tTravelCase" Association="TravelModel.FK_tAlbum_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tAlbum" EntitySet="tAlbum" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tAlbum" Association="TravelModel.FK_tPhoto_tAlbum">
+      <End Role="tAlbum" EntitySet="tAlbum" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tCityCountry_tCityCountry" Association="TravelModel.FK_tCityCountry_tCityCountry">
+      <End Role="tCityCountry" EntitySet="tCityCountry" />
+      <End Role="tCityCountry1" EntitySet="tCityCountry" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tSampleProposal_tTravelPlace" Association="TravelModel.FK_tSampleProposal_tTravelPlace">
+      <End Role="tCityCountry" EntitySet="tCityCountry" />
+      <End Role="tSampleProposal" EntitySet="tSampleProposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tTravelCase_tCityCountry" Association="TravelModel.FK_tTravelCase_tCityCountry">
+      <End Role="tCityCountry" EntitySet="tCityCountry" />
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tTravelDetail_tCityCountry" Association="TravelModel.FK_tTravelDetail_tCityCountry">
+      <End Role="tCityCountry" EntitySet="tCityCountry" />
+      <End Role="tTravelDetail" EntitySet="tTravelDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDayTravel_tTravelCase" Association="TravelModel.FK_tDayTravel_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tDayTravel" EntitySet="tDayTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependents_tEmployee" Association="TravelModel.FK_tDependents_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tDependents" EntitySet="tDependents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependents_tRelationship" Association="TravelModel.FK_tDependents_tRelationship">
+      <End Role="tRelationship" EntitySet="tRelationship" />
+      <End Role="tDependents" EntitySet="tDependents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependentsTravel_tDependents" Association="TravelModel.FK_tDependentsTravel_tDependents">
+      <End Role="tDependents" EntitySet="tDependents" />
+      <End Role="tDependentsTravel" EntitySet="tDependentsTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependentsTravel_tRegistrationDetail" Association="TravelModel.FK_tDependentsTravel_tRegistrationDetail">
+      <End Role="tRegistrationDetail" EntitySet="tRegistrationDetail" />
+      <End Role="tDependentsTravel" EntitySet="tDependentsTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependentsTravel_tStatus" Association="TravelModel.FK_tDependentsTravel_tStatus">
+      <End Role="tStatus" EntitySet="tStatus" />
+      <End Role="tDependentsTravel" EntitySet="tDependentsTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fRestaurantScores_tEmployee" Association="TravelModel.FK_fRestaurantScores_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tRestaurantScores" EntitySet="tRestaurantScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tEmployee_tIdentity" Association="TravelModel.FK_tEmployee_tIdentity">
+      <End Role="tIdentity" EntitySet="tIdentity" />
+      <End Role="tEmployee" EntitySet="tEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tEmployee_tSector" Association="TravelModel.FK_tEmployee_tSector">
+      <End Role="tSector" EntitySet="tSector" />
+      <End Role="tEmployee" EntitySet="tEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumArticle_tEmployee" Association="TravelModel.FK_tForumArticle_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumTitle_tEmployee" Association="TravelModel.FK_tForumTitle_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tForumTitle" EntitySet="tForumTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRegistrationDetail_tEmployee" Association="TravelModel.FK_tRegistrationDetail_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tRegistrationDetail" EntitySet="tRegistrationDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRestaurant_tEmployee" Association="TravelModel.FK_tRestaurant_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tSampleProposal_tEmployee" Association="TravelModel.FK_tSampleProposal_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tSampleProposal" EntitySet="tSampleProposal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tTravelDetail_tEmployee" Association="TravelModel.FK_tTravelDetail_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tTravelDetail" EntitySet="tTravelDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tVoteDetail_tEmployee" Association="TravelModel.FK_tVoteDetail_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tVoteDetail" EntitySet="tVoteDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFamily_tRegistrationDetail" Association="TravelModel.FK_tFamily_tRegistrationDetail">
+      <End Role="tRegistrationDetail" EntitySet="tRegistrationDetail" />
+      <End Role="tFamily" EntitySet="tFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFamily_tRelationship" Association="TravelModel.FK_tFamily_tRelationship">
+      <End Role="tRelationship" EntitySet="tRelationship" />
+      <End Role="tFamily" EntitySet="tFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFamily_tStatus" Association="TravelModel.FK_tFamily_tStatus">
+      <End Role="tStatus" EntitySet="tStatus" />
+      <End Role="tFamily" EntitySet="tFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFieldValue_tForumField" Association="TravelModel.FK_tFieldValue_tForumField">
+      <End Role="tForumField" EntitySet="tForumField" />
+      <End Role="tFieldValue" EntitySet="tFieldValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFieldValue_tForumTitle" Association="TravelModel.FK_tFieldValue_tForumTitle">
+      <End Role="tForumTitle" EntitySet="tForumTitle" />
+      <End Role="tFieldValue" EntitySet="tFieldValue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumClass_tForumClass" Association="TravelModel.FK_tForumClass_tForumClass">
+      <End Role="tForumClass" EntitySet="tForumClass" />
+      <End Role="tForumClass1" EntitySet="tForumClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumField_tForumClass1" Association="TravelModel.FK_tForumField_tForumClass1">
+      <End Role="tForumClass" EntitySet="tForumClass" />
+      <End Role="tForumField" EntitySet="tForumField" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumTitle_tForumClass" Association="TravelModel.FK_tForumTitle_tForumClass">
+      <End Role="tForumClass" EntitySet="tForumClass" />
+      <End Role="tForumTitle" EntitySet="tForumTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tForumMessage" Association="TravelModel.FK_tForumMessage_tForumMessage">
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+      <End Role="tForumMessage1" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumMessage_tMessageCode1" Association="TravelModel.FK_tForumMessage_tMessageCode1">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tForumMessage" EntitySet="tForumMessage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tForumTitle_tMessageCode1" Association="TravelModel.FK_tForumTitle_tMessageCode1">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tForumTitle" EntitySet="tForumTitle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMealClass_tMealList" Association="TravelModel.FK_tMealClass_tMealList">
+      <End Role="tMealList" EntitySet="tMealList" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tMealClass_tRestaurant" Association="TravelModel.FK_tMealClass_tRestaurant">
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+      <End Role="tMealClass" EntitySet="tMealClass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPhoto_tMessageCode" Association="TravelModel.FK_tPhoto_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tPhoto" EntitySet="tPhoto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRestaurant_tMessageCode" Association="TravelModel.FK_tRestaurant_tMessageCode">
+      <End Role="tMessageCode" EntitySet="tMessageCode" />
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tOpenTime_tRestaurant" Association="TravelModel.FK_tOpenTime_tRestaurant">
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+      <End Role="tOpenTime" EntitySet="tOpenTime" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRegistrationDetail_tStatus" Association="TravelModel.FK_tRegistrationDetail_tStatus">
+      <End Role="tStatus" EntitySet="tStatus" />
+      <End Role="tRegistrationDetail" EntitySet="tRegistrationDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRegistrationDetail_tTravelCase" Association="TravelModel.FK_tRegistrationDetail_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tRegistrationDetail" EntitySet="tRegistrationDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tRegistrationOpen_tTravelCase" Association="TravelModel.FK_tRegistrationOpen_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tRegistrationOpen" EntitySet="tRegistrationOpen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_fRestaurantScores_tRestaurant" Association="TravelModel.FK_fRestaurantScores_tRestaurant">
+      <End Role="tRestaurant" EntitySet="tRestaurant" />
+      <End Role="tRestaurantScores" EntitySet="tRestaurantScores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tTravelDetail_tTravelClass" Association="TravelModel.FK_tTravelDetail_tTravelClass">
+      <End Role="tTravelClass" EntitySet="tTravelClass" />
+      <End Role="tTravelDetail" EntitySet="tTravelDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tVoteDetail_tVote" Association="TravelModel.FK_tVoteDetail_tVote">
+      <End Role="tVote" EntitySet="tVote" />
+      <End Role="tVoteDetail" EntitySet="tVoteDetail" />
+    </AssociationSet>
+    <EntitySet Name="tManergerHistory" EntityType="TravelModel.tManergerHistory" />
+    <EntitySet Name="tPenalty" EntityType="TravelModel.tPenalty" />
+    <EntitySet Name="tSpecialIdentity" EntityType="TravelModel.tSpecialIdentity" />
+    <EntitySet Name="tTraveEat" EntityType="TravelModel.tTraveEat" />
+    <AssociationSet Name="FK_tDependentsTravel_tSpecialIdentity" Association="TravelModel.FK_tDependentsTravel_tSpecialIdentity">
+      <End Role="tSpecialIdentity" EntitySet="tSpecialIdentity" />
+      <End Role="tDependentsTravel" EntitySet="tDependentsTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tDependentsTravel_tTraveEat" Association="TravelModel.FK_tDependentsTravel_tTraveEat">
+      <End Role="tTraveEat" EntitySet="tTraveEat" />
+      <End Role="tDependentsTravel" EntitySet="tDependentsTravel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tManergerHistory_tEmployee" Association="TravelModel.FK_tManergerHistory_tEmployee">
+      <End Role="tEmployee" EntitySet="tEmployee" />
+      <End Role="tManergerHistory" EntitySet="tManergerHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFamily_tSpecialIdentity" Association="TravelModel.FK_tFamily_tSpecialIdentity">
+      <End Role="tSpecialIdentity" EntitySet="tSpecialIdentity" />
+      <End Role="tFamily" EntitySet="tFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tFamily_tTraveEat" Association="TravelModel.FK_tFamily_tTraveEat">
+      <End Role="tTraveEat" EntitySet="tTraveEat" />
+      <End Role="tFamily" EntitySet="tFamily" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tPenalty_tTravelCase" Association="TravelModel.FK_tPenalty_tTravelCase">
+      <End Role="tTravelCase" EntitySet="tTravelCase" />
+      <End Role="tPenalty" EntitySet="tPenalty" />
+    </AssociationSet>
   </EntityContainer>
   <Association Name="FK_tConnection_tConnection">
     <End Type="TravelModel.tConnection" Role="tConnection" Multiplicity="0..1" />
@@ -134,6 +392,1111 @@
       </Principal>
       <Dependent Role="tBulletin">
         <PropertyRef Name="fBC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tActivityList">
+    <Key>
+      <PropertyRef Name="fAL_ID" />
+    </Key>
+    <Property Name="fAL_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fAL_Projrct" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tActivitySelect" Relationship="TravelModel.FK_tActivitySelect_fActivityList" FromRole="tActivityList" ToRole="tActivitySelect" />
+  </EntityType>
+  <EntityType Name="tActivitySelect">
+    <Key>
+      <PropertyRef Name="fAS_ID" />
+    </Key>
+    <Property Name="fAS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fSP_ID" Type="Int32" Nullable="false" />
+    <Property Name="fAL_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tActivityList" Relationship="TravelModel.FK_tActivitySelect_fActivityList" FromRole="tActivitySelect" ToRole="tActivityList" />
+    <NavigationProperty Name="tSampleProposal" Relationship="TravelModel.FK_tActivitySelect_tSampleProposal" FromRole="tActivitySelect" ToRole="tSampleProposal" />
+  </EntityType>
+  <EntityType Name="tAlbum">
+    <Key>
+      <PropertyRef Name="fAl_ID" />
+    </Key>
+    <Property Name="fAl_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fAl_Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tAlbum_tTravelCase" FromRole="tAlbum" ToRole="tTravelCase" />
+    <NavigationProperty Name="tPhoto" Relationship="TravelModel.FK_tPhoto_tAlbum" FromRole="tAlbum" ToRole="tPhoto" />
+  </EntityType>
+  <EntityType Name="tCityCountry">
+    <Key>
+      <PropertyRef Name="fCC_ID" />
+    </Key>
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fCC_Place" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fCC_Dad" Type="Int32" />
+    <NavigationProperty Name="tCityCountry1" Relationship="TravelModel.FK_tCityCountry_tCityCountry" FromRole="tCityCountry" ToRole="tCityCountry1" />
+    <NavigationProperty Name="tCityCountry2" Relationship="TravelModel.FK_tCityCountry_tCityCountry" FromRole="tCityCountry1" ToRole="tCityCountry" />
+    <NavigationProperty Name="tSampleProposal" Relationship="TravelModel.FK_tSampleProposal_tTravelPlace" FromRole="tCityCountry" ToRole="tSampleProposal" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tTravelCase_tCityCountry" FromRole="tCityCountry" ToRole="tTravelCase" />
+    <NavigationProperty Name="tTravelDetail" Relationship="TravelModel.FK_tTravelDetail_tCityCountry" FromRole="tCityCountry" ToRole="tTravelDetail" />
+  </EntityType>
+  <EntityType Name="tDayTravel">
+    <Key>
+      <PropertyRef Name="fDT_ID" />
+    </Key>
+    <Property Name="fDT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fDT_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fDT_Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tDayTravel_tTravelCase" FromRole="tDayTravel" ToRole="tTravelCase" />
+  </EntityType>
+  <EntityType Name="tDependents">
+    <Key>
+      <PropertyRef Name="fDe_ID" />
+    </Key>
+    <Property Name="fDe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fDe_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fDe_Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fDe_SSNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tDependents_tEmployee" FromRole="tDependents" ToRole="tEmployee" />
+    <NavigationProperty Name="tRelationship" Relationship="TravelModel.FK_tDependents_tRelationship" FromRole="tDependents" ToRole="tRelationship" />
+    <NavigationProperty Name="tDependentsTravel" Relationship="TravelModel.FK_tDependentsTravel_tDependents" FromRole="tDependents" ToRole="tDependentsTravel" />
+    <Property Name="fDe_Birth" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tDependentsTravel">
+    <Key>
+      <PropertyRef Name="fDT_ID" />
+    </Key>
+    <Property Name="fDT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fDe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRD_ID" Type="Int32" Nullable="false" />
+    <Property Name="fSt_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRD_Eat" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tDependents" Relationship="TravelModel.FK_tDependentsTravel_tDependents" FromRole="tDependentsTravel" ToRole="tDependents" />
+    <NavigationProperty Name="tRegistrationDetail" Relationship="TravelModel.FK_tDependentsTravel_tRegistrationDetail" FromRole="tDependentsTravel" ToRole="tRegistrationDetail" />
+    <NavigationProperty Name="tStatus" Relationship="TravelModel.FK_tDependentsTravel_tStatus" FromRole="tDependentsTravel" ToRole="tStatus" />
+    <Property Name="fDT_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fDT_Urgent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fDT_UTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fDT_Insurance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fSI_ID" Type="Int32" />
+    <Property Name="fTE_ID" Type="Int32" />
+    <Property Name="fDT_Car" Type="Boolean" />
+    <Property Name="fDT_Hotel" Type="Boolean" />
+    <Property Name="fDT_Relief" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fDT_RMoney" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="tSpecialIdentity" Relationship="TravelModel.FK_tDependentsTravel_tSpecialIdentity" FromRole="tDependentsTravel" ToRole="tSpecialIdentity" />
+    <NavigationProperty Name="tTraveEat" Relationship="TravelModel.FK_tDependentsTravel_tTraveEat" FromRole="tDependentsTravel" ToRole="tTraveEat" />
+  </EntityType>
+  <EntityType Name="tFamily">
+    <Key>
+      <PropertyRef Name="fFa_ID" />
+    </Key>
+    <Property Name="fFa_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRD_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFa_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFa_Tel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fFa_SSNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="fFa_Eat" Type="Boolean" Nullable="false" />
+    <Property Name="fFa_History" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fFa_Psych" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fSt_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tRegistrationDetail" Relationship="TravelModel.FK_tFamily_tRegistrationDetail" FromRole="tFamily" ToRole="tRegistrationDetail" />
+    <NavigationProperty Name="tRelationship" Relationship="TravelModel.FK_tFamily_tRelationship" FromRole="tFamily" ToRole="tRelationship" />
+    <NavigationProperty Name="tStatus" Relationship="TravelModel.FK_tFamily_tStatus" FromRole="tFamily" ToRole="tStatus" />
+    <Property Name="fFa_Urgent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fFa_UTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fFa_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fFa_Insurance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fFa_Birth" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fSI_ID" Type="Int32" />
+    <Property Name="fTE_ID" Type="Int32" />
+    <Property Name="fFa_Car" Type="Boolean" />
+    <Property Name="fFa_Hotel" Type="Boolean" />
+    <Property Name="fFa_Relief" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fFa_RMoney" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="tSpecialIdentity" Relationship="TravelModel.FK_tFamily_tSpecialIdentity" FromRole="tFamily" ToRole="tSpecialIdentity" />
+    <NavigationProperty Name="tTraveEat" Relationship="TravelModel.FK_tFamily_tTraveEat" FromRole="tFamily" ToRole="tTraveEat" />
+  </EntityType>
+  <EntityType Name="tFieldValue">
+    <Key>
+      <PropertyRef Name="fFV_ID" />
+    </Key>
+    <Property Name="fFV_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFT_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFF_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFV_Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tForumField" Relationship="TravelModel.FK_tFieldValue_tForumField" FromRole="tFieldValue" ToRole="tForumField" />
+    <NavigationProperty Name="tForumTitle" Relationship="TravelModel.FK_tFieldValue_tForumTitle" FromRole="tFieldValue" ToRole="tForumTitle" />
+  </EntityType>
+  <EntityType Name="tForumClass">
+    <Key>
+      <PropertyRef Name="fFC_ID" />
+    </Key>
+    <Property Name="fFC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFC_Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fFC_Dad" Type="Int32" />
+    <NavigationProperty Name="tForumClass1" Relationship="TravelModel.FK_tForumClass_tForumClass" FromRole="tForumClass" ToRole="tForumClass1" />
+    <NavigationProperty Name="tForumClass2" Relationship="TravelModel.FK_tForumClass_tForumClass" FromRole="tForumClass1" ToRole="tForumClass" />
+    <NavigationProperty Name="tForumField" Relationship="TravelModel.FK_tForumField_tForumClass1" FromRole="tForumClass" ToRole="tForumField" />
+    <NavigationProperty Name="tForumTitle" Relationship="TravelModel.FK_tForumTitle_tForumClass" FromRole="tForumClass" ToRole="tForumTitle" />
+  </EntityType>
+  <EntityType Name="tForumField">
+    <Key>
+      <PropertyRef Name="fFF_ID" />
+    </Key>
+    <Property Name="fFF_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFF_Field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tFC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tFieldValue" Relationship="TravelModel.FK_tFieldValue_tForumField" FromRole="tForumField" ToRole="tFieldValue" />
+    <NavigationProperty Name="tForumClass" Relationship="TravelModel.FK_tForumField_tForumClass1" FromRole="tForumField" ToRole="tForumClass" />
+  </EntityType>
+  <EntityType Name="tForumMessage">
+    <Key>
+      <PropertyRef Name="fFM_ID" />
+    </Key>
+    <Property Name="fFM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFM_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFM_Date" Type="DateTime" Precision="3" />
+    <Property Name="fFM_Dad" Type="Int32" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tForumArticle_tEmployee" FromRole="tForumMessage" ToRole="tEmployee" />
+    <NavigationProperty Name="tForumMessage1" Relationship="TravelModel.FK_tForumMessage_tForumMessage" FromRole="tForumMessage" ToRole="tForumMessage1" />
+    <NavigationProperty Name="tForumMessage2" Relationship="TravelModel.FK_tForumMessage_tForumMessage" FromRole="tForumMessage1" ToRole="tForumMessage" />
+    <NavigationProperty Name="tMessageCode" Relationship="TravelModel.FK_tForumMessage_tMessageCode1" FromRole="tForumMessage" ToRole="tMessageCode" />
+  </EntityType>
+  <EntityType Name="tForumTitle">
+    <Key>
+      <PropertyRef Name="fFT_ID" />
+    </Key>
+    <Property Name="fFT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fFT_Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fFT_Popul" Type="Int32" Nullable="false" />
+    <Property Name="fFC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fFT_Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tForumTitle_tEmployee" FromRole="tForumTitle" ToRole="tEmployee" />
+    <NavigationProperty Name="tFieldValue" Relationship="TravelModel.FK_tFieldValue_tForumTitle" FromRole="tForumTitle" ToRole="tFieldValue" />
+    <NavigationProperty Name="tForumClass" Relationship="TravelModel.FK_tForumTitle_tForumClass" FromRole="tForumTitle" ToRole="tForumClass" />
+    <NavigationProperty Name="tMessageCode" Relationship="TravelModel.FK_tForumTitle_tMessageCode1" FromRole="tForumTitle" ToRole="tMessageCode" />
+  </EntityType>
+  <EntityType Name="tIdentity">
+    <Key>
+      <PropertyRef Name="fId_ID" />
+    </Key>
+    <Property Name="fId_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fId_Identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tEmployee_tIdentity" FromRole="tIdentity" ToRole="tEmployee" />
+  </EntityType>
+  <EntityType Name="tMealClass">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fML_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tMealList" Relationship="TravelModel.FK_tMealClass_tMealList" FromRole="tMealClass" ToRole="tMealList" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tMealClass_tRestaurant" FromRole="tMealClass" ToRole="tRestaurant" />
+  </EntityType>
+  <EntityType Name="tMealList">
+    <Key>
+      <PropertyRef Name="fML_ID" />
+    </Key>
+    <Property Name="fML_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fML_Projrct" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tMealClass" Relationship="TravelModel.FK_tMealClass_tMealList" FromRole="tMealList" ToRole="tMealClass" />
+  </EntityType>
+  <EntityType Name="tMessageCode">
+    <Key>
+      <PropertyRef Name="fMC_ID" />
+    </Key>
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tForumMessage" Relationship="TravelModel.FK_tForumMessage_tMessageCode1" FromRole="tMessageCode" ToRole="tForumMessage" />
+    <NavigationProperty Name="tForumTitle" Relationship="TravelModel.FK_tForumTitle_tMessageCode1" FromRole="tMessageCode" ToRole="tForumTitle" />
+    <NavigationProperty Name="tPhoto" Relationship="TravelModel.FK_tPhoto_tMessageCode" FromRole="tMessageCode" ToRole="tPhoto" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tRestaurant_tMessageCode" FromRole="tMessageCode" ToRole="tRestaurant" />
+  </EntityType>
+  <EntityType Name="tOpenTime">
+    <Key>
+      <PropertyRef Name="fOT_ID" />
+    </Key>
+    <Property Name="fOT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fOT_Day" Type="Int32" Nullable="false" />
+    <Property Name="fOT_Start" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="fOT_Close" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_tOpenTime_tRestaurant" FromRole="tOpenTime" ToRole="tRestaurant" />
+  </EntityType>
+  <EntityType Name="tPhoto">
+    <Key>
+      <PropertyRef Name="fPh_ID" />
+    </Key>
+    <Property Name="fPh_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fPh_PicFile" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="fAl_ID" Type="Int32" Nullable="false" />
+    <Property Name="fPh_Date" Type="DateTime" Precision="3" />
+    <Property Name="fPh_Notes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tAlbum" Relationship="TravelModel.FK_tPhoto_tAlbum" FromRole="tPhoto" ToRole="tAlbum" />
+    <NavigationProperty Name="tMessageCode" Relationship="TravelModel.FK_tPhoto_tMessageCode" FromRole="tPhoto" ToRole="tMessageCode" />
+  </EntityType>
+  <EntityType Name="tPossibleDate">
+    <Key>
+      <PropertyRef Name="fPD_ID" />
+    </Key>
+    <Property Name="fPD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fPD_Date" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tRegistrationDetail">
+    <Key>
+      <PropertyRef Name="fRD_ID" />
+    </Key>
+    <Property Name="fRD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRD_Eat" Type="Boolean" Nullable="false" />
+    <Property Name="fRD_Grant" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fRD_Total" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fRD_Date" Type="DateTime" Precision="3" />
+    <Property Name="fSt_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tDependentsTravel" Relationship="TravelModel.FK_tDependentsTravel_tRegistrationDetail" FromRole="tRegistrationDetail" ToRole="tDependentsTravel" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tRegistrationDetail_tEmployee" FromRole="tRegistrationDetail" ToRole="tEmployee" />
+    <NavigationProperty Name="tFamily" Relationship="TravelModel.FK_tFamily_tRegistrationDetail" FromRole="tRegistrationDetail" ToRole="tFamily" />
+    <NavigationProperty Name="tStatus" Relationship="TravelModel.FK_tRegistrationDetail_tStatus" FromRole="tRegistrationDetail" ToRole="tStatus" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tRegistrationDetail_tTravelCase" FromRole="tRegistrationDetail" ToRole="tTravelCase" />
+    <Property Name="fRD_Urgent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRD_UTel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fRD_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRD_Insurance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRD_Fine" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="fRD_Relief" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRD_RMoney" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="tRegistrationOpen">
+    <Key>
+      <PropertyRef Name="fRO_ID" />
+    </Key>
+    <Property Name="fRO_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRO_ODate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fRO_CDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tRegistrationOpen_tTravelCase" FromRole="tRegistrationOpen" ToRole="tTravelCase" />
+  </EntityType>
+  <EntityType Name="tRelationship">
+    <Key>
+      <PropertyRef Name="fRe_ID" />
+    </Key>
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRe_Relation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Class" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tDependents" Relationship="TravelModel.FK_tDependents_tRelationship" FromRole="tRelationship" ToRole="tDependents" />
+    <NavigationProperty Name="tFamily" Relationship="TravelModel.FK_tFamily_tRelationship" FromRole="tRelationship" ToRole="tFamily" />
+  </EntityType>
+  <EntityType Name="tRestaurant">
+    <Key>
+      <PropertyRef Name="fRe_ID" />
+    </Key>
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fRe_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fRe_Addr" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Delivery" Type="Boolean" />
+    <Property Name="fR_Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fMC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRe_introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fRe_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tRestaurant_tEmployee" FromRole="tRestaurant" ToRole="tEmployee" />
+    <NavigationProperty Name="tMealClass" Relationship="TravelModel.FK_tMealClass_tRestaurant" FromRole="tRestaurant" ToRole="tMealClass" />
+    <NavigationProperty Name="tMessageCode" Relationship="TravelModel.FK_tRestaurant_tMessageCode" FromRole="tRestaurant" ToRole="tMessageCode" />
+    <NavigationProperty Name="tOpenTime" Relationship="TravelModel.FK_tOpenTime_tRestaurant" FromRole="tRestaurant" ToRole="tOpenTime" />
+    <NavigationProperty Name="tRestaurantScores" Relationship="TravelModel.FK_fRestaurantScores_tRestaurant" FromRole="tRestaurant" ToRole="tRestaurantScores" />
+  </EntityType>
+  <EntityType Name="tRestaurantScores">
+    <Key>
+      <PropertyRef Name="fRS_ID" />
+    </Key>
+    <Property Name="fRS_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRe_ID" Type="Int32" Nullable="false" />
+    <Property Name="fRS_Like" Type="Boolean" />
+    <Property Name="fRS_Value" Type="Int32" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_fRestaurantScores_tEmployee" FromRole="tRestaurantScores" ToRole="tEmployee" />
+    <NavigationProperty Name="tRestaurant" Relationship="TravelModel.FK_fRestaurantScores_tRestaurant" FromRole="tRestaurantScores" ToRole="tRestaurant" />
+  </EntityType>
+  <EntityType Name="tSampleProposal">
+    <Key>
+      <PropertyRef Name="fSP_ID" />
+    </Key>
+    <Property Name="fSP_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_ID" Type="Int32" />
+    <Property Name="fSP_Date" Type="DateTime" Precision="3" />
+    <Property Name="fCC_ID" Type="Int32" />
+    <Property Name="fSP_Attraction" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tActivitySelect" Relationship="TravelModel.FK_tActivitySelect_tSampleProposal" FromRole="tSampleProposal" ToRole="tActivitySelect" />
+    <NavigationProperty Name="tCityCountry" Relationship="TravelModel.FK_tSampleProposal_tTravelPlace" FromRole="tSampleProposal" ToRole="tCityCountry" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tSampleProposal_tEmployee" FromRole="tSampleProposal" ToRole="tEmployee" />
+  </EntityType>
+  <EntityType Name="tSector">
+    <Key>
+      <PropertyRef Name="fSe_ID" />
+    </Key>
+    <Property Name="fSe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fSe_Sector" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tEmployee_tSector" FromRole="tSector" ToRole="tEmployee" />
+  </EntityType>
+  <EntityType Name="tStatus">
+    <Key>
+      <PropertyRef Name="fSt_ID" />
+    </Key>
+    <Property Name="fSt_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fSt_Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tDependentsTravel" Relationship="TravelModel.FK_tDependentsTravel_tStatus" FromRole="tStatus" ToRole="tDependentsTravel" />
+    <NavigationProperty Name="tFamily" Relationship="TravelModel.FK_tFamily_tStatus" FromRole="tStatus" ToRole="tFamily" />
+    <NavigationProperty Name="tRegistrationDetail" Relationship="TravelModel.FK_tRegistrationDetail_tStatus" FromRole="tStatus" ToRole="tRegistrationDetail" />
+  </EntityType>
+  <EntityType Name="tTravelCase">
+    <Key>
+      <PropertyRef Name="fTC_ID" />
+    </Key>
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fTC_Top" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Gate" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fTC_TDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fTC_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fTC_Notes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fTC_LorD" Type="Int32" Nullable="false" />
+    <Property Name="fTC_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fTC_PerL" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tAlbum" Relationship="TravelModel.FK_tAlbum_tTravelCase" FromRole="tTravelCase" ToRole="tAlbum" />
+    <NavigationProperty Name="tCityCountry" Relationship="TravelModel.FK_tTravelCase_tCityCountry" FromRole="tTravelCase" ToRole="tCityCountry" />
+    <NavigationProperty Name="tDayTravel" Relationship="TravelModel.FK_tDayTravel_tTravelCase" FromRole="tTravelCase" ToRole="tDayTravel" />
+    <NavigationProperty Name="tRegistrationDetail" Relationship="TravelModel.FK_tRegistrationDetail_tTravelCase" FromRole="tTravelCase" ToRole="tRegistrationDetail" />
+    <NavigationProperty Name="tRegistrationOpen" Relationship="TravelModel.FK_tRegistrationOpen_tTravelCase" FromRole="tTravelCase" ToRole="tRegistrationOpen" />
+    <Property Name="fTC_Car" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fTC_Eat" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="fTC_hotel" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="tPenalty" Relationship="TravelModel.FK_tPenalty_tTravelCase" FromRole="tTravelCase" ToRole="tPenalty" />
+  </EntityType>
+  <EntityType Name="tTravelClass">
+    <Key>
+      <PropertyRef Name="fTC_ID" />
+    </Key>
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTC_Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tTravelDetail" Relationship="TravelModel.FK_tTravelDetail_tTravelClass" FromRole="tTravelClass" ToRole="tTravelDetail" />
+  </EntityType>
+  <EntityType Name="tTravelDetail">
+    <Key>
+      <PropertyRef Name="fTD_ID" />
+    </Key>
+    <Property Name="fTD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fCC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="fTD_Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fTD_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_ID" Type="Int32" />
+    <Property Name="fTD_Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="fTD_site" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tCityCountry" Relationship="TravelModel.FK_tTravelDetail_tCityCountry" FromRole="tTravelDetail" ToRole="tCityCountry" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tTravelDetail_tEmployee" FromRole="tTravelDetail" ToRole="tEmployee" />
+    <NavigationProperty Name="tTravelClass" Relationship="TravelModel.FK_tTravelDetail_tTravelClass" FromRole="tTravelDetail" ToRole="tTravelClass" />
+  </EntityType>
+  <EntityType Name="tVote">
+    <Key>
+      <PropertyRef Name="fVt_ID" />
+    </Key>
+    <Property Name="fVt_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fVt_Proj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fVt_DeadL" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fVt_Gate" Type="Int32" Nullable="false" />
+    <Property Name="fVt_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tVoteDetail" Relationship="TravelModel.FK_tVoteDetail_tVote" FromRole="tVote" ToRole="tVoteDetail" />
+  </EntityType>
+  <EntityType Name="tVoteDetail">
+    <Key>
+      <PropertyRef Name="fVD_ID" />
+    </Key>
+    <Property Name="fVD_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <Property Name="fVt_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tVoteDetail_tEmployee" FromRole="tVoteDetail" ToRole="tEmployee" />
+    <NavigationProperty Name="tVote" Relationship="TravelModel.FK_tVoteDetail_tVote" FromRole="tVoteDetail" ToRole="tVote" />
+  </EntityType>
+  <Association Name="FK_tActivitySelect_fActivityList">
+    <End Type="TravelModel.tActivityList" Role="tActivityList" Multiplicity="1" />
+    <End Type="TravelModel.tActivitySelect" Role="tActivitySelect" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tActivityList">
+        <PropertyRef Name="fAL_ID" />
+      </Principal>
+      <Dependent Role="tActivitySelect">
+        <PropertyRef Name="fAL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tActivitySelect_tSampleProposal">
+    <End Type="TravelModel.tSampleProposal" Role="tSampleProposal" Multiplicity="1" />
+    <End Type="TravelModel.tActivitySelect" Role="tActivitySelect" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tSampleProposal">
+        <PropertyRef Name="fSP_ID" />
+      </Principal>
+      <Dependent Role="tActivitySelect">
+        <PropertyRef Name="fSP_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tAlbum_tTravelCase">
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="1" />
+    <End Type="TravelModel.tAlbum" Role="tAlbum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tAlbum">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tAlbum">
+    <End Type="TravelModel.tAlbum" Role="tAlbum" Multiplicity="1" />
+    <End Type="TravelModel.tPhoto" Role="tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tAlbum">
+        <PropertyRef Name="fAl_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fAl_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tCityCountry_tCityCountry">
+    <End Type="TravelModel.tCityCountry" Role="tCityCountry" Multiplicity="0..1" />
+    <End Type="TravelModel.tCityCountry" Role="tCityCountry1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCityCountry">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tCityCountry1">
+        <PropertyRef Name="fCC_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tSampleProposal_tTravelPlace">
+    <End Type="TravelModel.tCityCountry" Role="tCityCountry" Multiplicity="0..1" />
+    <End Type="TravelModel.tSampleProposal" Role="tSampleProposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCityCountry">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tSampleProposal">
+        <PropertyRef Name="fCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tTravelCase_tCityCountry">
+    <End Type="TravelModel.tCityCountry" Role="tCityCountry" Multiplicity="1" />
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCityCountry">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tTravelCase">
+        <PropertyRef Name="fCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tTravelDetail_tCityCountry">
+    <End Type="TravelModel.tCityCountry" Role="tCityCountry" Multiplicity="1" />
+    <End Type="TravelModel.tTravelDetail" Role="tTravelDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tCityCountry">
+        <PropertyRef Name="fCC_ID" />
+      </Principal>
+      <Dependent Role="tTravelDetail">
+        <PropertyRef Name="fCC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDayTravel_tTravelCase">
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="1" />
+    <End Type="TravelModel.tDayTravel" Role="tDayTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tDayTravel">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependents_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tDependents" Role="tDependents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tDependents">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependents_tRelationship">
+    <End Type="TravelModel.tRelationship" Role="tRelationship" Multiplicity="1" />
+    <End Type="TravelModel.tDependents" Role="tDependents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRelationship">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tDependents">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependentsTravel_tDependents">
+    <End Type="TravelModel.tDependents" Role="tDependents" Multiplicity="1" />
+    <End Type="TravelModel.tDependentsTravel" Role="tDependentsTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tDependents">
+        <PropertyRef Name="fDe_ID" />
+      </Principal>
+      <Dependent Role="tDependentsTravel">
+        <PropertyRef Name="fDe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependentsTravel_tRegistrationDetail">
+    <End Type="TravelModel.tRegistrationDetail" Role="tRegistrationDetail" Multiplicity="1" />
+    <End Type="TravelModel.tDependentsTravel" Role="tDependentsTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRegistrationDetail">
+        <PropertyRef Name="fRD_ID" />
+      </Principal>
+      <Dependent Role="tDependentsTravel">
+        <PropertyRef Name="fRD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependentsTravel_tStatus">
+    <End Type="TravelModel.tStatus" Role="tStatus" Multiplicity="1" />
+    <End Type="TravelModel.tDependentsTravel" Role="tDependentsTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tStatus">
+        <PropertyRef Name="fSt_ID" />
+      </Principal>
+      <Dependent Role="tDependentsTravel">
+        <PropertyRef Name="fSt_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fRestaurantScores_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tRestaurantScores" Role="tRestaurantScores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tRestaurantScores">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tEmployee_tIdentity">
+    <End Type="TravelModel.tIdentity" Role="tIdentity" Multiplicity="1" />
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tIdentity">
+        <PropertyRef Name="fId_ID" />
+      </Principal>
+      <Dependent Role="tEmployee">
+        <PropertyRef Name="fId_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tEmployee_tSector">
+    <End Type="TravelModel.tSector" Role="tSector" Multiplicity="1" />
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tSector">
+        <PropertyRef Name="fSe_ID" />
+      </Principal>
+      <Dependent Role="tEmployee">
+        <PropertyRef Name="fSe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumArticle_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tForumMessage" Role="tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumTitle_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tForumTitle" Role="tForumTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tForumTitle">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRegistrationDetail_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tRegistrationDetail" Role="tRegistrationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tRegistrationDetail">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRestaurant_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tRestaurant">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tSampleProposal_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="0..1" />
+    <End Type="TravelModel.tSampleProposal" Role="tSampleProposal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tSampleProposal">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tTravelDetail_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="0..1" />
+    <End Type="TravelModel.tTravelDetail" Role="tTravelDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tTravelDetail">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tVoteDetail_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tVoteDetail" Role="tVoteDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tVoteDetail">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFamily_tRegistrationDetail">
+    <End Type="TravelModel.tRegistrationDetail" Role="tRegistrationDetail" Multiplicity="1" />
+    <End Type="TravelModel.tFamily" Role="tFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRegistrationDetail">
+        <PropertyRef Name="fRD_ID" />
+      </Principal>
+      <Dependent Role="tFamily">
+        <PropertyRef Name="fRD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFamily_tRelationship">
+    <End Type="TravelModel.tRelationship" Role="tRelationship" Multiplicity="1" />
+    <End Type="TravelModel.tFamily" Role="tFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRelationship">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tFamily">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFamily_tStatus">
+    <End Type="TravelModel.tStatus" Role="tStatus" Multiplicity="1" />
+    <End Type="TravelModel.tFamily" Role="tFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tStatus">
+        <PropertyRef Name="fSt_ID" />
+      </Principal>
+      <Dependent Role="tFamily">
+        <PropertyRef Name="fSt_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFieldValue_tForumField">
+    <End Type="TravelModel.tForumField" Role="tForumField" Multiplicity="1" />
+    <End Type="TravelModel.tFieldValue" Role="tFieldValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumField">
+        <PropertyRef Name="fFF_ID" />
+      </Principal>
+      <Dependent Role="tFieldValue">
+        <PropertyRef Name="fFF_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFieldValue_tForumTitle">
+    <End Type="TravelModel.tForumTitle" Role="tForumTitle" Multiplicity="1" />
+    <End Type="TravelModel.tFieldValue" Role="tFieldValue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumTitle">
+        <PropertyRef Name="fFT_ID" />
+      </Principal>
+      <Dependent Role="tFieldValue">
+        <PropertyRef Name="fFT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumClass_tForumClass">
+    <End Type="TravelModel.tForumClass" Role="tForumClass" Multiplicity="0..1" />
+    <End Type="TravelModel.tForumClass" Role="tForumClass1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumClass">
+        <PropertyRef Name="fFC_ID" />
+      </Principal>
+      <Dependent Role="tForumClass1">
+        <PropertyRef Name="fFC_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumField_tForumClass1">
+    <End Type="TravelModel.tForumClass" Role="tForumClass" Multiplicity="1" />
+    <End Type="TravelModel.tForumField" Role="tForumField" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumClass">
+        <PropertyRef Name="fFC_ID" />
+      </Principal>
+      <Dependent Role="tForumField">
+        <PropertyRef Name="tFC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumTitle_tForumClass">
+    <End Type="TravelModel.tForumClass" Role="tForumClass" Multiplicity="1" />
+    <End Type="TravelModel.tForumTitle" Role="tForumTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumClass">
+        <PropertyRef Name="fFC_ID" />
+      </Principal>
+      <Dependent Role="tForumTitle">
+        <PropertyRef Name="fFC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tForumMessage">
+    <End Type="TravelModel.tForumMessage" Role="tForumMessage" Multiplicity="0..1" />
+    <End Type="TravelModel.tForumMessage" Role="tForumMessage1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tForumMessage">
+        <PropertyRef Name="fFM_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage1">
+        <PropertyRef Name="fFM_Dad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumMessage_tMessageCode1">
+    <End Type="TravelModel.tMessageCode" Role="tMessageCode" Multiplicity="1" />
+    <End Type="TravelModel.tForumMessage" Role="tForumMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tForumMessage">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tForumTitle_tMessageCode1">
+    <End Type="TravelModel.tMessageCode" Role="tMessageCode" Multiplicity="1" />
+    <End Type="TravelModel.tForumTitle" Role="tForumTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tForumTitle">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMealClass_tMealList">
+    <End Type="TravelModel.tMealList" Role="tMealList" Multiplicity="1" />
+    <End Type="TravelModel.tMealClass" Role="tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMealList">
+        <PropertyRef Name="fML_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fML_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tMealClass_tRestaurant">
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="1" />
+    <End Type="TravelModel.tMealClass" Role="tMealClass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRestaurant">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tMealClass">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPhoto_tMessageCode">
+    <End Type="TravelModel.tMessageCode" Role="tMessageCode" Multiplicity="1" />
+    <End Type="TravelModel.tPhoto" Role="tPhoto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tPhoto">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRestaurant_tMessageCode">
+    <End Type="TravelModel.tMessageCode" Role="tMessageCode" Multiplicity="1" />
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tMessageCode">
+        <PropertyRef Name="fMC_ID" />
+      </Principal>
+      <Dependent Role="tRestaurant">
+        <PropertyRef Name="fMC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tOpenTime_tRestaurant">
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="1" />
+    <End Type="TravelModel.tOpenTime" Role="tOpenTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRestaurant">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tOpenTime">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRegistrationDetail_tStatus">
+    <End Type="TravelModel.tStatus" Role="tStatus" Multiplicity="1" />
+    <End Type="TravelModel.tRegistrationDetail" Role="tRegistrationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tStatus">
+        <PropertyRef Name="fSt_ID" />
+      </Principal>
+      <Dependent Role="tRegistrationDetail">
+        <PropertyRef Name="fSt_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRegistrationDetail_tTravelCase">
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="1" />
+    <End Type="TravelModel.tRegistrationDetail" Role="tRegistrationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tRegistrationDetail">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tRegistrationOpen_tTravelCase">
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="1" />
+    <End Type="TravelModel.tRegistrationOpen" Role="tRegistrationOpen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tRegistrationOpen">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_fRestaurantScores_tRestaurant">
+    <End Type="TravelModel.tRestaurant" Role="tRestaurant" Multiplicity="1" />
+    <End Type="TravelModel.tRestaurantScores" Role="tRestaurantScores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tRestaurant">
+        <PropertyRef Name="fRe_ID" />
+      </Principal>
+      <Dependent Role="tRestaurantScores">
+        <PropertyRef Name="fRe_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tTravelDetail_tTravelClass">
+    <End Type="TravelModel.tTravelClass" Role="tTravelClass" Multiplicity="1" />
+    <End Type="TravelModel.tTravelDetail" Role="tTravelDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelClass">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tTravelDetail">
+        <PropertyRef Name="fTC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tVoteDetail_tVote">
+    <End Type="TravelModel.tVote" Role="tVote" Multiplicity="1" />
+    <End Type="TravelModel.tVoteDetail" Role="tVoteDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tVote">
+        <PropertyRef Name="fVt_ID" />
+      </Principal>
+      <Dependent Role="tVoteDetail">
+        <PropertyRef Name="fVt_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tManergerHistory">
+    <Key>
+      <PropertyRef Name="fMH_ID" />
+    </Key>
+    <Property Name="fMH_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fMH_Time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fMH_Note" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fEp_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tEmployee" Relationship="TravelModel.FK_tManergerHistory_tEmployee" FromRole="tManergerHistory" ToRole="tEmployee" />
+  </EntityType>
+  <EntityType Name="tPenalty">
+    <Key>
+      <PropertyRef Name="tPe_ID" />
+    </Key>
+    <Property Name="tPe_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tTC_ID" Type="Int32" Nullable="false" />
+    <Property Name="tPe_Day" Type="Int32" Nullable="false" />
+    <Property Name="tPe_Fine" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tTravelCase" Relationship="TravelModel.FK_tPenalty_tTravelCase" FromRole="tPenalty" ToRole="tTravelCase" />
+  </EntityType>
+  <EntityType Name="tSpecialIdentity">
+    <Key>
+      <PropertyRef Name="fSI_ID" />
+    </Key>
+    <Property Name="fSI_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fSI_Identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tDependentsTravel" Relationship="TravelModel.FK_tDependentsTravel_tSpecialIdentity" FromRole="tSpecialIdentity" ToRole="tDependentsTravel" />
+    <NavigationProperty Name="tFamily" Relationship="TravelModel.FK_tFamily_tSpecialIdentity" FromRole="tSpecialIdentity" ToRole="tFamily" />
+  </EntityType>
+  <EntityType Name="tTraveEat">
+    <Key>
+      <PropertyRef Name="fTE_ID" />
+    </Key>
+    <Property Name="fTE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fTE_Class" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tDependentsTravel" Relationship="TravelModel.FK_tDependentsTravel_tTraveEat" FromRole="tTraveEat" ToRole="tDependentsTravel" />
+    <NavigationProperty Name="tFamily" Relationship="TravelModel.FK_tFamily_tTraveEat" FromRole="tTraveEat" ToRole="tFamily" />
+  </EntityType>
+  <Association Name="FK_tDependentsTravel_tSpecialIdentity">
+    <End Type="TravelModel.tSpecialIdentity" Role="tSpecialIdentity" Multiplicity="0..1" />
+    <End Type="TravelModel.tDependentsTravel" Role="tDependentsTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tSpecialIdentity">
+        <PropertyRef Name="fSI_ID" />
+      </Principal>
+      <Dependent Role="tDependentsTravel">
+        <PropertyRef Name="fSI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tDependentsTravel_tTraveEat">
+    <End Type="TravelModel.tTraveEat" Role="tTraveEat" Multiplicity="0..1" />
+    <End Type="TravelModel.tDependentsTravel" Role="tDependentsTravel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTraveEat">
+        <PropertyRef Name="fTE_ID" />
+      </Principal>
+      <Dependent Role="tDependentsTravel">
+        <PropertyRef Name="fTE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tManergerHistory_tEmployee">
+    <End Type="TravelModel.tEmployee" Role="tEmployee" Multiplicity="1" />
+    <End Type="TravelModel.tManergerHistory" Role="tManergerHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tEmployee">
+        <PropertyRef Name="fEp_ID" />
+      </Principal>
+      <Dependent Role="tManergerHistory">
+        <PropertyRef Name="fEp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFamily_tSpecialIdentity">
+    <End Type="TravelModel.tSpecialIdentity" Role="tSpecialIdentity" Multiplicity="0..1" />
+    <End Type="TravelModel.tFamily" Role="tFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tSpecialIdentity">
+        <PropertyRef Name="fSI_ID" />
+      </Principal>
+      <Dependent Role="tFamily">
+        <PropertyRef Name="fSI_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tFamily_tTraveEat">
+    <End Type="TravelModel.tTraveEat" Role="tTraveEat" Multiplicity="0..1" />
+    <End Type="TravelModel.tFamily" Role="tFamily" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTraveEat">
+        <PropertyRef Name="fTE_ID" />
+      </Principal>
+      <Dependent Role="tFamily">
+        <PropertyRef Name="fTE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tPenalty_tTravelCase">
+    <End Type="TravelModel.tTravelCase" Role="tTravelCase" Multiplicity="1" />
+    <End Type="TravelModel.tPenalty" Role="tPenalty" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tTravelCase">
+        <PropertyRef Name="fTC_ID" />
+      </Principal>
+      <Dependent Role="tPenalty">
+        <PropertyRef Name="tTC_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

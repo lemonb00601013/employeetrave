@@ -1,0 +1,7 @@
+﻿@model IEnumerable<MVC_HW3.Models.tTravelClass>
+
+
+@foreach (var _travelclass in Model)
+{
+    @Html.ActionLink(_travelclass.fTC_Class, "Index", "Travel", new { ClassId = _travelclass.fTC_ID }, new { @class = "btn btn-info", style = "width:200px" })
+}

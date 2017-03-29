@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MVC_HW3.Models.tBulletin> 
+
+@foreach (var bul in Model)
+{
+<a href="@Url.Action("BulletinDetail","Home",new{ID=bul.fBu_ID})">[@bul.tBulletinClass.fBC_Class]@bul.fBu_Title</a>
+    <br />
+    <br />
+}

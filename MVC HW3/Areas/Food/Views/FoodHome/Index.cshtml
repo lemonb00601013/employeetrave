@@ -1,0 +1,219 @@
+﻿@model IEnumerable<MVC_HW3.Models.tRestaurant>
+<form method="post">
+    <h2>膳食分類</h2>
+    <div id="divhidden">@foreach (var aa in Model)
+    {@Html.HiddenFor(s => aa.fRe_site, new { name = "position" })}</div>
+    <div class="row">
+        <div class="col-lg-2">
+            <div>
+                <label id="clearallchk" class="btn btn-primary " style="margin-bottom:10px"><span class="glyphicon glyphicon-stats" style="font-size:16px">總覽</span></label>
+            </div>
+            <div class="list-group">
+                @Html.Action("MealListSelect", "FoodHome")
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <br />
+            <br />
+            <div id="map" style="width:600px;height:600px"></div>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-3" id="d100" style="margin-left:3em">
+            @Html.Action("RestaurantSelect", "Restaurant")
+        </div>
+
+    </div>
+
+</form>
+
+
+@*彈跳新增*@
+<div class="modal fade" id="newRestAurantadd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="text-align:center">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @Html.Action("AddRestaurant", "Restaurant")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            @*每次載入網頁清空checkbox*@
+            var myCheckBox = document.getElementsByTagName('input');
+            for (var i = 0; i < myCheckBox.length; i++) {
+                if (myCheckBox[i].type == "checkbox") {
+                    myCheckBox[i].checked = false;
+                }
+            }
+
+        })
+
+        $(document).ready(function () {
+            
+            var siteXY =[]
+            window.onload = function () {
+                $("#divhidden>input[name='aa.fRe_site']").each(function () {
+                    //var site = $(this).val() //"x,y"
+                    siteXY.push($(this).val().split(',', 2)) //"x","y"
+                    //aaaaa.push($(this).val())
+                })
+                initMap(siteXY);
+                var marker;
+
+                function initMap(a) {
+
+                    //function initMap() {
+                    //var originalMapCenter = new google.maps.LatLng(parseFloat(a));
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 16,
+                        center: { lat: 25.066952, lng: 121.525006 }
+                    })
+
+                    marker = new google.maps.Marker({
+                        map: map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP,
+                        position: { lat: 25.066952, lng: 121.525006 }
+                    })
+
+                    for (var y = 0; y < a.length; y++) {
+
+                        marker = new google.maps.Marker({
+                            map: map,
+                            draggable: true,
+                            animation: google.maps.Animation.DROP,
+                            position: new google.maps.LatLng(a[y][0], a[y][1])
+                        })
+
+                    }
+                }
+            }
+             
+            
+        })
+        
+
+        @*MAP*@
+        // var marker;
+
+        // function initMap(a) {
+             
+        // //function initMap() {
+        //    //var originalMapCenter = new google.maps.LatLng(parseFloat(a));
+        //    var map =new google.maps.Map(document.getElementById('map'), {
+        //        zoom: 16,
+        //        center: { lat: 25.066952, lng: 121.525006 }
+        //    })
+           
+        //    marker = new google.maps.Marker({
+        //        map: map,
+        //        draggable: true,
+        //        animation: google.maps.Animation.DROP,
+        //        position: { lat: 25.066952, lng: 121.525006 }
+        //    })
+           
+        //    for (var y = 0; y < a.length;y++){
+           
+        //    marker = new google.maps.Marker({
+        //        map: map,
+        //        draggable: true,
+        //        animation: google.maps.Animation.DROP,
+        //        position: new google.maps.LatLng(a[y][0],a[y][1])
+        //    })
+            
+        //    }
+        //}
+       
+     
+
+            @*點擊chkbox傳送陣列至controller*@
+            $("#chkview>input[type='checkbox']").click(function () {
+                var n = []
+                $("#chkview>input[name='chkfoodclass']:checked").each(function () {
+                    n.push($(this).val())
+                })
+                $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", { id: n })
+                clickornot.push(n);
+            })
+
+            $("body").on("click", "div[id='imglist']>figure", function () {
+                ida = $(this).attr("data-id");
+                location.href = "@Url.Action("RestaurantDetail", "Restaurant", new { area = "Food" })" + "/" + ida
+            })
+
+            $("#clearallchk").click(function (chkfoodclass) {
+
+                var myCheckBox = document.getElementsByTagName('input');
+                for (var i = 0; i < myCheckBox.length; i++) {
+                    if (myCheckBox[i].type == "checkbox") {
+                        myCheckBox[i].checked = false;
+                    }
+                }
+                $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")")
+            })
+
+            $("#btn1").click(function () {
+                var errormsg = "";
+                if ($("#fRe_Name").val() == "") { errormsg += "餐廳名稱未填寫\r\n" } if ($("#fRe_Content").val() == "") { errormsg += "簡介未填寫\r\n" }
+                errormsg += 是否有特殊字元;
+                if ($("#fRe_Addr").val() == "") { errormsg += "地址未填寫\r\n" }
+                var chkbox = []
+                $("#chktest>div>input[name='chkfoodclass']:checked").each(function () {
+                    chkbox.push($(this).val())
+                })
+                if (chkbox == "") { errormsg += "未勾選分類\r\n" }
+                errormsg += 價錢是否為數字;
+                if ($("#fR_Price").val() == "") { errormsg += "平均價位未填寫\r\n" }
+                if ($("#fRe_introduction").val() == "") { errormsg += "介紹未填寫\r\n" }
+
+                if (errormsg == "") { $("#thisform").trigger('submit') } else { alert(errormsg) }
+            })
+
+            var 是否有特殊字元 = "";
+            function chkname() {
+                是否有特殊字元 = ""
+                var n = document.getElementById("fRe_Name").value;
+                var regExp = /^[!#$%^&*()_+="'?]+$/;
+
+                for (var i = 0; i <= n.length - 1; i++) {
+                    if (regExp.test(n.substr(i, 1))) {
+                        是否有特殊字元 += "餐廳名稱不可輸入特殊符號\r\n"
+                        break;
+                    }
+                    else { }
+                }
+            }
+
+            var 價錢是否為數字 = "";
+
+            function chkprice() {
+                價錢是否為數字 = ""
+                var n = document.getElementById("fR_Price").value;
+                var regExp = /^[0-9]+$/;
+                for (var i = 0; i <= n.length - 1; i++) {
+                    if (!regExp.test(n.substr(i, 1))) {
+                        價錢是否為數字 += "價錢只能為數字\r\n"
+                        break;
+                    }
+                    else { }
+                }
+            }
+
+    </script>
+
+
+
+    @*麻煩的地圖鑰匙*@
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNJSp7w_HE3PDukIKQW5JENPHYdi5AJDw&callback=initMap"
+            async defer></script>
+}
+

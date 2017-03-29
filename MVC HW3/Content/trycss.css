@@ -5,7 +5,7 @@ input,textarea,select{ max-width:100%;}
 
 .div-white-bg{
     background:#ffffff; 
-    height:30px;
+
 }
 .div-white-bg>img{
     margin:5px;
@@ -106,20 +106,41 @@ div .col-md-6,.col-md-4,.col-md-2{
 .padd10{
     padding:10px;
 }
-.divcss6{border:5px solid skyblue;border-radius:3px;} 
-.divcss6 img{/*max-width:350px;_width:expression(this.width > 350 ? "350px" : this.width);*/ width:180%} 
+.homecase{
+  width:100%;   
+  padding-bottom: 40%; 
+  height: 0;
+  overflow:hidden;
+ 
+}
+.homecase img{
+width:100%; 
 
-.divcss5{overflow:hidden;border:5px solid #ffffff;border-radius:3px;} 
-.divcss5 img{/*max-width:300px;_width:expression(this.width > 300 ? "300px" : this.width);*/width:180%} 
+}
 
-.divcss4{overflow:hidden;border:5px solid skyblue;border-radius:3px;} 
-.divcss4 img{/*max-width:250px;_width:expression(this.width > 250 ? "250px" : this.width);*/width:180%} 
+.divcss6,.divcss4{border:5px solid skyblue} 
+.divcss6 img,.divcss5 img,.divcss4 img{width:190%} 
+
+.divcss5{border:5px solid #ffffff;} 
+
+ .col-try1{padding:5px;
+           display:inline-block;
+           width:190px;
+           height:190px;
+ }
+  .col-try2{padding:5px;
+           display:inline-block;
+           width:195px;
+           height:240px;
+ }
 
 .divcss6,.divcss5,.divcss4{
+    /*width:100%;*/
     max-width: 100%;
     height: 0;
     padding-bottom: 100%;   
     overflow:hidden;
+    border-radius:3px;
 }
 
 .padtry>.panel-body{

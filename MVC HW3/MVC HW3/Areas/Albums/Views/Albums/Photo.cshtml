@@ -1,0 +1,170 @@
+﻿
+
+@model IEnumerable<MVC_HW3.Models.tPhoto>
+@{
+    ViewBag.Title = "Photo";
+}
+
+
+@section styles{
+    <style>
+        #showbox{
+            margin:0px;
+        }
+        #photobox{
+            padding:0px;
+        }
+        #photoNote{
+            padding:10px 25px 10px 25px;
+        }
+        #photoms{
+            border-top:1px solid #b4dcdc;
+            background-color:#e7f3fc
+        }
+        #messall{         
+                       
+            overflow-x:auto;
+            
+            
+        }
+        #photoinput{
+            background-color:#e7f3fc;
+            padding:10px;
+
+        }
+   #photoinput>input{
+       width:100%;
+      max-width:100%;
+   }
+    </style>
+    }
+
+<h2>員工旅遊 第 @Model.First().tAlbum.tTravelCase.fTC_LorD 期</h2>
+<hr />
+<div class="row ">
+    @foreach (var photo in Model)
+    {
+        <div class="@*col-md-2 col-sm-3 col-xs-4*@ col-try1" >            
+            <a href="#">
+                <div class="divcss5">
+                    <img name="photobt" messageid="@photo.fMC_ID" ptid="@photo.fPh_ID" photont="@photo.fPh_Notes" src="@Url.Action("GetImage","Albums",new {area="Albums",id=photo.fPh_ID})">
+                </div>
+               
+            </a>
+        </div>
+    }
+    
+
+</div>
+
+<div class="bs-example">
+
+   
+    <!-- Large Modal HTML -->
+    <div id="largeModal" class="modal">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                
+                <div class="modal-body row"id="showbox">
+                  
+                       <div id="photobox" class="col-md-8">
+                           <img src="@Url.Action("GetImage","Albums",new {area="Albums",id=4})">
+                       </div>
+                  
+                       <div class="col-md-4" >                          
+                         
+                           <div id="messall">
+                               <div class="minH20" id="photoNote"><h3></h3></div>
+                               <div id="photoms"></div>                               
+                           </div>
+                           <div id="photoinput" ><input id="pinput" class="needlog2" log_url="" type="text" /></div>
+                       </div>
+
+                 
+                   
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>    
+
+
+
+
+@section scripts{  
+    <script>
+        $(document).ready(function () {
+            window.onload=function () {
+                if ("@ViewBag.pID" != "") {
+                var opener = $("img[ptid='@ViewBag.pID']")
+                var src = opener.attr("src")
+                var note = opener.attr("photont")
+                mesid = opener.attr("messageid")
+                $("#showbox").height("auto");
+                $("#photobox>img").attr("src", src)
+                $(".needlog2").attr("log_url", "@Request.Url.AbsolutePath" + "?pID=" + "@ViewBag.pID")
+                $("#photoNote>h3").empty().append(note)
+                $("#largeModal").modal('show')
+                var boxH = $("#showbox").height();
+                var messH=boxH-56
+                $("#messall").css("max-height", messH + "px")
+                $("#showbox").height(boxH);
+                $("#photoms").load("@Url.Action("PhotoMessage","Albums",new{area="Albums"})?id=" + mesid)
+                    //清除網址參數
+                history.pushState(null, "", location.href.split("?")[0]);
+
+            }
+
+            }
+            var mesid;
+            $("#pinput").click(function () {
+                var account = document.cookie.indexOf("account=")
+                if (account == -1) {
+                    $("#largeModal").modal('hide')
+                }
+            })
+
+            $('#pinput').bind("enterKey", function (e) {
+                
+                
+                var content = $(this).val()
+                if ($(this).val() != "")
+                {
+                    $("#photoms").load("@Url.Action("PhotoMessage","Albums",new{area="Albums"})?id="+mesid+"&content="+content)
+                    $(this).val("")
+                }
+             
+
+
+            });
+            $('#pinput').keyup(function (e) {
+                if (e.keyCode == 13) {
+                    $(this).trigger("enterKey");
+                }
+            });
+
+
+            var cw = $(".divcss5").width();
+            $(".divcss5").css({ 'height': cw + 'px' });
+            $("#ov-top")
+
+            $("img[name='photobt']").click(function () {
+                var src = $(this).attr("src")
+                var note = $(this).attr("photont")
+                mesid = $(this).attr("messageid")
+                $("#showbox").height("auto");
+                $("#photobox>img").attr("src", src)
+                $(".needlog2").attr("log_url", "@Request.Url.AbsolutePath" + "?pID=" + $(this).attr("ptid"))
+                $("#photoNote>h3").empty().append(note)
+                $("#largeModal").modal('show')
+                var boxH = $("#showbox").height();
+                var messH=boxH-56
+                $("#messall").css("max-height", messH + "px")
+                $("#showbox").height(boxH);
+                $("#photoms").load("@Url.Action("PhotoMessage","Albums",new{area="Albums"})?id="+mesid)
+             })
+      });
+    </script>
+
+}

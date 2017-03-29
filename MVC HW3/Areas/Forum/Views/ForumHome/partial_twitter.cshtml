@@ -1,0 +1,11 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+
+@using (Html.BeginForm("partial_twitter", "ForumHome", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <div class="col-lg-10">
+        @Html.TextBoxFor(p => p.Fmessage.FirstOrDefault().fFM_Content, new { @class = "form-control", placeholder = "Forum MessageContent" })
+        <button type="submit" class="btn btn-default">回覆推文</button>
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    </div>
+
+}

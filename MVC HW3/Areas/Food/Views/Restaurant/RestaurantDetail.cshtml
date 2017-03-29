@@ -1,0 +1,51 @@
+﻿@model MVC_HW3.Models.tRestaurant
+@{
+    ViewBag.Title = "RestaurantDetail";
+}
+
+<h2 style="margin-bottom:3em">RestaurantDetail</h2>
+<div class="row" style="margin-bottom:5em">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4">
+        <img id="imgdisplay" src="@Url.Action("GetImageByte","FoodHome",new{ id=ViewBag.imgId},null)" width="300" height="300" />
+    </div>
+    <div class="col-lg-7">
+        <h3>@Html.LabelFor(r=>r.fRe_Name)：@Html.DisplayFor(r => r.fRe_Name)</h3>
+        <h3>@Html.LabelFor(r => r.fR_Price)：@Html.DisplayFor(r => r.fR_Price)</h3>
+        <h3>@Html.LabelFor(r=>r.fRe_Tel)：@Html.DisplayFor(r=>r.fRe_Tel)</h3>
+        <h3>@Html.LabelFor(r => r.fRe_Delivery)：<label id="isdelivery"></label>@Html.HiddenFor(r=>r.fRe_Delivery,new {id="YorN"})</h3>
+        <h3>@Html.LabelFor(r => r.fRe_Addr)：@Html.DisplayFor(r => r.fRe_Addr)</h3>
+        <div class="col-lg-2">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="panel-primary col-lg-10">
+        <div class="panel-heading">
+            <h4>@Html.LabelFor(r => r.fRe_introduction)：</h4>
+        </div>
+        <div class="panel-footer">
+            <h4 id="htmltext">@*@Html.DisplayFor(r => r.fRe_introduction)*@</h4>
+        </div>
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+
+@section scripts{
+<script>
+    $(document).ready(function () {
+   var a = $("#YorN").val()
+   if (a == "True") { $("#isdelivery").text("有") }
+   else { $("#isdelivery").text("無") }
+
+    @*HTML格式的介紹*@
+        $("#htmltext").html("@Html.DisplayFor(r => r.fRe_introduction)");
+
+
+
+
+
+
+    })
+</script>}

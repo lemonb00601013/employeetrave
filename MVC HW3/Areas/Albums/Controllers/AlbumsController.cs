@@ -1,8 +1,7 @@
-﻿using MVC_HW3.Areas.Albums.Models;
+﻿using MVC_HW3.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 
@@ -10,7 +9,7 @@ namespace MVC_HW3.Areas.Albums.Controllers
 {
     public class AlbumsController : Controller
     {
-        TravelEntities1 db = new TravelEntities1();
+        TravelEntities db = new TravelEntities();
         // GET: Albums/Albums
         public ActionResult Index()
         {
