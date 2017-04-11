@@ -1,0 +1,66 @@
+﻿@model MVC_HW3.Models.tVoteProject
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tVoteProject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    @Html.HiddenFor(model => model.fVP_ID)
+        <dt>
+
+        </dt>
+        <dd>
+            <img title="bytesImage" src="@Url.Action("GetImageByte","Vote",new {id=Model.fVP_ID,@class ="control-label col-md-10"})" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_EndDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

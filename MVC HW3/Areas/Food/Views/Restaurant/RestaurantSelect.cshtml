@@ -193,18 +193,21 @@ figure.effect-julia:hover p {
     </div>
 </form>
 
-<div class="row" style="overflow-y:scroll;overflow-x:hidden;height:700px"> 
+<div class="row" style="overflow-y:scroll;overflow-x:hidden;height:700px" id="randomdiv"> 
     @foreach (var a in Model)
     {
         <div class="grid" id='imglist'>
-            <figure class="effect-julia"  data-id="@a.fRe_ID">
-                <img src="@Url.Action("GetImageByte","FoodHome",new {id=a.fRe_ID})"  style="width:250px;height:250px" />
-                <figcaption>
-                    <h2 style="font-weight:bolder">@a.fRe_Name</h2>
-                    <p>平均價位：@Html.DisplayFor(model=>a.fR_Price)</p><br />
-                    <p>電話：@a.fRe_Tel</p><br />
-                    <p id="isDeliveryorNot">是否外送：@a.fRe_Delivery</p><br />
+            <figure class="effect-julia">
+                <img src="@Url.Action("GetImageByte","FoodHome",new {id=a.fRe_ID})"id="imgtest" data-id="@a.fRe_ID" style="width:250px;height:250px" />
+                <figcaption id="divhidden2"  data-toggle="modal" data-target="#RestaurantDetail" data-imgfig="@a.fRe_ID">
+                    @*<h2 style="font-weight:bolder" id="RestaurantName">@a.fRe_Name</h2>*@
+                    <p id="RestaurantName" style="font-style:normal;font-size:16px">@a.fRe_Name</p><br />
+                    <p id="price">平均價位：@Html.DisplayFor(model=>a.fR_Price)</p><br />
+                    <p id="tel">電話：@a.fRe_Tel</p><br />
+                    <p id="isDeliveryorNot">是否外送：<span style="border:none" name="testspan" id="testspanlikea">@a.fRe_Delivery</span></p><br />
                     <p>簡介：@a.fRe_Content</p><br />
+                    @Html.HiddenFor(site=>a.fRe_site,new {name="ReSelectSite"})
+                    @Html.HiddenFor(introduction=>a.fRe_introduction,new {id="introductionR" })
                 </figcaption>
             </figure>
             <!-- ... -->

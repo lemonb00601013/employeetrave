@@ -1,0 +1,8 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+
+@foreach (var title in Model.Ftitle)
+{
+    <div class="panel-body">
+        @Html.ActionLink("[" + title.tForumClass.fFC_Class + "]" + "  " + title.fFT_Title, "Detail", "ForumHome", new { id = title.fMC_ID }, null)
+    </div>
+}

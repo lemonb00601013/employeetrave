@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MVC_HW3.Models.tDayTravel>
+@{
+    foreach (var DT in Model)
+    {
+        <tr>
+            <td>@DT.fDT_Date.ToShortDateString()</td>
+            <td class="text-right">
+                <span name="TDayE" class="btn btn-primary" dt_id="@DT.fDT_ID">編輯</span>
+             
+            </td>         
+
+
+            <td class="text-right"><span name="TDayD" class="btn btn-danger" dt_id="@DT.fDT_ID">刪除</span></td>
+        </tr>
+
+    }
+
+}

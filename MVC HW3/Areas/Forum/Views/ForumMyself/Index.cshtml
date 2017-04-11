@@ -25,8 +25,8 @@
 <div class="row">
     <div class="col-lg-4">
         <div class="list-group">
-            @*<button class="btn btn-primary" id="create">我要發文</button>
-            <button class="btn btn-primary" id="searchmyself">發文管理</button>*@
+            <button class="btn btn-primary" id="create">我要發文</button>
+            <button class="btn btn-primary" id="returnhome">回到大廳</button>
         </div>
     </div>
 
@@ -48,9 +48,9 @@
                 @foreach (var title in Model.Ftitle)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(p => title.tForumClass.fFC_Class)</td>
+                        <td>@Html.DisplayFor(p => title.tForumClass.tForumClass2.fFC_Class)</td>
                         <td>
-                            @Html.ActionLink(title.fFT_Title, "EditDetail", "ForumMyself", new { id = title.fMC_ID }, null)
+                            @Html.ActionLink("[" + title.tForumClass.fFC_Class + "]" + "  " + title.fFT_Title, "EditDetail", "ForumMyself", new { id = title.fMC_ID }, null)
                         </td>
                         <td>@Html.DisplayFor(p => title.fFT_Popul)</td>
                         <td>@Html.DisplayFor(p => title.tEmployee.fEp_Nickname)</td>
@@ -70,12 +70,44 @@
 </div>
 
 
+@using (Html.BeginForm("Index", "ForumMyself", FormMethod.Post))
+{
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>你確定要刪除嗎?&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="dele"class="btn btn-danger">確定刪除</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">離開</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+
 @section scripts{
     <script>
 
         $(document).ready(function () {
             var path = location.pathname;
             $('.nav').find('a[href ="' + path + '"]').addClass('active');
+
+            $('#create').click(function () {
+                location.href = '@Url.Action("Create", "ForumHome")';
+            })
+
+            $('#returnhome').click(function () {
+                location.href = '@Url.Action("Index", "ForumHome")';
+            })
 
             $('#TitleTable>tbody>tr').mouseenter(function () {
                 $(this).addClass("active");
@@ -92,6 +124,16 @@
             });
 
             $(document).on('click', "#delete", function () {
+
+                $('#modal').modal('show');
+
+                var id = $(this).parent().parent().find('#title_fMC_ID').val();
+
+                $(document).on('click', "#dele", function () {
+                    location.href = ('@Url.Action("Delete", "ForumMyself")' + '/' + id);
+                });
+
+                
 
             });
 

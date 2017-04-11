@@ -1,0 +1,9 @@
+﻿@model MVC_HW3.Models.tDayTravel
+<div class="form-group  row">
+    @Html.LabelFor(a => a.fDT_Date, new { @class = "col-sm-4 control-label" })
+
+    <div class="col-sm-8">
+        @Html.EditorFor(a => a.fDT_Date, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+</div>

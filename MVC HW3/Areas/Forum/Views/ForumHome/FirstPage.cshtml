@@ -1,0 +1,67 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+
+@{
+    ViewBag.Title = "FirstPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>FirstPage</h2>
+
+@section styles{
+    <link href="~/Content/hexagons.css" rel="stylesheet" />
+    <style>
+
+    </style>
+}
+
+<div class="col-lg-pull-12">
+    <ul id="hexGrid">
+        @foreach (var fclass in Model.Fclass)
+        {
+            <li class="hex">
+                <a class="hexIn" href="@Url.Action("Index", "ForumHome", new { id = fclass.fFC_ID })">
+                    <img src="@Url.Action("GetImageClass", "ForumHome", new { id = fclass.fFC_ID})" />
+                    <h3 style="color:brown;font-family:DFKai-sb;">@fclass.fFC_Class</h3>
+                    <span class="glyphicon glyphicon-plane" style="color:brown">前往討論區</span>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <a href="@Url.Action("Index","ForumHome")" class="panel-title"><span class="glyphicon glyphicon-bullhorn"></span> 最多人瀏覽的文章</a>
+            </div>
+            <div  id ="div1" class="panel-body"></div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <a href="@Url.Action("Index","ForumHome")" class="panel-title"><span class="glyphicon glyphicon-bullhorn"></span> 最多人喜歡的文章</a>
+            </div>
+
+            <div id ="div2" class="panel-body"> </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+@section scripts{
+    <script>
+        $('#div1').load('@Url.Action("FPclicktitle", "ForumHome")');
+        $('#div2').load('@Url.Action("FPpushgood", "ForumHome")');
+
+
+    </script>
+}

@@ -1,0 +1,86 @@
+﻿@model MVC_HW3.Models.tRegistrationDetail
+
+
+<table class="table">
+    <thead>
+        <tr class="success">
+            <th colspan="2" class="text-center">費用粗估</th>
+            <th colspan="2"></th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        <tr>
+            <td class="text-left">@Model.tEmployee.fEp_Name (團費)</td>
+            <td class="text-left">+ @Math.Floor(Model.tTravelCase.fTC_Cost) $</td>
+        </tr>
+@{
+    var total = Model.tTravelCase.fTC_Cost;
+
+    foreach (MVC_HW3.Models.tDependentsTravel a in Model.tDependentsTravel)
+    {
+        var e = Model.tTravelCase.fTC_Cost;
+        if (a.fDT_Car == false)
+        {
+            e -= Model.tTravelCase.fTC_Car;
+        }
+        if (a.fDT_Hotel == false)
+        {
+            e -= Model.tTravelCase.fTC_hotel;
+        }
+        if (a.fTE_ID == 3)
+        {
+            e -= Model.tTravelCase.fTC_Eat;
+        }
+        total += e;
+        <tr>
+            <td class="text-left">@a.tDependents.fDe_Name (團費)</td>
+            <td class="text-left">+ @Math.Floor(e) $(減免完)</td>
+        </tr>
+
+    }
+
+    var grant = Model.fRD_Grant;
+    var realGrant = (total > grant) ? grant : total;
+
+
+    foreach (MVC_HW3.Models.tFamily a in Model.tFamily)
+    {
+        var e = Model.tTravelCase.fTC_Cost;
+        if (a.fFa_Car == false)
+        {
+            e -= Model.tTravelCase.fTC_Car;
+        }
+        if (a.fFa_Hotel == false)
+        {
+            e -= Model.tTravelCase.fTC_hotel;
+        }
+        if (a.fTE_ID == 3)
+        {
+            e -= Model.tTravelCase.fTC_Eat;
+        }
+        total += e;
+        <tr>
+            <td class="text-left">@a.fFa_Name (團費)</td>
+            <td class="text-left">+ @Math.Floor(e) $(減免完)</td>
+        </tr>
+    }
+
+    var end = total - realGrant;
+    <tr>
+        <td class="text-left">實際補助 </td>
+        <td class="text-left">- @Math.Floor(realGrant) $</td>
+    </tr>
+    <tr class="warning">
+        <td class="text-left">需補繳 </td>
+        <td class="text-left">= @Math.Floor(end) $</td>
+    </tr>
+    }
+
+    </tbody>
+
+
+</table>
+  

@@ -1,0 +1,43 @@
+﻿
+@model MVC_HW3.ViewModel.ForumModel
+
+
+@if (Model.Fmessage.First().fFM_Content != null)
+{
+    if (Model.Fmessage.Count() > 3)
+    {
+        <div class="modal-content">
+            <a id="showtit1">顯示所有留言</a>
+            <a id="showtit2" hidden="hidden">收起留言</a>
+            <div class="modal-header">
+                <div id="loadtit" class="tit">
+                    @foreach (var twitter in Model.Fmessage.Take(3))
+                    {
+                        @Html.HiddenFor(p => twitter.fFM_ID)
+                        <p>@Html.DisplayFor(q => twitter.tEmployee.fEp_Nickname) : @Html.DisplayFor(q => twitter.fFM_Content)  留言時間 : @Html.DisplayFor(q => twitter.fFM_Date) </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+
+    else
+    {
+        <div class="modal-content">
+            <a id="showtit1" hidden="hidden">顯示所有留言</a>
+            <a id="showtit2" hidden="hidden">收起留言</a>
+            <div class="modal-header">
+                <div id="loadtit" class="tit">
+                    @foreach (var twitter in Model.Fmessage)
+                    {
+                        @Html.HiddenFor(p => twitter.fFM_ID)
+                        <p> @Html.DisplayFor(q => twitter.tEmployee.fEp_Nickname) : @Html.DisplayFor(q => twitter.fFM_Content)  留言時間 : @Html.DisplayFor(q => twitter.fFM_Date) </p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+
+}

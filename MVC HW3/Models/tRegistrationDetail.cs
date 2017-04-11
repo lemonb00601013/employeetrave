@@ -32,7 +32,7 @@ namespace MVC_HW3.Models
         public string fRD_UTel { get; set; }
         public string fRD_Note { get; set; }
         public string fRD_Insurance { get; set; }
-        public Nullable<decimal> fRD_Fine { get; set; }
+        public Nullable<System.DateTime> fRD_Fine { get; set; }
         public string fRD_Relief { get; set; }
         public Nullable<decimal> fRD_RMoney { get; set; }
     

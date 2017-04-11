@@ -12,12 +12,15 @@
         textarea{
             min-height:170px;
         }
+        #connect {
+        font-size:20px;
+        } 
     </style>
 }
 <h2>聯絡我們</h2>
 <hr />
 
-<div class="row">
+<div id="connect" class="row">
     <div class="col-md-5">
 @using (Html.BeginForm("Connection", "Home", FormMethod.Post, new { @class = "form-horizontal marginL50", enctype = "multipart/form-data" }))
 {
@@ -65,7 +68,7 @@
     </div>
     <div class="col-md-7">
         <div id="cnote">
-            <h3>聯絡我們</h3>
+            <h2>聯絡資訊</h2>
             <br />
             <p>叡揚資訊股份有限公司(Galaxy Software Services Corporation)</p>
             <br /><br />

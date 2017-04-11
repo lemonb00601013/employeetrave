@@ -1,0 +1,149 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminIndex</h2>
+
+
+
+<div class="col-lg-pull-12">
+    <div class="col-lg-4">
+        <nav>
+            <ul class="nav nav-justified">
+                @foreach (var classes in Model.Fclass)
+                {
+                    <li>@Html.ActionLink(classes.fFC_Class, "Index", "ForumAdmin", new { id = classes.fFC_ID }, new { @class = "list-group-item" })</li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-4">
+        <div class="list-group">
+            <button class="btn btn-primary" id="create">我要發文</button>
+            <button class="btn btn-primary" id="addclass">新增項目</button>
+            <button class="btn btn-primary" id="returnhome">回到大廳</button>
+            
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-10">
+        <table id="TitleTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(p => p.Fclass.First().fFC_Class)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Title)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Popul)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fEp_ID)</th>
+                    <th>@Html.DisplayNameFor(p => p.Ftitle.First().fFT_Date)</th>
+                    <th>管理選項</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var title in Model.Ftitle)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(p => title.tForumClass.tForumClass2.fFC_Class)</td>
+                        <td>
+                            @Html.ActionLink("[" + title.tForumClass.fFC_Class + "]" + "  " + title.fFT_Title, "EditDetail", "ForumMyself", new { id = title.fMC_ID }, null)
+                        </td>
+                        <td>@Html.DisplayFor(p => title.fFT_Popul)</td>
+                        <td>@Html.DisplayFor(p => title.tEmployee.fEp_Nickname)</td>
+                        <td>@Html.DisplayFor(p => title.fFT_Date)</td>
+
+                        @Html.HiddenFor(p => title.fMC_ID)
+
+                        <td>
+                            <button class="btn btn-primary" id="edit" name="edit">修改文章</button>
+                            <button class="btn btn-danger" id="delete" name="delete">刪除文章</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Index", "ForumMyself", FormMethod.Post))
+{
+    <div id="modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>你確定要刪除嗎?&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="dele" class="btn btn-danger">確定刪除</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">離開</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+}
+
+
+
+
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            var path = location.pathname;
+            $('.nav').find('a[href ="' + path + '"]').addClass('active');
+
+            $('#create').click(function () {
+                location.href = '@Url.Action("Create", "ForumHome")';
+            })
+
+            $('#addclass').click(function () {
+                location.href = '@Url.Action("AddClass", "ForumHome")';
+            })
+
+            $('#returnhome').click(function () {
+                location.href = '@Url.Action("Index", "ForumHome")';
+            })
+
+            $('#TitleTable>tbody>tr').mouseenter(function () {
+                $(this).addClass("active");
+            })
+
+            $('#TitleTable>tbody>tr').mouseout(function () {
+                $(this).removeClass("active");
+            })
+
+            $(document).on('click', "#edit", function () {
+
+                var id = $(this).parent().parent().find('#title_fMC_ID').val();
+                location.href = ('@Url.Action("AdminDetail", "ForumForumAdmin")' + '/' + id);
+            });
+
+            $(document).on('click', "#delete", function () {
+
+                $('#modal').modal('show');
+
+                var id = $(this).parent().parent().find('#title_fMC_ID').val();
+
+                $(document).on('click', "#dele", function () {
+                    location.href = ('@Url.Action("Delete", "ForumForumAdmin")' + '/' + id);
+                });
+
+
+
+            });
+
+        })
+
+    </script>
+}

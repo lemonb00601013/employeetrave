@@ -4,12 +4,108 @@
 }
 
 @section styles{
-
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/jquery.raty.css" rel="stylesheet" />
    <style>
+       /*評分區塊*/
+
+    #ScoreFood {
+        border: 5px solid #0066ff;
+        width: 560px;
+        height: 700px;
+        border-radius: 30px;
+        clear: left;
+        float: left;
+        text-align: center;
+    }
+    #Foods{
+        border: 0px solid #ffffff;
+        width: 275px;
+        height: 680px;
+        float: left;
+        text-align: center;
+    }
+       #ScoreBuy {
+           border: 5px solid #ff6a00;
+           float: left;
+           width: 560px;
+           height: 700px;
+           border-radius: 30px;
+           text-align: center;
+       }
+       #Buys{
+        border: 0px solid #ffffff;
+        width: 275px;
+        height: 680px;
+        float: left;
+        text-align: center;
+    }
+       #ScoreRoom {
+           border: 5px solid #0e9001;
+           float: left;
+           width: 560px;
+           height: 700px;
+           border-radius: 30px;
+           text-align: center;
+       }
+       #Rooms{
+        border: 0px solid #ffffff;
+        width: 275px;
+        height: 680px;
+        float: left;
+        text-align: center;
+    }
+       #ScorePlay {
+           border: 5px solid #ffaf00;
+           float: left;
+           width: 560px;
+           height: 700px;
+           border-radius: 30px;
+           text-align: center;
+       }
+       #Plays{
+        border: 0px solid #ffffff;
+        width: 275px;
+        height: 680px;
+        float: left;
+        text-align: center;
+    }
+       #showRightPush{
+           width:70px;
+           display:none;
+           z-index:3;
+           position:absolute;
+           left:485px;
+           top:520px
+       }
+
+       hr {
+          clear:both;
+          border: 0;
+          height: 2px; 
+          box-shadow: 0 0 20px 3px #fff;
+          
+       }
+
+
+       .commentTable{
+          border:8px #FFD382 groove;
+          width:520px;
+          font-weight:600;
+      }
+      .commentTable tr:nth-child(even) {background: #ff9938}
+      .commentTable tr:nth-child(odd) {background: #ffe100}
+
+      #cominput{
+          width:540px;
+      }
+
        #DetailImg{
            width:550px;
-           height:500px;
+           height:600px;
            display:none;
+           z-index:2;
+           position:absolute
        }
 
        #map {
@@ -47,7 +143,7 @@
                cursor: pointer;
            }
 
-               .grid figure img {
+               .grid figure #DetailImg  {
                    position: relative;
                    display: block;
                    min-height: 100%;
@@ -199,43 +295,184 @@
 }
 
 
+@*廣告輪播*@
+<div class="htmleaf-container">
+    <div class="main_banner">
+        <div class="main_banner_wrap">
+            <div class="main_banner_box" id="m_box">
+                <a href="javascript:void(0)" class="banner_btn js_pre">
+                    <span class="banner_btn_arrow"><i></i></span>
+                </a>
+                <a href="javascript:void(0)" class="banner_btn btn_next js_next">
+                    <span class="banner_btn_arrow"><i></i></span>
+                </a>
+                <ul>
+                    <li id="imgCard0">
+                        @foreach (var imgs in Model.OrderByDescending(a => a.fTD_ID).Take(1))
+                        {
+                            @*<a href="@Url.Action()"><span style="opacity:0.4;"></span></a>*@
+                            <img src="@Url.Action("GetImageByte", "Travel", new { id = imgs.fTD_ID })">
+                            <p>@Html.DisplayFor(t => imgs.fTD_Title, new { id = "titleID" })</p>
+                        }
+                    </li>
+                    <li id="imgCard1">
+                        @foreach (var imgs in Model.OrderByDescending(a => a.fTD_ID).Skip(1).Take(1))
+                        {
+                            @*<a href="@Url.Action()"><span style="opacity:0.4;"></span></a>*@
+                            <img src="@Url.Action("GetImageByte", "Travel", new { id = imgs.fTD_ID })">
+                            <p>@Html.DisplayFor(t => imgs.fTD_Title, new { id = "titleID" })</p>
+                        }
+                    </li>
+                    <li id="imgCard2">
+                        @foreach (var imgs in Model.OrderByDescending(a => a.fTD_ID).Skip(2).Take(1))
+                        {
+                            @*<a href="@Url.Action()"><span style="opacity:0.4;"></span></a>*@
+                            <img src="@Url.Action("GetImageByte", "Travel", new { id = imgs.fTD_ID })">
+                            <p>@Html.DisplayFor(t => imgs.fTD_Title, new { id = "titleID" })</p>
+                        }
+                    </li>
+                    <li id="imgCard3">
+                        @foreach (var imgs in Model.OrderByDescending(a => a.fTD_ID).Skip(3).Take(1))
+                        {
+                            @*<a href="@Url.Action()"><span style="opacity:0.4;"></span></a>*@
+                            <img src="@Url.Action("GetImageByte", "Travel", new { id = imgs.fTD_ID })">
+                            <p>@Html.DisplayFor(t => imgs.fTD_Title, new { id = "titleID" })</p>
+                        }
+                    </li>
+                    <li id="imgCard4">
+                        @foreach (var imgs in Model.OrderByDescending(a => a.fTD_ID).Skip(4).Take(1))
+                        {
+                            @*<a href="@Url.Action()"><span style="opacity:0.4;"></span></a>*@
+                            <img src="@Url.Action("GetImageByte", "Travel", new { id = imgs.fTD_ID })">
+                            <p>@Html.DisplayFor(t => imgs.fTD_Title, new { id = "titleID" })</p>
+                        }
+                    </li>
+                </ul>
+                @*倒影*@
+                <p id="rflt"></p>
+            </div>
+            @*序列按钮*@
+            <div class="btn_list">
+                <span class="curr"></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
 <div style="text-align:center">
     @*食衣住行*@
     @Html.Action("TravelClass")
+    <button id="SortingBtn" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up"></span>~推薦排行榜~</button>
     <button class="btn btn-primary" data-toggle="modal" data-target="#CreateDetial"><span class="glyphicon glyphicon-plane"></span>~我要推薦~</button>
 </div>
 
-@*推薦列表*@
 
-@foreach (var _Traveldetail in Model)
-{
-    <div class="grid">
-        <figure class="effect-apollo">
-            <img id="imgs" src="@Url.Action("GetImageByte", "Travel", new { id = _Traveldetail.fTD_ID })" />
-            <figcaption>
-                <p>@Html.DisplayFor(t => _Traveldetail.fTD_Title, new { id = "titleID" })</p>
-                @Html.HiddenFor(t => _Traveldetail.fTD_Title, new { id = "title" })
-                @Html.HiddenFor(t => _Traveldetail.fTD_Content, new { id = "ContentID" })
-                @Html.HiddenFor(t => _Traveldetail.fTD_site, new { id = "latlng" })
-            </figcaption>
-        </figure>
+
+@*推薦列表*@
+<div class="DtDIV">
+    @foreach (var _Traveldetail in Model)
+    {
+        <div class="grid">
+            <figure class="effect-apollo">
+                <img id="imgs" src="@Url.Action("GetImageByte", "Travel", new { id = _Traveldetail.fTD_ID })" />
+                <figcaption>
+                    <p style="color:brown;font-size:18px">@Html.DisplayFor(t => _Traveldetail.fTD_Title, new { id = "titleID" })</p>
+                    @Html.HiddenFor(t => _Traveldetail.fTD_Title, new { id = "title" })
+                    @Html.HiddenFor(t => _Traveldetail.fTD_Content, new { id = "ContentID" })
+                    @Html.HiddenFor(t => _Traveldetail.fTD_site, new { id = "latlng" })
+                    @Html.HiddenFor(t => _Traveldetail.fMC_ID, new { id = "selectID" })
+                    @Html.HiddenFor(t => _Traveldetail.fTD_ID, new { id = "ScoreID" })
+                    @*@Html.HiddenFor(t => _Traveldetail.fTD_Score,new { id="DetailScore"})*@
+                </figcaption>
+            </figure>
+        </div>
+    }
+    <hr />
+</div>
+
+@*排行榜區塊*@
+<div id="SortingDIV" style="display:none;">
+    <div id="ScoreFood">
+        <h1 style="color:cornsilk;background-color:brown;margin-bottom:-4px;font-family:DFKai-sb;">食</h1>
+        <div id="Foods">
+            <h2 style="color:brown;background-color:burlywood;margin-top:3px;font-family:DFKai-sb;">好評區</h2>
+            @Html.Action("ScoreSorting", new { ClassID = 1 })
+        </div>
+        <div id="Foods">
+            <h2 style="color:brown;background-color:peru;margin-top:3px;font-family:DFKai-sb;">最近更新</h2>
+            @Html.Action("TimeSorting", new { ClassID = 1 })
+        </div>
     </div>
-}
+
+    <div id="ScoreBuy">
+        <h1 style="color:cornsilk;background-color:brown;margin-bottom:-4px;font-family:DFKai-sb;">購物</h1>
+        <div id="Buys">
+            <h2 style="color:brown;background-color:burlywood;margin-top:3px;font-family:DFKai-sb;">好評區</h2>
+            @Html.Action("ScoreSorting", new { ClassID = 2 })
+        </div>
+        <div id="Buys">
+            <h2 style="color:brown;background-color:peru;margin-top:3px;font-family:DFKai-sb;">最近更新</h2>
+            @Html.Action("TimeSorting", new { ClassID = 2 })
+        </div>
+    </div>
+
+    <div id="ScoreRoom">
+        <h1 style="color:cornsilk;background-color:brown;margin-bottom:-4px;font-family:DFKai-sb;">住宿</h1>
+        <div id="Rooms">
+            <h2 style="color:brown;background-color:burlywood;margin-top:3px;font-family:DFKai-sb;">好評區</h2>
+            @Html.Action("ScoreSorting", new { ClassID = 3 })
+        </div>
+        <div id="Rooms">
+            <h2 style="color:brown;background-color:peru;margin-top:3px;font-family:DFKai-sb;">最近更新</h2>
+            @Html.Action("TimeSorting", new { ClassID = 3 })
+        </div>
+    </div>
+
+    <div id="ScorePlay">
+        <h1 style="color:cornsilk;background-color:brown;margin-bottom:-4px;font-family:DFKai-sb;">景點</h1>
+        <div id="Plays">
+            <h2 style="color:brown;background-color:burlywood;margin-top:3px;font-family:DFKai-sb;">好評區</h2>
+            @Html.Action("ScoreSorting", new { ClassID = 5 })
+        </div>
+        <div id="Plays">
+            <h2 style="color:brown;background-color:peru;margin-top:3px;font-family:DFKai-sb;">最近更新</h2>
+            @Html.Action("TimeSorting", new { ClassID = 5 })
+        </div>
+
+    </div>
+
+</div>
+
 
 
 @*詳細資訊*@
-<div class="thumbnail col-lg-6" style="background-color:transparent;border:none;">
-    <img id="DetailImg" src="" />
-    <div class="caption">
-        <div class="row">
-            <h2 style="color:brown;font-weight:bold" class="col-lg-10"></h2>
-            @*叫出隱藏式邊框的按鈕*@
-            <img src="~/Images/map.png" id="showRightPush" style="width:80px;display:none;" class="col-lg-2" />
+<div class="thumbnail col-lg-12" style="background-color:transparent;border:none">
+    <div class="col-lg-6">
+        <img id="DetailImg" src="" />
+        @*叫出隱藏式邊框的按鈕*@
+        <img src="~/Images/map.png" id="showRightPush" />
+    </div>
+    <div class="commentlist col-lg-6" style="display:none;">
+        <div class="caption">
+            <div class="col-lg-6">
+                @*名稱*@
+                <h2 style="color:brown;font-weight:bold;font-size:300%;" align="left"></h2>
+            </div>
+            <div class="col-lg-6" align="right">
+                @*分數*@
+                <div id="ALLScore"></div>
+                @*<h1 id="MyScore" style="color:brown;font-weight:bold;font-size:400%"></h1>*@
+                @*評分*@
+                <span id="createScore" class="needlog2"></span><button id="ScoreBtn" class="btn btn-primary">我要評分</button>
+            </div>
+            <div>
+                <p style="color:darkred;font-size:18px;clear:both">簡介:</p>
+                <p id="detail_P" style="color:darkred;font-size:18px"></p>
+            </div>
         </div>
-        <div>
-            <p style="color:darkred;font-size:18px"></p>
-        </div>
-
+        <div id="_comment" style="overflow-y:scroll;overflow-x:hidden;height:375px"></div>
+        <input id="cominput" class="needlog2" log_url="" type="text" placeholder="我想留言....."/>
+        
     </div>
 </div>
 
@@ -248,8 +485,12 @@
 
 @section scripts{
     
+    <script src="~/Scripts/jquery.raty.js"></script>
+    <script src="~/Scripts/main.js"></script>
     <script src="~/Scripts/classie.js"></script>
     <script>
+
+
 
         //隱藏式邊欄
         var menuRight = document.getElementById('cbp-spmenu-s2'),
@@ -269,29 +510,96 @@
             }
         }
 
+        var mesid;
+        var scoreid;
 
         //詳細資料欄
         $(document).ready(
             function () {
                 var thumb = $('.thumbnail');
-                $("body").on("click", ".grid>figure", function () {
+                var comlist = $('.commentlist');
+
+                $("body").on("click", ".grid", function () {
 
                     var ImageName = $(this).find('#title').val();
                     var TravelImage = $(this).find("#imgs").attr("src");
                     var Content = $(this).find('#ContentID').val();
                     var site = $(this).find('#latlng').val();
-
+                    mesid = $(this).find('#selectID').val();
+                    scoreid = $(this).find('#ScoreID').val();
 
                     var siteStr = site.split(',', 2);
                     initMap(siteStr);
+
                     
-                    thumb.find("img").attr('style','display:block')
                     thumb.find("#DetailImg").attr('src', TravelImage);
                     thumb.find("h2").text(ImageName);
-                    thumb.find("p").text(Content);
+                    thumb.find("#detail_P").text(Content);
+                    $('body').find("hr").attr('style', 'display:block')
+                    thumb.find(".commentlist").attr('style', 'display:block')
+                    thumb.find("#DetailImg").attr('style', 'display:block')
+                    thumb.find("#showRightPush").attr('style', 'display:block')
+
+
+                    //確認登入
+                    $(".needlog2").attr("log_url", "@Request.Url.AbsolutePath")
+                    //傳留言者及內容到留言板
+                    $("#_comment").load("@Url.Action("Comment","Travel",new{area="TravelMap"})?id=" + mesid);
+                    //傳平均分數到ALLScore
+                    $("#ALLScore").load("@Url.Action("GetScore","Travel",new{area="TravelMap"})?id=" + scoreid);
+                    //下移到推薦細節
+                    $('html,body').animate({ scrollTop: $('.thumbnail').offset().top }, 1200, 'easeOutBounce');
+
+                   
+                })
+                $("body").on("click", "#SortingBtn", function () {
+                    $('.DtDIV').attr('style', 'display:none')
+                    $('#SortingDIV').attr('style', 'display:block')
                 })
             });
 
+        var starScore = "";
+
+
+
+
+        //取得評分分數
+        $('#createScore').raty({
+            click: function (score, evt) {
+                starScore = score;
+            }
+        });
+
+        $('#ScoreBtn').click(function () {
+            if (starScore != "") {
+                $("#ALLScore").load("@Url.Action("GetScore", "Travel",new{area="TravelMap"})?id=" + scoreid + "&_starScore=" + starScore)
+            }
+            else {
+                alert("你還未評分，請快去評分哦!")
+            }
+        })
+
+
+        //是否登入
+        $("#cominput").click(function () {
+            var account = document.cookie.indexOf("account=")
+        })
+
+        $('#cominput').bind("enterKey", function (e) {
+
+            var content = $(this).val()
+            if ($(this).val() != "")
+            {
+                $("#_comment").load("@Url.Action("Comment","Travel",new{area="TravelMap"})?id=" + mesid + "&_content=" + content)
+                $(this).val("")
+            }
+        });
+
+        $('#cominput').keyup(function (e) {
+            if (e.keyCode == 13) {
+                $(this).trigger("enterKey");
+            }
+        });
 
         //地圖
         var marker;
@@ -299,7 +607,7 @@
         function initMap(a) {
 
             var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
+                zoom: 14,
                 center: { lat: parseFloat(a[0]), lng: parseFloat(a[1]) }
             });
 

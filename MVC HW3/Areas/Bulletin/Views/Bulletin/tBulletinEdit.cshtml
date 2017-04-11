@@ -1,0 +1,90 @@
+﻿@model MVC_HW3.Models.tBulletin
+
+@{
+    ViewBag.Title = "Edit";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<style>
+    .input {
+        width: 100%;
+    }
+</style>
+@section styles{
+}
+@section scripts{
+    <script>
+        $(document).ready(function () { $("#input").cleditor(); });
+        $('#Demo').click(function () {
+            $('#DropDownListfBC_ID')[0].selectedIndex = 1;
+            $('#EditorForfBu_Date').val('2008/08/13');
+            $('#EditorForfBu_Title').val('十張「小熊維尼」圖卡介紹第 88 屆奧斯卡十優秀作品');
+            $('#input').val('<p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><strong>文/Jean</strong></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">在去年演出《神鬼獵人》（The Revenant）後，今年可能是李奧納多迪卡皮歐（Leonardo DiCaprio）最接近奧斯卡最佳男主角的一次。不過有看過電影的觀眾朋友一定都知道，電影當中還有一個角色比李奧還吸睛－大灰熊。這隻灰熊媽媽為了保護寶寶攻擊李奧飾演的休格雷斯（Hugh Glass），雖然休被弄得生不如死，但也因此造就了後續傳奇的復仇之旅。</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">當然，在李奧真的拿到小金人之前，大概每一年都會有各種惡搞在網路上流傳，一月底時一名外國網友&nbsp;<span class="TweetAuthor-name Identity-name customisable-highlight" data-scribe="element:name"><a class="TweetAuthor-link Identity u-linkBlend" href="https://twitter.com/dilsexia" target="_blank" data-scribe="element:user_link" style="color: rgb(0, 0, 0);">Daniel</a>&nbsp;在推特上貼出了一張小熊維尼與羅賓的照片並寫下「神鬼獵人」，巧妙又極具趣味的一則動態很快就在網路上造成熱烈迴響，因此有另一名波蘭的電影部落客&nbsp;<a href="http://sfilmowani.tv/blog/kto-dostanie-oscara-wersja-z-kubusiem-puchatkiem/" target="_blank" style="color: rgb(0, 0, 0);">David Adamek</a>&nbsp;則以小熊維尼與好朋友們製作了一系列的奧斯卡最佳影片入圍海報，每一張都非常可愛也不禁讓人會心一笑！</span></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">?圖片來源：<a href="http://sfilmowani.tv/blog/kto-dostanie-oscara-wersja-z-kubusiem-puchatkiem/" target="_blank" style="color: rgb(0, 0, 0);">David Adamek</a></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《瘋狂麥斯：憤怒道》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-full wp-image-69275" src="http://img.hypesphere.com/2016-02-03-213005-84.png" alt="Mad-Max" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《金牌拳手》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69276" src="http://img.hypesphere.com/2016-02-03-213018-28.png" alt="Creed" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《大賣空》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69277" src="http://img.hypesphere.com/2016-02-03-213032-1.png" alt="Big-Short" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《驚爆焦點》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69278" src="http://img.hypesphere.com/2016-02-03-213046-3.png" alt="Spotlight" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《不存在的房間》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69279" src="http://img.hypesphere.com/2016-02-03-213056-2.png" alt="Pokoj" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《八惡人》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69280" src="http://img.hypesphere.com/2016-02-03-213114-9.png" alt="Nienawistna-osemka" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《丹麥女孩》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69281" src="http://img.hypesphere.com/2016-02-03-213127-39.png" alt="Dziewczyna-z-portretu" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《間諜橋》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69282" src="http://img.hypesphere.com/2016-02-03-213139-4.png" alt="Most-szpiegow1" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《絕地救援》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69283" src="http://img.hypesphere.com/2016-02-03-213200-34.png" alt="Marsjanin" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);">《神鬼獵人》</p><p style="margin: 0px 0px 18px; color: rgb(68, 68, 68); font-family: Lato; font-size: 16px; background-color: rgb(255, 255, 255);"><img class="alignnone size-large wp-image-69284" src="http://img.hypesphere.com/2016-02-03-213214-97.png" alt="Zjawa1" width="1000" height="1000" style="max-width: 100%; height: auto; color: rgb(204, 0, 0); border: 0px;"></p>').blur();
+
+
+        });
+    </script>
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>公告修改</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.fBu_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fBu_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fBu_Date, new { htmlAttributes = new { @class = "form-control", id = "EditorForfBu_Date" } })
+                @Html.ValidationMessageFor(model => model.fBu_Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fBC_ID, "公告欄類別", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("fBC_ID", null, htmlAttributes: new { @class = "form-control", id = "DropDownListfBC_ID" })
+                @Html.ValidationMessageFor(model => model.fBC_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fBu_Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fBu_Title, new { htmlAttributes = new { @class = "form-control", id = "EditorForfBu_Title" } })
+                @Html.ValidationMessageFor(model => model.fBu_Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fBu_Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.fBu_Content, new { id = "input" })
+                @Html.ValidationMessageFor(model => model.fBu_Content, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Demo" id="Demo" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" text="修改" value="儲存變更" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("回公告欄", "Bulletin")
+</div>
+
+
+
+

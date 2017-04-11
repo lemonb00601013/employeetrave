@@ -26,6 +26,7 @@ namespace MVC_HW3.Models
         public int fCC_ID { get; set; }
         public string fCC_Place { get; set; }
         public Nullable<int> fCC_Dad { get; set; }
+        public byte[] fCC_Img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tCityCountry> tCityCountry1 { get; set; }

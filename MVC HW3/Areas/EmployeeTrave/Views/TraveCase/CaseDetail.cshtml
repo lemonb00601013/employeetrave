@@ -2,14 +2,20 @@
 @{
     ViewBag.Title = "CaseDetail";
 }
-<div class="row">
-    <h2 class="col-xs-10">@Model.fTC_Title</h2><div class="col-lg-2"><br /><br /><a class="btn btn-primary needlog" log_url="@Url.Action("Sign_up","TraveCase",new {area="EmployeeTrave",id=Model.fTC_ID})"  href="#" >報名行程</a></div>
-</div>
+<h2></h2>
 
-<div>
-    @Html.Raw(Model.fTC_Content)     
+<div class="row">
+    <h2 class="col-xs-10">@Model.fTC_Title</h2>
+    <div class="col-lg-2" id="Sign_upbutton">
+        <br />
+        <a class="btn btn-primary needlog" log_url="@Url.Action("Sign_up","TraveCase",new {area="EmployeeTrave",id=Model.fTC_ID})" href="#">報名行程</a><h5>攜伴上限 @Model.fTC_PerL 人</h5>
+    </div>
 </div>
-<table id="ProductTable" class="table table-bordered div-white-bg">   
+<hr />
+<div class="div-white-bg">
+    @Html.Raw(Model.fTC_Content)
+</div>
+<table id="ProductTable" class="table table-bordered div-white-bg">
     <tbody>
         @{int i = 1; }
         @foreach (var A in Model.tDayTravel)
@@ -17,17 +23,39 @@
             <tr>
                 <td><p>第 @i 天</p><p>@A.fDT_Date.ToShortDateString()</p></td>@{i++;}
                 <td>
-                   @Html.Raw(A.fDT_Content)
-                </td>                           
+                    <div class="div-white-bg">
+                        @Html.Raw(A.fDT_Content)
+                    </div>
+
+                </td>
             </tr>
-        }
+                    }
     </tbody>
 </table>
 
 
 
 
-<div>
-    @Html.Raw(Model.fTC_Notes)    
+<div class="div-white-bg">
+    @Html.Raw(Model.fTC_Notes)
 </div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            var had=@ViewBag.had.ToString().ToLower();
+            var end=@ViewBag.end.ToString().ToLower();
+            if (had)
+            {
+                history.pushState(null, "", location.href.split("?")[0]);
+                $("#modalMessage").text("今年已報名過員工旅遊!!") //若須查詢報名紀錄或取消報名，請前往[個人資訊]>[旅遊紀錄]。
+                $("#modalSM").modal('show')
+            }
+            if(end)
+            {
+                $("#Sign_upbutton").html("<br /><br /><br /><br /><br />");
+            }
 
+        });
+    </script>
+
+}

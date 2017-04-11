@@ -1,18 +1,122 @@
 ﻿@model IEnumerable<MVC_HW3.Models.tRestaurant>
+@section styles{
+    <style>
+        .search-wrapper {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+        }
+
+            .search-wrapper.active {
+            }
+
+        search-wrapper .input-holder {
+            height: 70px;
+            width: 70px;
+            overflow: hidden;
+            background: rgba(255,255,255,0);
+            border-radius: 6px;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .search-wrapper.active .input-holder {
+            width: 450px;
+            border-radius: 50px;
+            background: rgba(0,0,0,0.5);
+            transition: all .5s cubic-bezier(0.000, 0.105, 0.035, 1.570);
+        }
+
+        /*翻轉*/
+        .artGroup {
+            display: block;
+            width: 600px;
+            height: 400px;
+            position: relative;
+            margin: 0 10px 10px 10px;
+            float: right;
+        }
+
+        .artwork {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .artGroup img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            display: block;
+            border: 1px solid #333;
+        }
+
+        .artGroup .detail {
+            display: block;
+            background: #fff;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+            .artGroup .detail h3 {
+                text-align: center;
+                color: orange;
+            }
+
+            .artGroup .detail p {
+                text-align: left;
+                padding: 0 0.25em;
+            }
+
+        .artGroup.flip {
+            -webkit-perspective: 800px;
+            perspective: 800px;
+        }
+
+            .artGroup.flip .artwork {
+                -webkit-transition: -webkit-transform 1s ease;
+                transition: transform 1s ease;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+
+            .artGroup.flip .detail,
+            .artGroup.flip .theFlip {
+                -webkit-transform: rotateY(-180deg);
+                transform: rotateY(-180deg);
+            }
+
+            .artGroup.flip img,
+            .artGroup.flip .detail {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+    </style>}
 <form method="post">
-    <h2>膳食分類</h2>
-    <div id="divhidden">@foreach (var aa in Model)
-    {@Html.HiddenFor(s => aa.fRe_site, new { name = "position" })}</div>
+
+    <font face="微軟正黑體" style="font-size:32px">周邊美食<span id="editor" class="needlog" log_url="@Url.Action("EditorRestaurant","Restaurant",new { area="food"},null)"><img src="~/Images/pencil.png" /></span></font>
+    <div id="divhidden">
+        @foreach (var aa in Model)
+        {@Html.HiddenFor(s => aa.fRe_site, new { name = "position" })}
+    </div>
     <div class="row">
         <div class="col-lg-2">
-            <div>
+            <div class="list-group">
                 <label id="clearallchk" class="btn btn-primary " style="margin-bottom:10px"><span class="glyphicon glyphicon-stats" style="font-size:16px">總覽</span></label>
+                <span><textarea style="width:100px;height:26px;resize:none" placeholder="請輸入距離" value="" id="distancetextarea"></textarea><img src="~/Images/magnifier-24.png" name="search" id="search" /></span>
+                @Html.DropDownList("PriceDropdownList", (IEnumerable<SelectListItem>)ViewBag.dropdownPrice)
             </div>
             <div class="list-group">
                 @Html.Action("MealListSelect", "FoodHome")
             </div>
+            <div>
+                <img src="~/Images/question.png" id="randomR" data-toggle="modal" data-target="#RestaurantDetail" />
+            </div>
+
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" id="dmap">
             <br />
             <br />
             <div id="map" style="width:600px;height:600px"></div>
@@ -41,9 +145,78 @@
     </div>
 </div>
 
+@*彈跳detail*@
+<div class="modal fade" id="RestaurantDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="text-align:center;height:700px;width:1250px ;background-image: url('../../../../Images/backgroundImage.png')">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body col-lg-6"  style="height:610px;padding-right:13px">
+                <div class="artGroup slide">
+                    <div class="artwork" style="margin-left:18px">
+                        <img id="jumpImg" style="border:10px double #95CACA ;border-radius:10px" />
+                        <div class="detail" id="map2" style="border:10px double #ff7575;border-radius:10px">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row" style="width:600px;height:auto;border-radius:5px;border:double #95CACA;float:right;margin-right:3px;margin-top:10px">
+                        <h3 id="Rname" align="center"></h3>
+                        <h3 id="Rprice"></h3>
+                        <h3 id="Rtel"></h3>
+                        <h3>是否外送：<span id="Rdelivery"></span></h3>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-body col-lg-6" style="border-radius:10px;width:600px;padding-left:1em">
+                <div style="overflow-y:auto;overflow-x:hidden;height:605px;background-color:white;border:10px double #95CACA;border-radius:10px" id="divDetailIntroduction">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*隨機餐館*@
+@*<div class="modal fade" id="RandomRestaurant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="text-align: center; height: 680px; width: 1250px; background-image: url('../../../../Images/backgroundImage.png')">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body col-lg-6">
+                <div class="row" align="center">
+                    <div class="artGroup slide">
+                        <div class="artwork">
+                            <img id="RandomImg" style="border:10px double #95CACA ;border-radius:10px" />
+                            <div class="detail" id="map2" style="border:10px double #ff7575;border-radius:10px">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" align="center">
+                    <div class="row" style="width:600px;height:auto;border-radius:5px;border:double #95CACA;float:right;margin-right:12px">
+                        <h3 id="RandomRname" align="center"></h3>
+                        <h3 id="RandomRprice"></h3>
+                        <h3 id="RandomRtel"></h3>
+                        <h3>是否外送：<span id="RandomRdelivery"></span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body col-lg-6" style="border-radius:10px;width:600px;padding-left:1em">
+                <div style="overflow-y:auto;overflow-x:hidden;height:605px;background-color:white;border:10px double #95CACA;border-radius:10px" id="randomIntroduction">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
 
 
 @section scripts{
+    <script src="~/Scripts/modernizr.min.js"></script>
+    <script src="~/Scripts/jquery.easing.min.js"></script>
     <script>
         $(document).ready(function () {
             @*每次載入網頁清空checkbox*@
@@ -53,159 +226,348 @@
                     myCheckBox[i].checked = false;
                 }
             }
-
         })
 
         $(document).ready(function () {
-            
-            var siteXY =[]
             window.onload = function () {
-                $("#divhidden>input[name='aa.fRe_site']").each(function () {
-                    //var site = $(this).val() //"x,y"
-                    siteXY.push($(this).val().split(',', 2)) //"x","y"
-                    //aaaaa.push($(this).val())
-                })
-                initMap(siteXY);
+                getsite();
+                //已用getsite()取代
+                //var siteXY = []
+                //$("#divhidden2>input[name='a.fRe_site']").each(function () {
+                //    siteXY.push($(this).val().split(',', 2)) //"x","y"
+                //})
+                //initMap(siteXY);
+                //var marker;
+                //function initMap(a) {
+                //    //function initMap() {
+                //    //var originalMapCenter = new google.maps.LatLng(parseFloat(a));
+                //    var map = new google.maps.Map(document.getElementById('map'), {
+                //        zoom: 16,
+                //        center: { lat: 25.066952, lng: 121.525006 }
+                //    })
+
+                //    marker = new google.maps.Marker({
+                //        icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                //        map: map,
+                //        draggable: true,
+                //        animation: google.maps.Animation.DROP,
+                //        position: { lat: 25.066952, lng: 121.525006 }
+                //    })
+
+                //    for (var y = 0; y < a.length; y++) {
+
+                //        marker = new google.maps.Marker({
+                //            map: map,
+                //            draggable: true,
+                //            animation: google.maps.Animation.DROP,
+                //            position: new google.maps.LatLng(a[y][0], a[y][1])
+                //        })
+
+                //    }
+
+                //}
+            }
+        })
+
+        @*點擊chkbox傳送陣列至controller*@
+        $("#chkview>input[type='checkbox']").click(function () {
+            var dropdownprice = $("#PriceDropdownList").val();
+            var distance = $("#distancetextarea").val()
+            var n = []
+            $("#chkview>input[name='chkfoodclass']:checked").each(function () {
+                n.push($(this).val())
+            })
+            $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", { id: n, distancemap: distance, price: dropdownprice }, function () {
+                getsite();
+            })
+        })
+        //切割座標 並且進行地圖標記
+        function getsite() {
+            var siteXY = []
+            $("#divhidden2>input[name='a.fRe_site']").each(function () {
+                siteXY.push($(this).val().split(',', 2)) //"x","y"
+            })
+            initMap(siteXY);
+            function initMap(a) {
                 var marker;
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 16,
+                    center: { lat: 25.066952, lng: 121.525006 }
+                })
 
-                function initMap(a) {
+                marker = new google.maps.Marker({
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
 
-                    //function initMap() {
-                    //var originalMapCenter = new google.maps.LatLng(parseFloat(a));
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 16,
-                        center: { lat: 25.066952, lng: 121.525006 }
-                    })
+                    position: { lat: 25.066952, lng: 121.525006 }
+                })
+
+                for (var y = 0; y < a.length; y++) {
 
                     marker = new google.maps.Marker({
                         map: map,
                         draggable: true,
                         animation: google.maps.Animation.DROP,
-                        position: { lat: 25.066952, lng: 121.525006 }
+                        position: new google.maps.LatLng(a[y][0], a[y][1])
                     })
-
-                    for (var y = 0; y < a.length; y++) {
-
-                        marker = new google.maps.Marker({
-                            map: map,
-                            draggable: true,
-                            animation: google.maps.Animation.DROP,
-                            position: new google.maps.LatLng(a[y][0], a[y][1])
-                        })
-
-                    }
                 }
             }
-             
-            
+        }
+
+        //彈跳視窗內容
+        $("body").on("click", "figure", function () {
+            var jumpimgimg = $(this).find("#imgtest").attr("src");
+            $("#jumpImg").attr("src", jumpimgimg)
+            var RestaurantName = $(this).find("#RestaurantName").text()
+            $("#Rname").text(RestaurantName)
+            var price = $(this).find("#price").text()
+            $("#Rprice").text(price)
+            var tel = $(this).find("#tel").text()
+            $("#Rtel").text(tel)
+            var delivery = $(this).find("#testspanlikea").text()
+            if (delivery == "True") { delivery = "有" }
+            else if (delivery == "有") { delivery = "有" }
+            else if (delivery == "無") { delivery = "無" }
+            else { delivery = "無" }
+            $("#Rdelivery").text(delivery)
+
+            var introductionInjump = $(this).find("#introductionR").val()
+            $("#divDetailIntroduction").html(introductionInjump);
+
+            var sitesite = $(this).find("input[name='a.fRe_site']").val();
+            var siteXY = []
+            siteXY.push(sitesite.split(","))
+
+            $("#RestaurantDetail").on("shown.bs.modal", function () {
+                //var currentCenter = map.getCenter();
+                //google.maps.event.trigger(map, "resize");
+                initMap(siteXY);
+                //map.setCenter(currentCenter);
+            });
+
+            function initMap(a) {
+                //圖出來了 中心點跑掉
+
+                var marker;
+                var map = new google.maps.Map(document.getElementById('map2'), {
+                    zoom: 16,
+                    center: { lat: 25.066952, lng: 121.525006 }
+                })
+
+                marker = new google.maps.Marker({
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: { lat: 25.066952, lng: 121.525006 }
+                })
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(a[0][0], a[0][1])
+                })
+            }
+
+
         })
-        
 
-        @*MAP*@
-        // var marker;
+        //清除所有chkbox
+        $("#clearallchk").click(function (chkfoodclass) {
 
-        // function initMap(a) {
-             
-        // //function initMap() {
-        //    //var originalMapCenter = new google.maps.LatLng(parseFloat(a));
-        //    var map =new google.maps.Map(document.getElementById('map'), {
-        //        zoom: 16,
-        //        center: { lat: 25.066952, lng: 121.525006 }
-        //    })
-           
-        //    marker = new google.maps.Marker({
-        //        map: map,
-        //        draggable: true,
-        //        animation: google.maps.Animation.DROP,
-        //        position: { lat: 25.066952, lng: 121.525006 }
-        //    })
-           
-        //    for (var y = 0; y < a.length;y++){
-           
-        //    marker = new google.maps.Marker({
-        //        map: map,
-        //        draggable: true,
-        //        animation: google.maps.Animation.DROP,
-        //        position: new google.maps.LatLng(a[y][0],a[y][1])
-        //    })
-            
-        //    }
-        //}
-       
-     
-
-            @*點擊chkbox傳送陣列至controller*@
-            $("#chkview>input[type='checkbox']").click(function () {
-                var n = []
-                $("#chkview>input[name='chkfoodclass']:checked").each(function () {
-                    n.push($(this).val())
-                })
-                $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", { id: n })
-                clickornot.push(n);
-            })
-
-            $("body").on("click", "div[id='imglist']>figure", function () {
-                ida = $(this).attr("data-id");
-                location.href = "@Url.Action("RestaurantDetail", "Restaurant", new { area = "Food" })" + "/" + ida
-            })
-
-            $("#clearallchk").click(function (chkfoodclass) {
-
-                var myCheckBox = document.getElementsByTagName('input');
-                for (var i = 0; i < myCheckBox.length; i++) {
-                    if (myCheckBox[i].type == "checkbox") {
-                        myCheckBox[i].checked = false;
-                    }
-                }
-                $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")")
-            })
-
-            $("#btn1").click(function () {
-                var errormsg = "";
-                if ($("#fRe_Name").val() == "") { errormsg += "餐廳名稱未填寫\r\n" } if ($("#fRe_Content").val() == "") { errormsg += "簡介未填寫\r\n" }
-                errormsg += 是否有特殊字元;
-                if ($("#fRe_Addr").val() == "") { errormsg += "地址未填寫\r\n" }
-                var chkbox = []
-                $("#chktest>div>input[name='chkfoodclass']:checked").each(function () {
-                    chkbox.push($(this).val())
-                })
-                if (chkbox == "") { errormsg += "未勾選分類\r\n" }
-                errormsg += 價錢是否為數字;
-                if ($("#fR_Price").val() == "") { errormsg += "平均價位未填寫\r\n" }
-                if ($("#fRe_introduction").val() == "") { errormsg += "介紹未填寫\r\n" }
-
-                if (errormsg == "") { $("#thisform").trigger('submit') } else { alert(errormsg) }
-            })
-
-            var 是否有特殊字元 = "";
-            function chkname() {
-                是否有特殊字元 = ""
-                var n = document.getElementById("fRe_Name").value;
-                var regExp = /^[!#$%^&*()_+="'?]+$/;
-
-                for (var i = 0; i <= n.length - 1; i++) {
-                    if (regExp.test(n.substr(i, 1))) {
-                        是否有特殊字元 += "餐廳名稱不可輸入特殊符號\r\n"
-                        break;
-                    }
-                    else { }
+            var myCheckBox = document.getElementsByTagName('input');
+            for (var i = 0; i < myCheckBox.length; i++) {
+                if (myCheckBox[i].type == "checkbox") {
+                    myCheckBox[i].checked = false;
                 }
             }
+            $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", function () {
+                getsite();
+            })
+        })
 
-            var 價錢是否為數字 = "";
+        //簡易驗證
+        $("#btn1").click(function () {
+            var errormsg = "";
+            if ($("#fRe_Name").val() == "") { errormsg += "餐廳名稱未填寫\r\n" } if ($("#fRe_Content").val() == "") { errormsg += "簡介未填寫\r\n" }
+            errormsg += 是否有特殊字元;
+            if ($("#fRe_Addr").val() == "") { errormsg += "地址未填寫\r\n" }
+            var chkbox = []
+            $("#chktest>div>input[name='chkfoodclass']:checked").each(function () {
+                chkbox.push($(this).val())
+            })
+            if (chkbox == "") { errormsg += "未勾選分類\r\n" }
+            errormsg += 價錢是否為數字;
+            if ($("#fR_Price").val() == "") { errormsg += "平均價位未填寫\r\n" }
+            if ($("#fRe_introduction").val() == "") { errormsg += "介紹未填寫\r\n" }
+            if (errormsg == "") { $("#thisform").trigger('submit') } else { alert(errormsg) }
+        })
 
-            function chkprice() {
-                價錢是否為數字 = ""
-                var n = document.getElementById("fR_Price").value;
-                var regExp = /^[0-9]+$/;
-                for (var i = 0; i <= n.length - 1; i++) {
-                    if (!regExp.test(n.substr(i, 1))) {
-                        價錢是否為數字 += "價錢只能為數字\r\n"
-                        break;
-                    }
-                    else { }
+        var 是否有特殊字元 = "";
+        function chkname() {
+            是否有特殊字元 = ""
+            var n = document.getElementById("fRe_Name").value;
+            var regExp = /^[!#$%^&*()_+="'?]+$/;
+
+            for (var i = 0; i <= n.length - 1; i++) {
+                if (regExp.test(n.substr(i, 1))) {
+                    是否有特殊字元 += "餐廳名稱不可輸入特殊符號\r\n"
+                    break;
                 }
+                else { }
             }
+        }
+
+        var 價錢是否為數字 = "";
+
+        function chkprice() {
+            價錢是否為數字 = ""
+            var n = document.getElementById("fR_Price").value;
+            var regExp = /^[0-9]+$/;
+            for (var i = 0; i <= n.length - 1; i++) {
+                if (!regExp.test(n.substr(i, 1))) {
+                    價錢是否為數字 += "價錢只能為數字\r\n"
+                    break;
+                }
+                else { }
+            }
+        }
+        //將true false資料轉成中文字
+        $("div[id='imglist']>figure").hover(function () {
+            var yorn = $(this).find("#testspanlikea").text()
+            if (yorn == "True") (yorn = "有")
+            else if (yorn == "有") { yorn = "有" }
+            else if (yorn == "無") { yorn = "無" }
+            else { yorn = "無" }
+
+            $(this).find("#testspanlikea").text(yorn)
+        })
+
+        //搜尋距離
+        $("#search").click(function () {
+            var dropdownprice = $("#PriceDropdownList").val();
+            var distance = $("#distancetextarea").val()
+            var n = []
+            $("#chkview>input[name='chkfoodclass']:checked").each(function () {
+                n.push($(this).val())
+            })
+
+            $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", { id: n, distancemap: distance, price: dropdownprice }, function () {
+                getsite();
+            })
+        })
+        //隨機餐廳
+        $("#randomR").click(function () {
+
+
+            var n = []
+            $("#randomdiv>div>figure>img").each(function () {
+                n.push($(this).attr("data-id"))
+            })
+            var max = n.length - 1;
+            var min = 0;
+            var randomint = (Math.floor(Math.random() * (max - min + 1)) + min)
+
+            var randomimg = $("#randomdiv").find("img[data-id=" + n[randomint] + "]").attr("data-id");
+            $("#jumpImg").attr("src", "@Url.Action("GetImageByte", "Foodhome")" + "/" + randomimg)
+            var RestaurantName = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>p[id=RestaurantName]").text()
+            $("#Rname").text(RestaurantName)
+            var price = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>p[id=price]").text()
+            $("#Rprice").text(price)
+            var tel = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>p[id=tel]").text()
+            $("#Rtel").text(tel)
+            var delivery = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>p>span[id=testspanlikea]").text()
+            if (delivery == "True") { delivery = "有" }
+            else if (delivery == "有") { delivery = "有" }
+            else if (delivery == "False") { delivery = "無" }
+            else { delivery = "無" }
+            $("#Rdelivery").text(delivery)
+
+            var introductionR = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>input[name='a.fRe_introduction']").val();
+            $("#divDetailIntroduction").html(introductionR);
+
+            var sitesite = $("#randomdiv").find("figcaption[data-imgfig=" + n[randomint] + "]>input[name='a.fRe_site']").val();
+            var siteXY = []
+            siteXY.push(sitesite.split(","))
+
+            $("#RestaurantDetail").on("shown.bs.modal", function () {
+                //var currentCenter = map.getCenter();
+                //google.maps.event.trigger(map, "resize");
+                initMap(siteXY);
+                //map.setCenter(currentCenter);
+            });
+
+            function initMap(a) {
+                //圖出來了 中心點跑掉
+
+                var marker;
+                var map = new google.maps.Map(document.getElementById('map2'), {
+                    zoom: 16,
+                    center: { lat: 25.066952, lng: 121.525006 }
+                })
+
+                marker = new google.maps.Marker({
+                    icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: { lat: 25.066952, lng: 121.525006 }
+                })
+
+                marker = new google.maps.Marker({
+                    map: map,
+                    draggable: true,
+                    animation: google.maps.Animation.DROP,
+                    position: new google.maps.LatLng(a[0][0], a[0][1])
+                })
+            }
+
+        })
+
+
+
+        //翻轉
+        $(function () {
+            if ($('html').hasClass('csstransforms3d')) {
+                $('.artGroup').removeClass('slide').addClass('flip');
+                $('.artGroup.flip').on('mouseenter',
+                  function () {
+                      $(this).find('.artwork').addClass('theFlip');
+                  });
+                $('.artGroup.flip').on('mouseleave',
+                  function () {
+                      $(this).find('.artwork').removeClass('theFlip');
+                  });
+            } else {
+                $('.artGroup').on('mouseenter',
+                  function () {
+                      $(this).find('.detail').stop().animate({ bottom: 0 }, 500, 'easeOutCubic');
+                  });
+                $('.artGroup').on('mouseleave',
+                  function () {
+                      $(this).find('.detail').stop().animate({ bottom: ($(this).height() + -1) }, 500, 'easeOutCubic');
+                  });
+            }
+        });
+
+
+        $("#PriceDropdownList").change(function () {
+            var dropdownprice = $("#PriceDropdownList").val();
+            var distance = $("#distancetextarea").val()
+            var n = []
+            $("#chkview>input[name='chkfoodclass']:checked").each(function () {
+                n.push($(this).val())
+            })
+            $("#d100").load("@Url.Action("RestaurantSelect", "Restaurant")", { id: n, distancemap: distance, price: dropdownprice }, function () {
+                getsite();
+            })
+        })
+
+
+
 
     </script>
 

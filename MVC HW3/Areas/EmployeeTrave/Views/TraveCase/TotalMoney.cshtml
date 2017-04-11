@@ -1,0 +1,383 @@
+﻿@model MVC_HW3.Models.tTravelCase
+@{
+    ViewBag.Title = "旅費統計";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <style>
+        .thW95{
+        width:95px;
+        }
+    
+    </style>
+}
+
+<h2>@Model.fTC_Title</h2>
+<table id="totalTable" class="table table-bordered">
+    <thead>
+        <tr class="success">
+            <th>員工編號/眷屬/親友</th>
+            <th class="thW95">姓名</th>
+            <th>年度可使用補助金額</th>
+            <th class="thW95">實際補助額</th>
+            <th class="thW95">基本團費</th>
+            <th class="thW95">車費減免</th>
+            <th class="thW95">餐飲減免</th>
+            <th class="thW95">住宿減免</th>
+            <th>其他增減費用明細說明</th>
+            <th>其他增減費用總額</th>
+            <th>取消/缺席</th>
+            <th class="thW95">應補團費</th>
+
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        @{foreach (MVC_HW3.Models.tRegistrationDetail RD in Model.tRegistrationDetail)
+            {
+                <tr class="active">
+                    @* 員工編號/眷屬/親友 *@
+                    <td>@@@RD.tEmployee.fEp_Code</td>
+                    @*姓名*@
+                    <td>@RD.tEmployee.fEp_Name</td>
+                    @*年度可使用補助金額*@
+                    <td>@Math.Floor(RD.fRD_Grant)</td>
+
+                    @{
+                        decimal pay = Model.fTC_Cost;
+                        decimal total = 0;
+                        if (RD.fSt_ID != 2 && RD.fSt_ID != 5)
+                        {
+                            total += pay;
+                            if (RD.fRD_RMoney != null)
+                            {
+                                if (RD.fRD_RMoney < 0)
+                                {
+                                    total += (decimal)RD.fRD_RMoney;
+                                }
+
+                            }
+                        }
+                        foreach (MVC_HW3.Models.tDependentsTravel DT in RD.tDependentsTravel)
+                        {
+                            if (DT.fSt_ID != 2 && RD.fSt_ID != 5)
+                            {
+                                total += pay;
+                                if (DT.fDT_RMoney != null)
+                                {
+                                    if (DT.fDT_RMoney < 0)
+                                    {
+                                        total += (decimal)DT.fDT_RMoney;
+                                    }
+
+                                }
+                                if (DT.fDT_Car == false)
+                                {
+                                    total -= Model.fTC_Car;
+                                }
+                                if (DT.fDT_Hotel == false)
+                                {
+                                    total -= Model.fTC_hotel;
+                                }
+                                if (DT.fTE_ID == 3)
+                                {
+                                    total -= Model.fTC_Eat;
+                                }
+                            }
+                        }
+
+                        var realGrant = (total > RD.fRD_Grant) ? RD.fRD_Grant : total;
+
+                    }
+
+                    @*實際補助額*@
+                    <td>@Math.Floor(realGrant)</td>
+                    @*基本團費*@
+                    <td>@Math.Floor(Model.fTC_Cost)</td>
+                    @*車費減免*@
+                    <td></td>
+                    @*餐飲減免*@
+                    <td></td>
+                    @*住宿減免*@
+                    <td></td>
+                    @*其他增減費用明細說明*@
+
+                    <td>@RD.fRD_Relief</td>
+                    @*其他增減費用總額*@
+                    @{
+                        if (RD.fRD_RMoney != null)
+                        {
+                            <td>@Math.Floor((decimal)RD.fRD_RMoney)</td>
+                        }
+                        else
+                        {
+                            <td></td> }
+                    }
+                    @{
+                        decimal pently = 0;
+
+                        if (RD.fSt_ID == 2)
+                        {
+                            pently = 100;
+                        }
+                        else if (RD.fSt_ID == 5)
+                        {
+                            int day = ((Model.tDayTravel.OrderBy(a => a.fDT_Date).First().fDT_Date) - (DateTime)RD.fRD_Fine).Days;
+                            pently = (Model.tPenalty.Where(a => a.fPe_Day < day).OrderByDescending(a => a.fPe_Day).First().fPe_Fine) * 100;
+
+                        }
+                    }
+                    @*取消/缺席罰款百分比*@
+                    <td>@Math.Floor(pently) %</td>
+                    @{
+                        decimal needpay = 0;
+                        needpay += pay;
+                        if (RD.fRD_RMoney != null)
+                        {
+                            needpay += (decimal)RD.fRD_RMoney;
+                        }
+                        foreach (MVC_HW3.Models.tDependentsTravel DT in RD.tDependentsTravel)
+                        {
+                            needpay += pay;
+                            if (DT.fDT_RMoney != null)
+                            {
+                                needpay += (decimal)DT.fDT_RMoney;
+                            }
+                            if (DT.fDT_Car == false)
+                            {
+                                needpay -= Model.fTC_Car;
+                            }
+                            if (DT.fDT_Hotel == false)
+                            {
+                                needpay -= Model.fTC_hotel;
+                            }
+                            if (DT.fTE_ID == 3)
+                            {
+                                needpay -= Model.fTC_Eat;
+                            }
+                        }
+                        foreach (MVC_HW3.Models.tFamily Fa in RD.tFamily)
+                        {
+                            needpay += pay;
+                            if (Fa.fFa_RMoney != null)
+                            {
+                                needpay += (decimal)Fa.fFa_RMoney;
+                            }
+                            if (Fa.fFa_Car == false)
+                            {
+                                needpay -= Model.fTC_Car;
+                            }
+                            if (Fa.fFa_Hotel == false)
+                            {
+                                needpay -= Model.fTC_hotel;
+                            }
+                            if (Fa.fTE_ID == 3)
+                            {
+                                needpay -= Model.fTC_Eat;
+                            }
+                        }
+                        if (RD.fSt_ID == 5)
+                        {
+                            needpay = needpay * pently / 100;
+                        }
+                        needpay -= realGrant;
+
+                    }
+
+                    @*應補團費*@
+                    <td>@Math.Floor(needpay)</td>
+                </tr>
+                        foreach (MVC_HW3.Models.tDependentsTravel DT in RD.tDependentsTravel)
+                        {
+                            <tr class="active">
+                                @* 員工編號/眷屬/親友 *@
+                                <td>眷屬</td>
+                                @*姓名*@
+                                <td>@DT.tDependents.fDe_Name</td>
+                                @*年度可使用補助金額*@
+                                <td></td>
+                                @*實際補助額*@
+                                <td></td>
+                                @*基本團費*@
+                                <td>@Math.Floor(Model.fTC_Cost)</td>
+                                @*車費減免*@
+                                @{
+                                    if (DT.fDT_Car == false)
+                                    {
+                                        <td>
+                                            @Math.Floor(Model.fTC_Car)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                <td></td> }
+                                }
+
+                                @*餐飲減免*@
+                                @{
+                                    if (DT.fTE_ID == 3)
+                                    {
+                                        <td>
+                                            @Math.Floor(Model.fTC_Eat)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td> }
+                                }
+                                @*住宿減免*@
+                                @{
+                                    if (DT.fDT_Hotel == false)
+                                    {
+                                        <td>
+                                            @Math.Floor(Model.fTC_hotel)
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td></td> }
+                                }
+                                @*其他增減費用明細說明*@
+                                <td>@DT.fDT_Relief</td>
+                                @*其他增減費用總額*@
+                                @{
+                                    if (DT.fDT_RMoney != null)
+                                    {
+                                        <td>@Math.Floor((decimal)DT.fDT_RMoney)</td>
+                                    }
+                                    else
+                                    {
+                                <td></td> }
+                                }
+                                @*取消/缺席罰款百分比*@
+                                @{
+                                    if (DT.fSt_ID == 2)
+                                    {
+                                        <td>100 %</td>
+                                    }
+                                    else if (DT.fSt_ID == 5)
+                                    {
+                                        <td>@Math.Floor(pently) % </td>
+                                    }
+                                    else
+                                    {<td>0 %</td> }
+                                }
+                                @*應補團費*@
+                                <td></td>
+                            </tr>
+
+
+
+                                    }
+
+                                    foreach (MVC_HW3.Models.tFamily Fa in RD.tFamily)
+                                    {
+                                        <tr class="active">
+                                            @* 員工編號/眷屬/親友 *@
+                                            <td>親友</td>
+                                            @*姓名*@
+                                            <td>@Fa.fFa_Name</td>
+                                            @*年度可使用補助金額*@
+                                            <td></td>
+                                            @*實際補助額*@
+                                            <td></td>
+                                            @*基本團費*@
+                                            <td>@Math.Floor(Model.fTC_Cost)</td>
+                                            @*車費減免*@
+                                            @{
+                                                if (Fa.fFa_Car == false)
+                                                {
+                                                    <td>
+                                                        @Math.Floor(Model.fTC_Car)
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td></td> }
+                                            }
+                                            @*餐飲減免*@
+                                            @{
+                                                if (Fa.fTE_ID == 3)
+                                                {
+                                                    <td>
+                                                        @Math.Floor(Model.fTC_Eat)
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td></td> }
+                                            }
+                                            @*住宿減免*@
+                                            @{
+                                                if (Fa.fFa_Hotel == false)
+                                                {
+                                                    <td>
+                                                        @Math.Floor(Model.fTC_hotel)                                                       
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td></td> }
+                                            }
+                                            @*其他增減費用明細說明*@
+                                            <td>@Fa.fFa_Relief</td>
+                                            @*其他增減費用總額*@
+                                            @{
+                                                if (Fa.fFa_RMoney != null)
+                                                {
+                                                    <td>@Math.Floor((decimal)Fa.fFa_RMoney)</td>
+                                                }
+                                                else
+                                                {<td></td> }
+                                            }
+                                            
+                                            @*取消/缺席罰款百分比*@
+                                            @{
+                                                if (Fa.fSt_ID == 2)
+                                                {
+                                                    <td>100 %</td>
+                                                }
+                                                else if (Fa.fSt_ID == 5)
+                                                {
+                                                    <td>@Math.Floor(pently) % </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>0 %</td> }
+                                            }
+                                            @*應補團費*@
+                                            <td></td>
+                                        </tr>
+                                                    }
+
+                                                }
+        }
+
+    </tbody>
+
+
+</table>
+<div class="text-right">
+    <span id="ToExcel" class="btn btn-primary">匯出Excel</span>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+           
+            $("#ToExcel").click(function () {
+                    $("#totalTable").table2excel({
+                        exclude: ".noExl",
+                        name: "Excel Document Name",
+                        filename: "@Model.fTC_Title",
+                        fileext: ".xls",
+                        exclude_img: true,
+                        exclude_links: true,
+                        exclude_inputs: true
+                    });
+                });
+
+
+      });
+    </script>
+
+}

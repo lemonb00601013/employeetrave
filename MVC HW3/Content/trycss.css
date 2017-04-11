@@ -7,6 +7,7 @@ input,textarea,select{ max-width:100%;}
     background:#ffffff; 
 
 }
+
 .div-white-bg>img{
     margin:5px;
 }
@@ -29,7 +30,10 @@ margin-left:70px;
 #EmployeeID,#password{
     border-color:black;
 }
-
+.font-weight-blue {
+    color:#5c81fa;
+    font-weight:600;
+}
 
 .navbar-inverse .navbar-try1 {
   color: white;

@@ -4,50 +4,78 @@
 @model IPagedList<MVC_HW3.Models.tBulletin>
 @{
     ViewBag.Title = "最新消息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
 
 }
+@section scripts{
+    <script>
+            $(document).ready(function () {
+                if ($.cookie('Manergers') == null) {
+                    $("#createbutton").hide();
+                    $(".btn-danger").each(function (){
+                        $(this).hide();});
+                }
+                else {
+                    $("#createbutton").show();
+                    $("#deletebutton").show();
+                }
+            });
+    </script>
+}
 <h2>@ViewBag.Class</h2>
 <hr />
-<br />
-<br />
+<div id="createbutton">
+    <a href="@Url.Action("tBulletinCreate","Bulletin",new{@area= "Bulletin"})">
+        <input type="button" class="btn btn-default" value="發布公告" />
+    </a>
+</div>
+<form asp-controller="Bulletin" asp-action="Bulletin">
+    <p>
+        搜尋字串： <input type="text" name="searchString">
+        <input type="submit" value="搜尋" />
+    </p>
+</form>
+    <br />
+    <br />
 
-@foreach (var New in Model)
-{
-    <div class="row">
+    @foreach (var New in Model)
+    {
+        <div class="row">
 
-        <div class="col-md-2">
-            <a href="@Url.Action("Bulletin","Home",new{ID=New.fBC_ID})" class="marginL50">
-                <img src="@Url.Action("GetImageFile","Home",new {fileName=New.tBulletinClass.fBC_Class})" class="w120h80" />
-                
-            </a>
-        </div>
-        <a href="@Url.Action("BulletinDetail","Home",new{ID=New.fBu_ID})">
-            <div class="col-md-10">
-                <div class="news_subject">@New.fBu_Title</div>
-                <div class="news_date">@New.fBu_Date</div>
-                <div class="news_txt"></div>
-                <div class="news_more text-right">繼續閱讀>></div>           
-                
+            <div class="col-md-2">
+                <a href="@Url.Action("Bulletin","Home",new{@area= "",ID=New.fBC_ID})" class="marginL50">
+                    <img src="@Url.Action("GetImageFile","Home",new { @area = "", fileName =New.tBulletinClass.fBC_Class})" class="w120h80" />
+                </a>
             </div>
-        </a> 
-    </div>
-    <hr />
+            <a href="@Url.Action("BulletinDetail","Home",new{@area = "",ID=New.fBu_ID})">
+                <div class="col-md-10">
+                    <div class="news_subject">@New.fBu_Title</div>
+                    <div class="news_date">@New.fBu_Date</div>
+                    <div class="news_txt"></div>
+                    <div class="news_more text-right">繼續閱讀>></div>
+                </div>
+            </a>
+            <div id="deletebutton">
+                <a href="@Url.Action("tBulletinDelete","Bulletin",new{@area = "Bulletin",ID=New.fBu_ID})">
+                    <input type="button" class="btn btn-danger" value="刪除" />
+                </a>
+            </div>
+        </div>
+        <hr />
+    }
 
 
 
 
 
-}
+    <div class="text-center">@Html.PagedListPager(Model, page => Url.Action("Bulletin", "Bulletin", new { @area = "", page, ID = Request.QueryString["ID"] }), PagedListRenderOptions.PageNumbersOnly)</div>
 
 
 
 
-<div class="text-center">@Html.PagedListPager(Model, page => Url.Action("Bulletin", "Home", new { page, ID = Request.QueryString["ID"] }), PagedListRenderOptions.ClassicPlusFirstAndLast)</div>
 
-@section scripts{
 
-}
 
 

@@ -25,6 +25,8 @@ namespace MVC_HW3.Models
         public int fFC_ID { get; set; }
         public string fFC_Class { get; set; }
         public Nullable<int> fFC_Dad { get; set; }
+        public byte[] fFC_Picture { get; set; }
+        public string fFC_Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tForumClass> tForumClass1 { get; set; }

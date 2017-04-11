@@ -1,0 +1,40 @@
+﻿@model MVC_HW3.Models.tCityCountry
+
+<div style="text-align:center;">
+    <h2 style="color:brown">~推薦旅行地點~</h2><hr />
+</div>
+
+
+@using (Html.BeginForm("CreateCity", "TravelMapHome", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    //選擇國家
+    <div class="form-group">
+        <label class="col-sm-4 control-label">地點所在國家</label>
+        <div class="col-sm-8">
+            <input type="text" name="fCountry" />
+        </div>
+    </div>
+
+    //選擇城市
+    <div class="form-group">
+        <label class="col-sm-4 control-label">地點所在城市</label>
+        <div class="col-sm-8">
+            <input type="text" name="fCity" />
+        </div>
+    </div>
+
+    //選擇圖片
+    <div class="form-group">
+        <label class="col-sm-4 control-label">地點圖片</label>
+        <div class="col-sm-8">
+            <input type="file" name="fImage" />
+        </div>
+    </div>
+
+    //新增按鈕
+    <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-8">
+            <button type="submit" class="btn btn-default" style="width:120px">新增</button>
+        </div>
+    </div>
+}

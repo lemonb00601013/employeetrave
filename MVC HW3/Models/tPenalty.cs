@@ -14,10 +14,10 @@ namespace MVC_HW3.Models
     
     public partial class tPenalty
     {
-        public int tPe_ID { get; set; }
-        public int tTC_ID { get; set; }
-        public int tPe_Day { get; set; }
-        public int tPe_Fine { get; set; }
+        public int fPe_ID { get; set; }
+        public int fTC_ID { get; set; }
+        public int fPe_Day { get; set; }
+        public decimal fPe_Fine { get; set; }
     
         public virtual tTravelCase tTravelCase { get; set; }
     }

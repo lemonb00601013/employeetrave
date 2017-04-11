@@ -15,10 +15,14 @@ namespace MVC_HW3.Models
     public partial class tVoteDetail
     {
         public int fVD_ID { get; set; }
+        public int fVP_ID { get; set; }
+        public int fVI_ID { get; set; }
+        public int fVO_ID { get; set; }
         public int fEp_ID { get; set; }
-        public int fVt_ID { get; set; }
     
         public virtual tEmployee tEmployee { get; set; }
-        public virtual tVote tVote { get; set; }
+        public virtual tVoteItem tVoteItem { get; set; }
+        public virtual tVoteOption tVoteOption { get; set; }
+        public virtual tVoteProject tVoteProject { get; set; }
     }
 }

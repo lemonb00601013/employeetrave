@@ -1,0 +1,224 @@
+﻿@model IEnumerable<MVC_HW3.Models.tRestaurant>
+
+@{
+    ViewBag.Title = "Editor";
+}
+@section styles
+{
+    <style>
+        .gridex {
+            position: relative;
+        }
+
+        .gd-expander {
+            position: absolute;
+            overflow: hidden;
+            height: 500px;
+            margin-top: 20px;
+            max-width: 100%;
+            left: 30px; /* standar row margin is 30px */
+        }
+
+        .gd-inner {
+            padding: 50px;
+            background: #ccc;
+        }
+
+        /* 扩展面板顶部箭头样式*/
+        .gridex > li > a {
+            position: relative;
+        }
+
+        .gridex > .gd-expanded > a::after {
+            top: auto;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+            border-bottom-color: #ccc;
+            border-width: 25px;
+            left: 50%;
+            margin: -25px 0 0 -25px;
+        }
+       
+    </style>  }
+
+<link href="~/Content/styles.css" rel="stylesheet" />
+
+<h2>Editor</h2>
+@*<div class="row">
+        @using (Html.BeginForm("EdditorRestaurant", "Restaurant", FormMethod.Post))
+        {
+            foreach (var a in Model)
+            {
+                <div class="col-lg-3" style="align-content:center">
+                    <h4>@a.fRe_Name</h4>
+                    <img src="@Url.Action("GetImageByte","FoodHome",new { id=a.fRe_ID})" width="250" height="250" />
+                </div>
+            }
+
+        }    @Url.Action("GetImageByte","FoodHome",new { id=a.fRe_ID})
+    </div>*@
+
+@foreach (var a in Model)
+{
+
+    <div class="col-lg-3" style="padding-bottom:10px">
+        <div>
+            <div class="row" name="editordiv" id="@a.fRe_Name">
+                <img src="@Url.Action("GetImageByte","FoodHome",new { id=a.fRe_ID})" width="280" height="250" />
+            </div>
+            <div class="row" style="text-align:center" id="Recontent">
+                <h4>@a.fRe_Name</h4>
+                <label class="btn btn-warning" data-toggle="modal" data-target="#editordetail" name="labelbtn" data-id="@a.fRe_ID">
+                    修改
+                </label>
+                <label class="btn btn-danger" data-toggle="modal" data-target=".bs-example-modal-sm" name="deletebtn" data-deleteid="@a.fRe_ID">
+                    刪除
+                </label>
+            </div>
+        </div>
+    </div>
+}
+
+@*彈跳修改*@
+<div class="modal fade" id="editordetail"  role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="text-align: center; height:800px; width: 1250px; background-image: url('../../../../Images/backgroundImage.png')">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row" align="left">
+                    <div id="partial" style="width:600px;height:750px;border-radius:5px;border:double #95CACA;margin-left:2em">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*small*@
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+                <h4>確定要刪除嗎?</h4>
+            </div>
+            <div class="modal-body">
+                @*<button class="col-lg-6">是</button>
+                <button class="col-lg-6">否</button>*@
+                
+                <div class="buttons-ctn">
+                    <label class="button button--left" id="truedel"><span>刪除</span></label>
+                    <a href="#" class="button button--right"><span>取消</span></a>
+                </div>
+                <div class="button__content button__content--left">
+                    <h2>刪除成功</h2>
+                    <a href="@Url.Action("EditorRestaurant","Restaurant")">確認</a>
+                </div>
+                <div class="button__content button__content--right">
+                    <h2>取消</h2>
+                    <a href="@Url.Action("EditorRestaurant","Restaurant")">確認</a>
+                </div>            
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+@section scripts{
+<script>
+    $("label[name=labelbtn]").click(function () {
+        var reid = $(this).attr("data-id")
+        $("#editorimg").attr("src", "@Url.Action("GetImageByte","FoodHome")" + "/" + reid)
+        $("#partial").load("@Url.Action("editordetailA", "Restaurant")", { id: reid })
+    })
+
+    $("label[name=deletebtn]").click(function () {
+        var delId = $(this).attr("data-deleteid")
+        $("#truedel").attr("data-delid",delId)
+    })
+
+    $("#truedel").click(function () {
+        var delid = $(this).attr("data-delid")
+        $.post("@Url.Action("Delete","Restaurant")"+"/"+delid)
+    })
+
+
+    var button = $('.button');
+    var content = $('.button__content');
+    var win = $(window);
+    var expand = function () {
+        if (button.hasClass('button--active')) {
+            return false;
+        } else {
+            var W = win.width();
+            var xc = W / 2;
+            var that = $(this);
+            var thatWidth = that.innerWidth() / 2;
+            var thatOffset = that.offset();
+            var thatIndex = that.index();
+            var other;
+            if (!that.next().is('.button')) {
+                other = that.prev();
+            } else {
+                other = that.next();
+            }
+            var otherWidth = other.innerWidth() / 2;
+            var otherOffset = other.offset();
+            var thatContent = $('.button__content').eq(thatIndex);
+            var thatContentW = thatContent.innerWidth();
+            var thatContentH = thatContent.innerHeight();
+            var thatTransX = xc - thatOffset.left - thatWidth;
+            var otherTransX = xc - otherOffset.left - otherWidth;
+            var thatScaleX = thatContentW / that.innerWidth();
+            var thatScaleY = thatContentH / that.innerHeight();
+            that.css({
+                'z-index': '2',
+                'transform': 'translateX(' + thatTransX + 'px)'
+            });
+            other.css({
+                'z-index': '0',
+                'opacity': '0',
+                'transition-delay': '0.05s',
+                'transform': 'translateX(' + otherTransX + 'px)'
+            });
+            that.on('transitionend webkitTransitionEnd', function () {
+                that.css({ 'transform': 'translateX(' + thatTransX + 'px) scale(' + thatScaleX + ',' + thatScaleY + ')' });
+                that.addClass('button--active');
+                thatContent.addClass('button__content--active');
+                thatContent.css('transition', 'all 1s 0.1s cubic-bezier(0.23, 1, 0.32, 1)');
+                that.off('transitionend webkitTransitionEnd');
+            });
+            return false;
+        }
+    };
+    var hide = function (e) {
+        var target = $(e.target);
+        if (target.is(content)) {
+            return;
+        } else {
+            button.removeAttr('style').removeClass('button--active');
+            content.removeClass('button__content--active').css('transition', 'all 0.2s 0 cubic-bezier(0.23, 1, 0.32, 1)');
+        }
+    };
+    var bindActions = function () {
+        button.on('click', expand);
+        win.on('click', hide);
+    };
+    var init = function () {
+        bindActions();
+    };
+    init();
+
+    
+   
+</script>
+}

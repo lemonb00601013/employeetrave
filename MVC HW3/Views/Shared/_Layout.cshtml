@@ -8,25 +8,39 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/trycss.css" rel="stylesheet" />    
     <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">   
     <link href="~/Content/jquery.cleditor.css" rel="stylesheet" />
+    <link href="~/Content/fakeLoader.css" rel="stylesheet" />
+
+
+    <style>
+        body li a {
+        font-size:20px;        
+        }
+        .navbar-inverse .navbar-try1{
+            font-size:40px;
+        }
+
+    </style>
     
     @RenderSection("styles", false)
 </head>
 <body class="layout">
+    @*@*執行Loading...*@
+    @*<div id="fakeLoader"></div>*@
+
 
     @* 導覽列 *@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                @Html.ActionLink("MSI113_5", "Index", "Home", new { area = "" }, new { @class = "navbar-try1" })
+                @Html.ActionLink("665園地", "Index", "Home", new { area = "" }, new { @class = "navbar-try1" })
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
 
                     <li class="dropdown">
-                        <a href="@Url.Action("Bulletin", "Home", new {area="",ID= (int?)null })" class="dropdown-toggle"  role="button" aria-haspopup="true" aria-expanded="false">最新消息 <span class="caret"></span></a>
+                        <a href="@Url.Action("Bulletin", "Home", new {area="",ID= (int?)null })" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">最新消息 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Bulletin","Home",new{area="",ID=2})">一般公告</a></li>
                             <li><a href="@Url.Action("Bulletin","Home",new { area="",ID = 1 })">旅遊公告</a></li>
@@ -34,11 +48,12 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="@Url.Action("index", "ForumHome", new {area="Forum",ID= (int?)null},null)" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">討論區 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">                           
+                        <a href="@Url.Action("FirstPage", "ForumHome", new {area="Forum",ID= (int?)null},null)" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">討論區 <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
                             <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=1})">近期旅遊</a></li>
                             <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=2})">歷史回憶</a></li>
                             <li><a href="@Url.Action("Index","ForumHome",new{area="Forum", ID=3})">旅遊推薦</a></li>
+                            <li class="manergerU"><a href="@Url.Action("Index","ForumAdmin",new{area="Forum", ID=0})">論壇管理</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -49,7 +64,8 @@
                             <li><a href="@Url.Action("NewCase","TraveCase",new { area = "EmployeeTrave", ID = (int?)null})">近期旅遊</a></li>
                             <li><a href="@Url.Action("NewCase","TraveCase",new { area = "EmployeeTrave", ID = 1})">過往旅遊</a></li>
                             <li><a href="#">方案投票</a></li>
-                            <li><a href="#">簡易提案</a></li>
+                            <li class="manergerU"><a href="@Url.Action("ManagePage","TraveCase",new { area = "EmployeeTrave" })">旅遊管理</a></li>
+
                         </ul>
                     </li>
                     <li><a href="@Url.Action("Index","FoodHome",new { area = "Food" }, null )">美食地圖</a></li>
@@ -59,13 +75,13 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li id="login"><a href="#" class="needlog" log_url="@Request.Url.PathAndQuery">登入</a></li>
-                    <li id="logout">@Html.ActionLink("登出", "logout", "Home", new { area = "" },null)</li>
+                    <li id="logout">@Html.ActionLink("登出", "logout", "Home", new { area = "" }, null)</li>
                     <li id="edit" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">個人資訊<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">旅遊紀錄</a></li>
                             <li><a href="#">發文管理</a></li>
-                            <li><a href="#">帳戶管理</a></li>
+                            <li><a href="@Url.Action("AccountEdit","Home",new { area = "" }, null )">帳戶管理</a></li>
                             <li><a href="#">訊息</a></li>
                         </ul>
                     </li>
@@ -79,23 +95,24 @@
                 </form>
             </div>
         </div>
+        <div id="Marquee" class="div-white-bg"><img src="@Url.Content("~/Images/news.jpg")" /><span id="marload"></span></div>
     </div>
     @* 導覽列 End*@
     @*@Url.Content("~/Images/news.jpg")*@
     @* 跑馬燈區塊 *@
-    <div id="Marquee" class="div-white-bg"><img src="@Url.Content("~/Images/news.jpg")" /><span id="marload"></span></div>
+
     @* 跑馬燈區塊 End *@
 
-    
+
 
     <div class="container body-content div-rgba-bk">
-        
+        <br />
         @RenderBody()
         @RenderSection("MAP", false)
         @if (IsSectionDefined("Detail"))
         { @RenderSection("Detail")}
         <hr />
-      
+
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
@@ -128,18 +145,49 @@
         <h3 class="center-h">以何種身分登錄?</h3>
     </div>
     @* 福委確認表單Dialog End *@
+    <div id="modalSM" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-sm modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <br />
+                    <h3 id="modalMessage"></h3>
+                    <br />
+                    <div id="modalContent"></div>
+                    <br />
+                    <span id="modalenter" class="btn btn-primary">確定</span>
+                    <br />
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/jquery.cookie-1.4.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
-
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     <script src="~/Scripts/jquery.cleditor.min.js"></script>
+    <script src="~/Scripts/jquery.table2excel.js"></script>
+    <script src="~/Scripts/fakeLoader.min.js"></script>
 
     <script>
+        //執行加載動畫(Loading...)
+        //$("#fakeLoader").fakeLoader({
+        //    timeToHide: 500,
+        //    bgColor: "#DEFFFF",
+        //    spinner: "spinner7"
+        //});
         $(document).ready(function () {
+
 
             var dialog, //登錄dialog
                 dialogC,  //身分dialog
@@ -149,9 +197,16 @@
                 identity = document.cookie.indexOf("identity="),  //登錄者帳號是否有福委權限
                 log_url,  //需登錄連結,登錄後跳轉網址
                 bulletinNo = Math.floor(Math.random() * 5), //開始時得隨機變數i,隨機第一張廣告
-                start = setInterval(setclock, 3000)
-                            
+                start = setInterval(setclock, 3000),
+                Manergers = document.cookie.indexOf("Manergers=")
 
+
+
+
+
+            $("#modalenter").click(function () {
+                $("#modalSM").modal('hide')
+            })
 
             MarqueeShow();
             function setclock() {
@@ -164,11 +219,10 @@
 
                 MarqueeShow();
             }
-            function MarqueeShow()
-            {
-                $("#marload").load("@Url.Action("Marquee","Home",new {area=""})?No="+bulletinNo)
+            function MarqueeShow() {
+                $("#marload").load("@Url.Action("Marquee","Home",new {area=""})?No=" + bulletinNo)
             }
-            
+
             //清除身分cookie
             identityclear()
 
@@ -178,6 +232,9 @@
             }
             else {
                 $("#logout,#edit").remove();
+            }
+            if (Manergers == -1) {
+                $(".manergerU").remove();
             }
 
             //導覽列Drapdown開啟
@@ -215,8 +272,8 @@
 
                 if (account != -1) {
 
-                        window.location.href = log_url
-                        return
+                    window.location.href = log_url
+                    return
                 }
             }
             //清除identity
@@ -233,17 +290,15 @@
                 draggable: false,
                 height: 200,
                 width: 300,
-                modal: true,             
-              
+                modal: true,
+
                 buttons: {
                     "員工(預設)": function () {
                         dialogC.dialog("close");
                     },
                     "福委(無法紀錄登錄)": function () {
                         identityclear()
-                        $.cookie("Manergers", "福委")
-                        var epID = $.cookie("account")
-                        $.cookie("account", epID)
+                        $.cookie("Manergers", "福委", { path: '/' })
                         pageturn()
                     }
                 },
@@ -254,7 +309,7 @@
 
             })
 
-         
+
 
             //登錄表單
             dialog = $("#dialog-form").dialog({
@@ -279,7 +334,7 @@
                 }
             });
 
-           //跳轉登錄(class=.needlog && log_url=Url)
+            //跳轉登錄(class=.needlog && log_url=Url)
             $(".needlog").click(function () {
                 log_url = $(this).attr("log_url")
                 if (account == -1) {
@@ -291,18 +346,44 @@
             })
             $(".needlog2").click(function () {
                 log_url = $(this).attr("log_url")
-               
+
                 if (account == -1) {
                     dialog.dialog("open")
                 }
-             
+
             })
+
+            //jquery vadiation 驗證
+            $.extend(jQuery.validator.messages, {
+                required: "此欄位必填.",
+                remote: "Please fix this field.",
+                email: "請輸入正確的 Email 信箱.",
+                url: "請輸入正確的網址.",
+                date: "請輸入正確的日期.",
+                dateISO: "請輸入正確的 (ISO) 日期格式.",
+                number: "本欄位請填入數字.",
+                digits: "本欄位請填入數字.",
+                creditcard: "請輸入正確的信用卡號.",
+                equalTo: "請再次輸入相同的值.",
+                maxlength: $.validator.format("至多輸入 {0} 個字."),
+                minlength: $.validator.format("至少輸入 {0} 個字."),
+                rangelength: $.validator.format("請輸入 {0} 到 {1} 個字."),
+                range: $.validator.format("請輸入 {0} 到 {1} 的數字."),
+                max: $.validator.format("請輸入小於等於 {0} 的值."),
+                min: $.validator.format("請輸入大於等於 {0} 的值.")
+            });
         })
 
 
     </script>
-    
+
     @RenderSection("scripts", false)
 </body>
+
+
+
+
+
+
 
 </html>

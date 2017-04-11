@@ -1,0 +1,236 @@
+﻿@model MVC_HW3.Models.tEmployee
+
+@{
+    ViewBag.Title = "AccountEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>帳戶管理</h2>
+@section styles{
+    <style>
+        #imghead {
+            width: 300px;
+            height: 400px;
+        }
+    </style>
+}
+
+
+
+
+@using (Html.BeginForm("AccountEdit", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "myform" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>員工資料</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.fEp_ID)
+        <div>
+            <img id="imghead" src="@Url.Action("ImagePreview","Home",new { area="",id =Model.fEp_ID})" />
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="EmployeeImage" id="inputimage" />
+                @Html.ValidationMessageFor(model => model.fEp_Picture, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fEp_Code)
+                @Model.fEp_Code
+                @Html.ValidationMessageFor(model => model.fEp_Code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fEp_Name)
+                @Model.fEp_Name
+                @Html.ValidationMessageFor(model => model.fEp_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_SSNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fEp_SSNumber)
+                @Model.fEp_SSNumber
+                @Html.ValidationMessageFor(model => model.fEp_SSNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Addr, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fEp_Addr, new { htmlAttributes = new { @class = "form-control", id = "EditorForfEp_Addr" } })
+                @Html.ValidationMessageFor(model => model.fEp_Addr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fEp_Tel, new { htmlAttributes = new { @class = "form-control", id = "EditorForfEp_Tel" } })
+                @Html.ValidationMessageFor(model => model.fEp_Tel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fEp_Phone, new { htmlAttributes = new { @class = "form-control", id = "EditorForfEp_Phone" } })
+                @Html.ValidationMessageFor(model => model.fEp_Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fId_ID, "職稱", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fId_ID)
+                @Html.DisplayFor(model => model.tIdentity.fId_Identity)
+                @Html.ValidationMessageFor(model => model.fId_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Seniority, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fEp_Seniority)
+                @Model.fEp_Seniority.ToLongDateString()
+                @Html.ValidationMessageFor(model => model.fEp_Seniority, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fSe_ID, "部門", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fSe_ID)
+                @Html.DisplayFor(model => model.tSector.fSe_Sector)
+                @Html.ValidationMessageFor(model => model.fSe_ID, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Nickname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fEp_Nickname, new { htmlAttributes = new { @class = "form-control", id = "EditorForfEp_Nickname" } })
+                @Html.ValidationMessageFor(model => model.fEp_Nickname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="password" name="employeepassword" id="employeepassword" value=@Model.fEp_Password required />
+                @Html.ValidationMessageFor(model => model.fEp_Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <p class="control-label col-md-2">密碼確認</p>
+            <div class="col-md-10">
+                <input type="password" name="confirmpassword" id="confirmpassword" value=@Model.fEp_Password required />
+                <label for="confirmpassword"  class="error"></label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.fEp_Email, new { htmlAttributes = new { @class = "form-control", id = "EditorForfEp_Email" } })
+                @Html.ValidationMessageFor(model => model.fEp_Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fEp_Birth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.fEp_Birth)
+                @Html.DisplayFor(model => model.fEp_Birth)
+                @Html.ValidationMessageFor(model => model.fEp_Birth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="Demo" id="Demo" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@*<div>
+        <a href="@Url.Action("tDependentDetail","Home",new{@area= ""})">
+            <p>員工親屬</p>
+        </a>
+    </div>*@
+@foreach (var tDependentsitem in Model.tDependents)
+{
+    <a href=@Url.Action("tDependentEdit", "Home",new{@area= "",id= tDependentsitem.fDe_ID})>
+        <p>@tDependentsitem.fDe_Name</p>
+    </a>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#myform").validate({
+                submitHandler: function (form) {
+                    form.submit();
+                },
+                errorPlacement: function (error, element) {
+                    element.closest('.form-group').append(error);
+                },
+                rules: {
+                    confirmpassword: {
+                        equalTo: '#employeepassword'
+                    }
+                }
+            });
+        });
+        $('#Demo').click(function () {
+            $('#EditorForfEp_Addr').val('台中市西屯區福星路96號8樓');
+            $('#EditorForfEp_Tel').val('0226598785');
+            $('#EditorForfEp_Phone').val('0920654895');
+            $('#EditorForfEp_Nickname').val('獸獸');
+            $('#EditorForfEp_Email').val('iamsohandsome@gmail.com');
+            $('#EditorForfEp_Birth').val('1965/08/13');
+            $('#employeepassword').val('0000');
+            $('#confirmpassword').val('0000');
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imghead').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#inputimage").change(function () {
+            readURL(this);
+        });
+
+    </script>
+
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

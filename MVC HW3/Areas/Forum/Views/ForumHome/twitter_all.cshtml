@@ -1,0 +1,7 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+
+
+@foreach (var twitter in Model.Fmessage)
+{
+    <p>@Html.DisplayFor(q => twitter.tEmployee.fEp_Nickname) : @Html.DisplayFor(q => twitter.fFM_Content)    留言時間 : @Html.DisplayFor(q => twitter.fFM_Date) </p>
+}

@@ -19,10 +19,12 @@ namespace MVC_HW3.Models
         {
             this.tConnection = new HashSet<tConnection>();
             this.tDependents = new HashSet<tDependents>();
+            this.tDetailScore = new HashSet<tDetailScore>();
             this.tRestaurantScores = new HashSet<tRestaurantScores>();
             this.tForumMessage = new HashSet<tForumMessage>();
             this.tForumTitle = new HashSet<tForumTitle>();
             this.tManergerHistory = new HashSet<tManergerHistory>();
+            this.tPushGood = new HashSet<tPushGood>();
             this.tRegistrationDetail = new HashSet<tRegistrationDetail>();
             this.tRestaurant = new HashSet<tRestaurant>();
             this.tSampleProposal = new HashSet<tSampleProposal>();
@@ -51,6 +53,8 @@ namespace MVC_HW3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tDependents> tDependents { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tDetailScore> tDetailScore { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tRestaurantScores> tRestaurantScores { get; set; }
         public virtual tIdentity tIdentity { get; set; }
         public virtual tSector tSector { get; set; }
@@ -60,6 +64,8 @@ namespace MVC_HW3.Models
         public virtual ICollection<tForumTitle> tForumTitle { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tManergerHistory> tManergerHistory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tPushGood> tPushGood { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tRegistrationDetail> tRegistrationDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

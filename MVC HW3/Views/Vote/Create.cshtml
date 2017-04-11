@@ -1,0 +1,77 @@
+﻿@model MVC_HW3.Models.tVoteProject
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Creat</h2>
+
+@using (Html.BeginForm("Create","Vote",FormMethod.Post,new { @class= "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()    
+    <h4>tVoteProject</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4"><div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.fVP_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fVP_Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fVP_Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fVP_Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fVP_Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fVP_StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fVP_StartDate, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fVP_EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.fVP_EndDate, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.fVP_Imagefile, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(model => model.fVP_Imagefile, new { htmlAttributes = new { type = "file", @class = "form-control", placeholder = "Image" } })
+            @Html.ValidationMessageFor(model => model.fVP_Imagefile, "", new { @class = "text-danger" })
+            @ViewBag.message
+        </div>
+    </div>
+
+</div></div>
+
+
+        <div class="col-md-8">
+            @*添加問題
+        <input type="submit" value="添加問題" class="btn btn-default" />*@
+        <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</div>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

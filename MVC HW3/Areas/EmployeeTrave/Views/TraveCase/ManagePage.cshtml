@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "旅遊管理";
+}
+
+<h2>旅遊管理</h2>
+<br />
+<div>
+    <select id="StatusLIst">
+        <option value="">全部方案</option>
+        <option value="3">開放中方案</option>
+        <option value="4">計劃中方案</option>
+        <option value="1">過往方案</option>
+        <option value="2">未成行方案</option>
+    </select>
+    <button id="newCase" class="btn btn-primary">新增方案</button>
+</div>
+
+
+<br />
+<div id="ManageList">
+    @Html.Action("Manage", "TraveCase", new { area = "EmployeeTrave",Status= (int?)null })
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+
+          $("#StatusLIst").change(function () {
+              refleshList();
+          })
+
+          $("#newCase").click(function () {
+                $.post("@Url.Action("CreateCase", "TraveCase",new {area="EmployeeTrave" })", function () {
+
+                    refleshList();
+                })
+          })
+
+            $("button[name=delete]").click(function () {
+                //alert()
+                var TC_ID=$(this).attr("TC_ID");
+                $.post("@Url.Action("DeleteCase","TraveCase",new {area="EmployeeTrave" })", { id: TC_ID }, function () {
+
+                    refleshList();
+                })
+            })
+          
+
+            function refleshList() {
+
+                var status = $("#StatusLIst").val();
+                $("#ManageList").load("@Url.Action("Manage","TraveCase",new {area="EmployeeTrave" })", { "Status": status })
+            }
+
+            refleshList()
+        });
+
+    </script>
+}

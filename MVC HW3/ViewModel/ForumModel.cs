@@ -21,5 +21,7 @@ namespace MVC_HW3.ViewModel
         public IEnumerable<tForumTitle> Ftitle { get; set; }
 
         public IEnumerable<tMessageCode> messagecode { get; set; }
+
+        public IEnumerable<tPushGood> pushGood { get; set; }
     }
 }

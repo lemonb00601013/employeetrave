@@ -1,0 +1,120 @@
+﻿@model MVC_HW3.Models.tRestaurant
+<style>
+    input[type='text'],input[type='file'] { width:500px
+        
+    }
+</style>
+@using (Html.BeginForm("editordetailB", "Restaurant", FormMethod.Post, new { id = "editorform", @class = "form-horizontal", enctype = "multipart/form-data", @style="width:1250px;height:680px" }))
+{
+    <div class="row" style="width:1250px;height:680px ">
+        <div class="col-lg-6">
+            <div class="row" width="600" height="400">
+                <img src="@Url.Action("GetImageByte","FoodHome",new { id=Model.fRe_ID})" style="width:590px;height:350px;margin-left:17px;margin-bottom:8px" />
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <label for="name" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fRe_Name)
+                    </label>
+                    <div class="col-md-10">
+                        <input type="hidden" name="RestaurantID" id="reid" value="@Model.fRe_ID" />
+                        <input type="text" class="form-control" name="RestaurantName" id="name" value="@Model.fRe_Name" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fR_Price)
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="RestaurantPrice" id="price" value="@Model.fR_Price" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fRe_Tel)
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="RestaurantTel" id="tel" value="@Model.fRe_Tel" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fRe_Delivery)
+                    </label>
+                    <div class="col-md-10">
+                        <input name="rd2" type="radio" value="Yes" />Yes
+                        <input name="rd2" type="radio" value="No" />NO
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fRe_Addr)
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="RestaurantAddr" id="addr" value="@Model.fRe_Addr" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        變更圖片
+                    </label>
+                    <div class="col-md-10">
+                        <input type="file" name="updateImg" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc" class="col-md-2 control-label">
+                        @Html.DisplayNameFor(r => r.fRe_Content)
+                    </label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" name="RestaurantContent" id="cont" value="@Model.fRe_Content" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <div class="form-group">
+                    <div class="row">
+                        <label for="desc" class="col-md-2 control-label">
+                            @Html.DisplayNameFor(r => r.fRe_introduction)
+                        </label>
+                    </div>
+                    <div class="row" style="margin-left:8px">
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(t => t.fRe_introduction, new { id = "editorck", @name = "introductionCK"})
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row" style="margin-left:8px">
+                        <div class="col-lg-10">
+
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="submit" class="btn btn-default" id="editorsubmit">修改</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+<script>
+
+ $(document).ready(function () {
+        CKEDITOR.replace('editorck', {
+            extraPlugins: '',
+            height: 550,
+            width:600,
+            // Upload images to a CKFinder connector (note that the response type is set to JSON).
+            //uploadUrl: '@Url.Action("UpLoadToDB")',
+            filebrowserImageBrowseUrl: '/CKFinderScripts/ckfinder.html?type=Images',
+            filebrowserImageUploadUrl: '@Url.Action("UpLoadToDB", "Restaurant")' + '?command=QuickUpload&type=Images'
+        })
+     
+ })
+</script>

@@ -1,59 +1,658 @@
-﻿@model MVC_HW3.Models.tRegistrationDetail 
+﻿@model MVC_HW3.Models.tRegistrationDetail
+@{MVC_HW3.Models.tTravelCase TravelCase = ViewBag.TravelCase; }
+@{MVC_HW3.Models.tEmployee Employee = ViewBag.Employee; }
+
 @{
-    ViewBag.Title = "Sign_up";
+    ViewBag.Title = "旅遊報名";
+}
+@section styles{
+    <style>
+       
+
+        #Sign_upForm .form-group {
+            padding:20px 0px 20px 0px;
+            
+        }
+        .margin20{
+            margin:45px 20px 20px 20px
+
+        }
+        .blue-border {
+            border: 3px solid #0094ff;
+            border-radius: 20px;
+            padding:20px;            
+        }
+        .padding20{
+            padding:0px 20px 0px 20px;
+        }
+        .paddingB20
+        {
+            padding-bottom:20px
+        }
+        .paddingR20 {
+        padding-right:20px;
+        }
+        .dropdown{display:inline-block;}
+        #Travelform label.error{
+			color: red;
+			display: inline-block;
+			padding: 3px 3px;
+			font-size: 12px;
+			line-height: 1;
+			width: auto;
+		}
+        h3.font-weight-blue {
+        margin:0;
+        }
+        .panelH {
+        height:576px;
+        overflow-x:auto;
+        }
+    </style>
+}
+<h2>@TravelCase.fTC_Title</h2>
+<hr />
+<form id="Travelform">
+    <div id="Sign_upForm" class="padding20">
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>[基本資料]</h3>
+                <div class="blue-border">
+
+                    @Html.HiddenFor(a => a.fTC_ID, new { Value = TravelCase.fTC_ID })
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">員工編號</label>
+                        <div class="col-sm-8">
+                            <p>@Employee.fEp_Code</p>
+                            @Html.HiddenFor(a => a.fEp_ID, new { Value = Employee.fEp_ID })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">姓名</label>
+                        <div class="col-sm-8">
+                            <p>@Employee.fEp_Name</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">手機</label>
+                        <div class="col-sm-8">
+                            <p>@Employee.fEp_Tel</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.fRD_Insurance, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.EditorFor(p => p.fRD_Insurance, new { htmlAttributes = new { @class = "form-control required checkname" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.fRD_Urgent, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.EditorFor(p => p.fRD_Urgent, new { htmlAttributes = new { @class = "form-control required checkname" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.fRD_UTel, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.EditorFor(p => p.fRD_UTel, new { htmlAttributes = new { @class = "form-control required mobileTaiwan" } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.fRD_Eat, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @{
+                                var eat = new SelectList(new[]
+                                {
+                            new { Value = "true", Text = "葷" },
+
+                            new { Value = "false", Text = "素" },
+
+                            }, "Value", "Text");
+                            }
+                            @Html.DropDownListFor(p => p.fRD_Eat, eat, "請選擇", new { @class = "form-control required" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(p => p.fRD_Note, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8 paddingB20">
+                            @Html.EditorFor(p => p.fRD_Note, new { htmlAttributes = new { @class = "form-control " } })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">是否攜眷</label>
+                        <div class="col-sm-8">
+                            <input type="radio" name="family" value="yes" />是
+                            <input type="radio" name="family" value="no" checked />否
+                        </div>
+
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">送出資料</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 text-center">
+                <br />
+                <br />
+                <br />
+                <div  class="panel panel-info panelH">
+                    <div class="panel-heading">
+                        <h3 class="font-weight-blue">旅遊方案資訊</h3>
+                    </div>
+                    <div class="panel-body text-left">
+                        <h4 class="font-weight-blue">報名狀況</h4>
+                        <div class="row">
+                            <div class="col-xs-4 text-left">
+                                <p>當前報名人數: @ViewBag.SumNow 人</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+                                <p>成行門檻: @TravelCase.fTC_Gate 人</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+                                <p>人數上限: @TravelCase.fTC_Top 人</p>
+                            </div>
+                        </div>
+                        <h5 class="text-danger">*若不占車位，則不計名額，但仍受攜眷上限限制。</h5>
+                        <h4 class="font-weight-blue">費用明細</h4>
+                        <div class="row">
+                            <div class="col-xs-4 text-left">
+                                <p>餐費: NT$@Math.Floor(TravelCase.fTC_Eat) /人</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+                                <p>車費: NT$@Math.Floor(TravelCase.fTC_Car) /人</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+                                <p>住宿費: NT$@Math.Floor(TravelCase.fTC_hotel) /人</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 text-left">
+                                <p>基本團費: NT$@Math.Floor(TravelCase.fTC_Cost) /人</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+                                <p class="text-success" id="RD_Grant" grant="@ViewBag.RD_Grant">年度補助上限: NT$@ViewBag.RD_Grant</p>
+                            </div>
+                            <div class="col-xs-4 text-left">
+
+                            </div>
+                        </div>
+                        <h5 class="text-danger">*不占餐、車位、住宿等，皆以基本費扣除相關費用，若有私人減免因素，可記錄於備註欄位，由福委審核調整。</h5>
+                        <h4 class="font-weight-blue">罰則</h4>
+                        <table class="table">
+                            <thead>
+                                <tr class="success">
+                                    <th>取消日期(出發日期 @TravelCase.tDayTravel.OrderByDescending(a => a.fDT_Date).First().fDT_Date.ToShortDateString())</th>
+                                    <th>扣款金額</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+                                @foreach (MVC_HW3.Models.tPenalty a in TravelCase.tPenalty)
+                                {
+                                    <tr>
+                                        <td>出發前 @a.fPe_Day 天前取消</td>
+                                        <td>@Math.Floor(TravelCase.fTC_Cost) X @Math.Round(a.fPe_Fine * 100) %  =@Math.Round(TravelCase.fTC_Cost * a.fPe_Fine) 元</td>
+                                    </tr>
+
+                                }
+                                <tr>
+                                    <td>出發後取消</td>
+                                    <td>全額扣款 @Math.Floor(TravelCase.fTC_Cost) 元</td>
+                                </tr>
+                            </tbody>
+
+
+                        </table>                       
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div id="family_form" hidden="hidden" class="row">
+            <hr />
+            <div class="col-xs-2"><h3>[眷屬親友資訊]  </h3><h4>攜眷上限 @TravelCase.fTC_PerL 人</h4></div>
+            <div class="col-xs-10">
+                <button id="newfamily" class="btn btn-primary margin20" toper="@TravelCase.fTC_PerL" hotel="@TravelCase.tDayTravel.Count">新增親友</button>
+
+                <div class="dropdown">
+                    <button class="btn btn-primary margin20 dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        新增眷屬
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @foreach (MVC_HW3.Models.tDependents deItem in ViewBag.Ep_De)
+                        {
+                            <li><a class="deItem" href="#" toper="@TravelCase.fTC_PerL" de_re="@deItem.tRelationship.fRe_Relation" de_tel="@deItem.fDe_Tel" de_ssn="@deItem.fDe_SSNumber" de_birth="@deItem.fDe_Birth.ToShortDateString()" de_id="@deItem.fDe_ID"> @deItem.fDe_Name</a></li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div id="family_list" hidden="hidden" class="row"></div>
+    </div>
+</form>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            //驗證
+            $("#Travelform").validate({
+                submitHandler: function (form) {
+                    var TC_ID = $("#fTC_ID").val();
+
+                    var perC = 1;
+                    $(".iscar").each(function () {
+                        if ($(this).val() == "true") {
+                            perC++;
+                        }
+                    });
+                    $.post("@Url.Action("PerCount", "TraveCase", new { area = "EmployeeTrave"})", { id: TC_ID, per: perC }, function (Btext) {
+                        if (Btext == "OK") {                         
+                            ///員工報名
+                            var Ep_ID = $("#fEp_ID").val();
+                            var RD_Eat = $("#fRD_Eat").val();
+                            var RD_Urgent = $("#fRD_Urgent").val();
+                            var RD_UTel = $("#fRD_UTel").val();
+                            var RD_Note = $("#fRD_Note").val();
+                            var RD_Insurance = $("#fRD_Insurance").val();
+                            var RD_Grant = $("#RD_Grant").attr("grant");
+
+                            var EpJsonData = JSON.stringify({
+
+                                "fTC_ID": TC_ID,
+                                "fEp_ID": Ep_ID,
+                                "fRD_Eat": RD_Eat,
+                                "fRD_Grant": RD_Grant,
+                                "fRD_Date": new Date(),
+                                "fSt_ID": 3,
+                                "fRD_Urgent": RD_Urgent,
+                                "fRD_UTel": RD_UTel,
+                                "fRD_Note": RD_Note,
+                                "fRD_Insurance": RD_Insurance,
+                            });                                          
+                                                       
+                            $.ajax({
+                                url:'@Url.Action("EpSign_up", "TraveCase", new {area="EmployeeTrave" })',
+                                type:"POST",
+                                data:EpJsonData,
+                                contentType:"application/json;charset=utf-8",
+                                async:false,
+                                success: function (callback) {
+                                    //////親友報名
+                                    $("div[name='familyform']").each(function () {
+
+                                        var Fa_Name = $(this).find('input[name^="fFa_Name"]').val();
+                                        var Re_ID = $(this).find('select[name^="fRe_ID"]').val();
+                                        var Fa_Car = $(this).find('select[name^="fFa_Car"]').val();
+                                        var Hotel = $(this).find('select[name^="fFa_Hotel"]');
+                                        if (Hotel.length) {
+                                            var Fa_Hotel = Hotel.val()
+                                        } else { var Fa_Hotel = true; }
+                                        ;
+                                        var TE_ID = $(this).find('select[name^="fTE_ID"]').val();
+                                        var SI_ID = $(this).find('select[name^="fSI_ID"]').val();
+                                        var Fa_Tel = $(this).find('input[name^="fFa_Tel"]').val();
+                                        var Fa_SSNumber = $(this).find('input[name^="fFa_SSNumber"]').val();
+                                        var Fa_Urgent = $(this).find('input[name^="fFa_Urgent"]').val();
+                                        var Fa_UTel = $(this).find('input[name^="fFa_UTel"]').val();
+                                        var Fa_Note = $(this).find('input[name^="fFa_Note"]').val();
+                                        var Fa_Insurance = $(this).find('input[name^="fFa_Insurance"]').val();
+                                        var Fa_Birth = $(this).find('input[name^="fFa_Birth"]').val();
+
+                                        var FaJsonData = JSON.stringify({
+                                            "fRD_ID": callback,
+                                            "fFa_Name": Fa_Name,
+                                            "fRe_ID": Re_ID,
+                                            "fFa_Tel": Fa_Tel,
+                                            "fFa_SSNumber": Fa_SSNumber,
+                                            "fSt_ID": 3,
+                                            "fSI_ID": SI_ID,
+                                            "fFa_Urgent": Fa_Urgent,
+                                            "fFa_UTel": Fa_UTel,
+                                            "fFa_Note": Fa_Note,
+                                            "fFa_Insurance": Fa_Insurance,
+                                            "fFa_Birth": Fa_Birth,
+                                            "fFa_Car": Fa_Car,
+                                            "fTE_ID": TE_ID,
+                                            "fFa_Hotel": Fa_Hotel
+                                        })
+
+                                        $.ajax({
+                                            url: '@Url.Action("FaSign_up", "TraveCase", new {area="EmployeeTrave" })',
+                                            type: "POST",
+                                            data: FaJsonData,
+                                            contentType: "application/json;charset=utf-8",
+                                            async: false,
+                                            success: function () {  }
+
+                                        })
+                                    });
+                                    ////////眷屬報名
+                                    $("div[name='depform']").each(function () {
+
+                                      
+                                        var De_ID = $(this).find('input[name^="fDe_ID"]').val();
+                                        var SI_ID = $(this).find('select[name^="fSI_ID"]').val();
+                                        var DT_Urgent = $(this).find('input[name^="fDT_Urgent"]').val();
+                                        var DT_UTel = $(this).find('input[name^="fDT_UTel"]').val();
+                                        var DT_Note = $(this).find('input[name^="fDT_Note"]').val();
+                                        var DT_Insurance = $(this).find('input[name^="fDT_Insurance"]').val();
+                                        var DT_Car = $(this).find('select[name^="fDT_Car"]').val();
+                                        var TE_ID = $(this).find('select[name^="fTE_ID"]').val();
+                                        var DT_Hotel = $(this).find('select[name^="fDT_Hotel"]').val();
+                                       
+
+                                        var DeJsonData = JSON.stringify({
+                                            "fRD_ID": callback,                                         
+                                            "fDe_ID": De_ID,
+                                            "fSt_ID": 3,
+                                            "fSI_ID": SI_ID,
+                                            "fDT_Urgent": DT_Urgent,
+                                            "fDT_UTel": DT_UTel,
+                                            "fDT_Note": DT_Note,
+                                            "fDT_Insurance": DT_Insurance,
+                                            "fDT_Car": DT_Car,
+                                            "fTE_ID": TE_ID,
+                                            "fDT_Hotel": DT_Hotel
+                                        })
+
+                                        $.ajax({
+                                            url: '@Url.Action("DeSign_up", "TraveCase", new {area="EmployeeTrave" })',
+                                            type: "POST",
+                                            data: DeJsonData,
+                                            contentType: "application/json;charset=utf-8",
+                                            async: false,
+                                            success: function () {  }
+
+                                        })
+                                    });
+
+                                    $("#modalMessage").text("報名成功!!")
+                                    $("#modalContent").load("@Url.Action("Sign_Over", "TraveCase",new {area="EmployeeTrave" })")
+                                    $("#modalSM").on("hidden.bs.modal", function () {
+                                        window.location.href ="@Url.Action("NewCase","TraveCase",new {area="EmployeeTrave" })"
+                                    }).modal('show')
+                                    
+                                }
+                            })
+                        }
+                        else
+                        {
+                            $("#modalMessage").text(Btext)
+                            $("#modalSM").modal('show')
+                        }
+
+                    })
+
+
+                },
+                errorPlacement: function (error, element) {
+                    element.closest('.form-group').append(error);
+
+                },
+                rules: {
+
+                }
+            });
+            //驗證手機號碼
+            $.validator.addMethod("mobileTaiwan", function (value, element) {
+                var str = value;
+                var result = false;
+                if (str.length > 0) {
+                    //是否只有數字;
+                    var patt_mobile = /^[\d]{1,}$/;
+                    result = patt_mobile.test(str);
+
+                    if (result) {
+                        //檢查前兩個字是否為 09
+                        //檢查前四個字是否為 8869
+                        var firstTwo = str.substr(0, 2);
+                        var firstFour = str.substr(0, 4);
+                        var afterFour = str.substr(4, str.length - 1);
+                        if (firstFour == '8869') {
+                            $(element).val('09' + afterFour);
+                            if (afterFour.length == 8) {
+                                result = true;
+                            } else {
+                                result = false;
+                            }
+                        } else if (firstTwo == '09') {
+                            if (str.length == 10) {
+                                result = true;
+                            } else {
+                                result = false;
+                            }
+                        } else {
+                            result = false;
+                        }
+                    }
+                } else {
+                    result = true;
+                }
+                return result;
+            }, "手機號碼不符合格式")
+
+            //驗證身分證
+            $.validator.addMethod("chkPid", function (value, element) {
+                var people_id = value.replace(/\s+/g, "");
+                return (
+                    this.optional(element) || /^[A-Z]{1}[1-2]{1}[0-9]{8}$/.test(people_id)
+                );
+            }, "不正確身分證字號");
+            //驗證生日
+
+                $.validator.addMethod("chkDate", function(value, element) {
+                    var curDate = new Date();
+                    var inputDate = new Date(value);
+                    if (inputDate < curDate)
+                        return true;
+                    return false;
+                }, "錯誤生日");
+
+            //驗證姓名
+                $.validator.addMethod("checkname", function (value, element) {
+                var str = value;
+                var result = false;
+
+                if (str.length > 0) {
+                    //先測試是否有中文
+                    var pattCH = /[\u4e00-\u9fa5]{1,}/;
+                    result1 = pattCH.test(str);
+                    //先測試是否有英文
+                    var pattEN = /[a-zA-Z]{1,}/;
+                    result2 = pattEN.test(str);
+
+                    //整段內容只接受 (英文或中文)或空白、dash、underline
+                    var pattSimbo = /^[\u4e00-\u9fa5a-zA-Z\-_\s]{1,}$/;
+                    result3 = pattSimbo.test(str);
+
+                    //整段內容是否有空白、dash、underline
+                    var pattHasSimbo = /[\-_\s]{1,}/;
+                    result4 = pattHasSimbo.test(str);
+
+                    if (result1 && result2) {
+                        // console.log('有中文也有英文');
+                        result = false;
+                    } else {
+                        if (result1) {
+                            // console.log('有中文');
+                            if (str.length >= 2) {
+                                // console.log('至少兩個字');
+                                    if (result3) {
+                                        // console.log('符號 合規則');
+                                        if (result4) {
+                                            result = false;
+                                        } else {
+                                            result = true;
+                                        }
+                                    } else {
+                                        // console.log('符號不合規則');
+                                        result = false;
+                                    }
+
+                            } else {
+                                result = false;
+                            }
+                        } else {
+                            // console.log('沒有中文');
+                            result = false;
+                            if (result2) {
+                                // console.log('有英文');
+                                if (str.length >= 3) {
+                                    if (result3) {
+                                        // console.log('符號 合規則');
+                                        result = true;
+                                    } else {
+                                        // console.log('符號不合規則');
+                                        result = false;
+                                    }
+                                } else {
+                                    result = false;
+                                }
+                            } else {
+                                // console.log('沒有英文');
+                                result = false;
+                            }
+                        }
+                    }
+                } else {
+                    result = true;
+                }
+                return result;
+            }, "姓名可為中文（最少兩字）或英文（最少三字），英文請勿使用除了空白、底線、DASH以外的符號");
+
+
+            //是否攜眷
+            $("input[name='family']").click(function(){
+                if ($(this).val() == "yes") {
+                    $("#family_form,#family_list").show();
+                } else {
+                    $("#family_form,#family_list").hide();
+                    $(".deItem").show();
+                    $("#family_list").empty();
+                }
+            })
+            //新增眷屬
+            $(".deItem").click(function () {
+                var debt = $(this)
+                if ($(this).attr("toper") > $("#family_list").children("div").length) {
+
+                    $.ajax({
+                        url: '@Url.Action("NewDep", "TraveCase",new { area="EmployeeTrave"})',
+                        cache: false,
+                        success: function (html) {
+                            $("#family_list").append(html);
+                            $(".deletD").last().click(function (event) {
+                                event.preventDefault();
+                                $(this).parent("div").parent("div").parent("div").remove();
+                                debt.show();
+
+                            });
+
+                            if ($("#newfamily").attr("hotel") == 1) {
+                                $(".hotel").last().remove();
+                            }
+                            $("div[name='depform'] input").each(
+                               function () {
+
+                                   var a = $(this).attr("name");
+                                   $(this).attr("name", a + Math.random());
+                                 
+                                   var c = $(this).attr("id");
+                                   $(this).attr("id", c + Math.random())
+                                   
+
+
+                               })
+                            $("div[name='depform'] select").each(
+                                function () {
+                                    var a = $(this).attr("name");
+                                    $(this).attr("name", a + Math.random());
+                                    
+                                    var c = $(this).attr("id");
+                                    $(this).attr("id", c + Math.random())
+                                    
+                                })
+                            $(".DeName").last().text(debt.text())
+                            $(".DeRe").last().text(debt.attr("de_re"))
+                            $(".DeTel").last().text(debt.attr("de_tel"))
+                            $(".DeSSN").last().text(debt.attr("de_ssn"))
+                            $(".DeBirth").last().text(debt.attr("de_birth"))
+                            $(".De_ID").last().val(debt.attr("de_id"))
+                        }
+                    });
+
+                    $(this).hide();
+                }
+                else {
+                    $("#modalMessage").text("攜眷人數已達上限!!")
+                    $("#modalSM").modal('show')
+                }
+
+            })
+
+          //新增親友
+            $("#newfamily").click(function (event) {
+                event.preventDefault();
+                if ($(this).attr("toper") > $("#family_list").children("div").length) {
+                    $.ajax({
+                        url: '@Url.Action("NewFamily", "TraveCase",new { area="EmployeeTrave"})',
+                        cache: false,
+                        success: function (html) {
+                            $("#family_list").append(html);
+                            $(".delet").last().click(function (event) {
+                                event.preventDefault();
+                                $(this).parent("div").parent("div").parent("div").remove();
+                            });
+
+
+                            if ($("#newfamily").attr("hotel") == 1) {
+                                $(".hotel").last().remove();
+                            };
+                            $("div[name='familyform'] input").each(
+                                function () {
+                                    
+                                    var a = $(this).attr("name");
+                                    $(this).attr("name", a + Math.random());
+                                    
+                                    var c = $(this).attr("id");
+                                    $(this).attr("id", c + Math.random())                                   
+                                    
+                                    
+                                    
+                                })
+                            $("div[name='familyform'] select").each(
+                                function () 
+                            {
+                                var a = $(this).attr("name");
+                                $(this).attr("name", a + Math.random());
+                                
+                                var c = $(this).attr("id");
+                                $(this).attr("id", c + Math.random())
+                               
+                            })
+                        }
+                    });
+
+                }
+                else
+                {
+                    $("#modalMessage").text("攜眷人數已達上限!!")
+                    $("#modalSM").modal('show')
+                }
+            })
+        })
+    </script>
+
 }
 
-<h2>Sign_up</h2>
-
-<form>
-    <div class="form-group">
-        <label class="col-xs-2 control-label">員工編號</label>
-        <div class="col-sm-10">
-          <p>@ViewBag.Ep_Code</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-xs-2 control-label">姓名</label>
-        <div class="col-sm-10">
-           <p>@ViewBag.Ep_Name</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-xs-2 control-label">手機</label>
-        <div class="col-sm-10">
-            <p>@ViewBag.Ep_TEL</p>
-        </div>
-    </div>
-    @*<div class="form-group">
-    @Html.LabelFor(p => p.fRD_Insurance, new { @class = "col-sm-2 control-label" })
-    <div class="col-sm-10">
-        @Html.EditorFor(p => p.ProductImage, new { htmlAttributes = new { type = "file", @class = "form-control", placeholder = "Product Image" } })
-        @Html.ValidationMessageFor(p => p.ProductImage, "", new { @class = "text-danger" })
-
-        @ViewBag.message
-    </div>
-</div>*@
-    @*
-    <div class="form-group">
-        @Html.LabelFor(p => p.UnitCost, new { @class = "col-sm-2 control-label" })
-        <div class="col-sm-10">
-            @Html.EditorFor(p => p.UnitCost, new { htmlAttributes = new { @class = "form-control", placeholder = "Unit Cost" } })
-            @Html.ValidationMessageFor(p => p.UnitCost, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(p => p.Description, new { @class = "col-sm-2 control-label" })
-        <div class="col-sm-10">
-            @Html.EditorFor(p => p.Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Description" } })
-            @Html.ValidationMessageFor(p => p.Description, "", new { @class = "text-danger" })
-         
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">新增</button>
-            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-</form>

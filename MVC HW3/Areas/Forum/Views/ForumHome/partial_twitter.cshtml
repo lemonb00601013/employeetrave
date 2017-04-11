@@ -2,8 +2,10 @@
 
 @using (Html.BeginForm("partial_twitter", "ForumHome", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
 {
-    <div class="col-lg-10">
-        @Html.TextBoxFor(p => p.Fmessage.FirstOrDefault().fFM_Content, new { @class = "form-control", placeholder = "Forum MessageContent" })
+    <div class="col-lg-8">
+        @Html.TextBoxFor(p => p.Fmessage.FirstOrDefault().fFM_Content, new { @class = "form-control", placeholder = "在這裡留言" }) 
+        @Html.ValidationMessageFor(p => p.Fmessage.First().fFM_Content, "", new { @class = "text-danger" })
+
         <button type="submit" class="btn btn-default">回覆推文</button>
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
     </div>

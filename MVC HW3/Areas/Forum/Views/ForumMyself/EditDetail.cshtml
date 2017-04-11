@@ -7,6 +7,9 @@
 <h2>EditDetail</h2>
 
 @section styles{
+<style>
+</style>
+
 }
 
 <div class="col-lg-pull-12">
@@ -23,11 +26,9 @@
 </div>
 
 
-
-
-<div class="col-lg-pull-12">
-    <div class="col-lg-10">
-        <div class="panel panel-primary">
+<div class="row">
+    <div class="col-lg-8">
+        <div class="modal-content">
             @foreach (var title in Model.Ftitle)
             {
                 <h2>@Html.DisplayFor(p => title.fFT_Title)</h2>
@@ -36,48 +37,83 @@
         </div>
     </div>
 
+    <div class
+         ="col-lg-10">
 
-    <div class="panel panel-primary">
+        @{ int i = 1;}
         @foreach (var message in Model.Fmessage.Where(p => p.fFM_Dad == null))
         {
-            <div class="col-lg-10">
-                <div class="panel panel-primary">
+            <div class="modal-content">
+                <div class="modal-header">
                     @Html.DisplayFor(p => message.tEmployee.fEp_Nickname)
-                    <img src="@Url.Action("GetImageByte","ForumHome",new {id = message.fEp_ID})" class="" />
-                    <div class="panel panel-primary">
-                        @Html.Raw(message.fFM_Content)
-                    </div>
-                    <p>
-                        @Html.DisplayFor(p => message.fFM_Date)
-                    </p>
+                    <img src="@Url.Action("GetImageByte","ForumHome",new {id = message.fEp_ID})" />
                 </div>
-            </div>
 
-            <div class="col-lg-10">
-                <div class="panel panel-primary">
+                <div class="modal-body">
+                    @Html.Raw(message.fFM_Content)
+                </div>
+
+                <div class="modal-footer">
+                    <p>發文時間 :  @Html.DisplayFor(p => message.fFM_Date) </p>
+                    @Html.HiddenFor(p => message.fFM_ID) @Html.HiddenFor(p => message.fMC_ID)
+
+                    @if (message.tPushGood.Where(p => p.fEp_ID == ViewBag.EPIP && p.fFM_ID == message.fFM_ID).Any())
+                    {
+                        @Ajax.ActionLink(" ", "pushGoodall", "ForumHome", new { id = message.fFM_ID }, new AjaxOptions()
+                        {
+                           HttpMethod = "Post",
+                           UpdateTargetId = "pushG" + i,
+                           InsertionMode = InsertionMode.Replace
+                        }, new { id = "push", @class = "btn btn-primary glyphicon glyphicon-thumbs-up", @style = "display:none", @title = "點擊點讚" })
+
+                        @Ajax.ActionLink(" ", "recoveryGood", "ForumHome", new { id = message.fFM_ID }, new AjaxOptions()
+                        {
+                           HttpMethod = "Post",
+                           UpdateTargetId = "pushG" + i,
+                           InsertionMode = InsertionMode.Replace
+                        }, new { id = "recovery", @class = "btn btn-primary glyphicon glyphicon-minus", @title = "點擊收回讚" })
+                    }
+
+                    else
+                    {
+                        @Ajax.ActionLink(" ", "pushGoodall", "ForumHome", new { id = message.fFM_ID }, new AjaxOptions()
+                        {
+                           HttpMethod = "Post",
+                           UpdateTargetId = "pushG" + i,
+                           InsertionMode = InsertionMode.Replace
+                        }, new { id = "push", @class = "btn btn-primary glyphicon glyphicon-thumbs-up", @title = "點擊點讚" })
+
+                        @Ajax.ActionLink(" ", "recoveryGood", "ForumHome", new { id = message.fFM_ID }, new AjaxOptions()
+                        {
+                           HttpMethod = "Post",
+                           UpdateTargetId = "pushG" + i,
+                           InsertionMode = InsertionMode.Replace
+                        }, new { id = "recovery", @class = "btn btn-primary glyphicon glyphicon-minus", @style = "display:none", @title = "點擊收回讚" })
+                    }
+
+
+                    <span id="pushG@(i)" class="push">@Model.pushGood.Where(a => a.fFM_ID == message.fFM_ID).Count()</span>
+
+
+                    <a href="@Url.Action("Index", "ForumMyself")" class="btn btn-default">
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                    </a>
+
                     <button class="btn btn-primary" id="twitter" title="在下方留言">留言</button>
                     <button class="btn btn-primary" id="message" title="在下方推文">推文</button>
-                    <button class="btn btn-danger" id="edit" style="display:none;" value="message.fEp_ID" title="修改這篇推文">修文</button>
+                    <button class="btn btn-danger" id="edit" style="display:none;" title="修改這篇推文">修文</button>
                     @Html.HiddenFor(p => message.fFM_ID)
                     @Html.HiddenFor(p => message.fMC_ID)
                     @Html.HiddenFor(p => message.fEp_ID)
+                    @Html.HiddenFor(p => message.tMessageCode.tForumTitle.First().fEp_ID)
 
-                    <div id="load" hidden="hidden">
-                        @Html.Action("partial_twitter", "ForumHome", new { id = message.fFM_ID })
+                    <div id="load" hidden="hidden" class="col-lg-10">
+                        @Html.Action("partial_mytwitter", "ForumMyself", new { id = message.fFM_ID })
                     </div>
                 </div>
+                <div id="alltit" class="alltit"></div>
             </div>
-
-            <div class="col-lg-10">
-                <div class="panel panel-primary">
-                    @foreach (var twitter in Model.Fmessage.Where(q => q.fFM_Dad == message.fFM_ID))
-                    {
-                        <p>@Html.DisplayFor(q => twitter.tEmployee.fEp_Nickname) : @Html.DisplayFor(q => twitter.fFM_Content)  @Html.DisplayFor(q => twitter.fFM_Date) </p>
-                    }
-                </div>
-            </div>
-
-           
+            i++;
         }
     </div>
 </div>
@@ -86,40 +122,73 @@
 
 
 @section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
         $(document).ready(function () {
 
+            //根據帳號與文章編號來確認會員，並顯示能修改的欄位
+            $('.btn-danger').each(function () {
 
+                var m = $(this).parent().find('#fEp_ID').val();
+                var t = $(this).parent().find('#message_fEp_ID').val();
 
-            var t = $('#title_fEp_ID').val();
-            var m = $('#message_fEp_ID').val();
-            if (t == m )
-            {
-                $('#btn-danger').show();
-            }
+                if (t == m)
+                    $(this).show();
+            });
 
+            //讀取每一篇文章的留言
+            $('.alltit').each(function () {
+                $(this).empty();
 
+                var FM_id = $(this).parent().find('#message_fFM_ID').val();
+                $(this).load('@Url.Action("twitter_showall","ForumHome")' + '/' + FM_id);
+            });
 
-            //$('.btn-danger').show();
+            //按讚與收回
+            $(document).on('click', '#push', function () {
+                $(this).parent().find('#recovery').show();
+                $(this).hide();
+            });
+            $(document).on('click', '#recovery', function () {
+                $(this).parent().find('#push').show();
+                $(this).hide();
+            });
 
+            //展開與收回推文
+            $(document).on('click', '#showtit1', function () {
+                $(this).parent().find('#showtit2').show();
+                $(this).hide();
+                var FM_id = $(this).parent().parent().parent().find('#message_fFM_ID').val();
 
+                $(this).parent().find('#loadtit').empty();
+                $(this).parent().find('#loadtit').load('@Url.Action("twitter_all","ForumHome")' + '/' + FM_id);
+            });
+            $(document).on('click', '#showtit2', function () {
+                $(this).parent().find('#showtit1').show();
+                $(this).hide();
+                var FM_id = $(this).parent().parent().parent().find('#message_fFM_ID').val();
 
+                $(this).parent().find('#loadtit').empty();
+                $(this).parent().find('#loadtit').load('@Url.Action("twitter_short","ForumHome")' + '/' + FM_id);
+            });
 
-
+            //留言鍵
             $(document).on('click', "#twitter", function () {
 
                 $(this).parent().find('#load').slideToggle();
 
-                var FMid = $('#message_fFM_ID').val();
-                $("#load").load('@Url.Action("partial_twitter", "ForumHome")' + '/' + FMid);
+                var FMid = $(this).parent().find('#message_fFM_ID').val();
+                $("#load").load('@Url.Action("partial_mytwitter", "ForumMyself")' + '/' + FMid);
             });
 
+            //回文鍵
             $(document).on('click', "#message", function () {
 
                 var id = $('#message_fMC_ID').val();
                 location.href = ('@Url.Action("Message", "ForumHome")' + '/' + id);
             });
 
+            //修改鍵
             $(document).on('click', "#edit", function () {
 
                 var FMid = $(this).parent().find('#message_fFM_ID').val();

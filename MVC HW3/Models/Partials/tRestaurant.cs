@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace MVC_HW3.Models
 {
@@ -32,6 +33,7 @@ namespace MVC_HW3.Models
             public Nullable<decimal> fR_Price { get; set; }
             [DisplayName("餐廳介紹")]
             [Required(ErrorMessage = "介紹未填")]
+            [AllowHtml]
             public string fRe_introduction { get; set; }
             [DisplayName("餐廳圖片")]
             public byte[] fRe_Image { get; set; }

@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MVC_HW3.Models.tPenalty>
+
+@{
+    foreach (var Penalty in Model)
+    {
+        <tr>
+            <td>出發前 @Penalty.fPe_Day 天前取消</td>
+            <td>@Math.Round(Penalty.fPe_Fine*100) %</td>
+            <td class="text-right"><span class="btn btn-danger" name="Dpenalty" penalty="@Penalty.fPe_ID">刪除</span></td>
+        </tr>
+
+    }
+    <tr>
+        <td>出發後取消</td>
+        <td>全額扣款 </td>
+        <td></td>
+    </tr>
+}
+

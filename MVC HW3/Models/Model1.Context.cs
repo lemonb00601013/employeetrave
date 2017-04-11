@@ -37,6 +37,7 @@ namespace MVC_HW3.Models
         public virtual DbSet<tDayTravel> tDayTravel { get; set; }
         public virtual DbSet<tDependents> tDependents { get; set; }
         public virtual DbSet<tDependentsTravel> tDependentsTravel { get; set; }
+        public virtual DbSet<tDetailScore> tDetailScore { get; set; }
         public virtual DbSet<tEmployee> tEmployee { get; set; }
         public virtual DbSet<tFamily> tFamily { get; set; }
         public virtual DbSet<tFieldValue> tFieldValue { get; set; }
@@ -52,7 +53,7 @@ namespace MVC_HW3.Models
         public virtual DbSet<tOpenTime> tOpenTime { get; set; }
         public virtual DbSet<tPenalty> tPenalty { get; set; }
         public virtual DbSet<tPhoto> tPhoto { get; set; }
-        public virtual DbSet<tPossibleDate> tPossibleDate { get; set; }
+        public virtual DbSet<tPushGood> tPushGood { get; set; }
         public virtual DbSet<tRegistrationDetail> tRegistrationDetail { get; set; }
         public virtual DbSet<tRegistrationOpen> tRegistrationOpen { get; set; }
         public virtual DbSet<tRelationship> tRelationship { get; set; }
@@ -66,7 +67,9 @@ namespace MVC_HW3.Models
         public virtual DbSet<tTravelCase> tTravelCase { get; set; }
         public virtual DbSet<tTravelClass> tTravelClass { get; set; }
         public virtual DbSet<tTravelDetail> tTravelDetail { get; set; }
-        public virtual DbSet<tVote> tVote { get; set; }
         public virtual DbSet<tVoteDetail> tVoteDetail { get; set; }
+        public virtual DbSet<tVoteItem> tVoteItem { get; set; }
+        public virtual DbSet<tVoteOption> tVoteOption { get; set; }
+        public virtual DbSet<tVoteProject> tVoteProject { get; set; }
     }
 }

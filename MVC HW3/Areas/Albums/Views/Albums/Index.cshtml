@@ -9,7 +9,7 @@
 @foreach (var albums in Model)
 {
 
-    <div class="@*col-md-2 col-sm-3 col-xs-4*@ col-try2">
+    <div class="col-try2">
         <div class="albox">
            
                 <a href="@Url.Action("Photo","Albums",new {area="Albums",ID=albums.fAl_ID})">
@@ -21,7 +21,7 @@
            
             
             <div class="padd5">                                
-                <h6>第 @albums.tAlbum.tTravelCase.fTC_LorD 期: @albums.tAlbum.tTravelCase.fTC_Title</h6>
+                <h4>[第 @albums.tAlbum.tTravelCase.fTC_LorD 期] @albums.tAlbum.tTravelCase.fTC_Title</h4>
                
             </div>
             

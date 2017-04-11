@@ -1,0 +1,6 @@
+﻿@model MVC_HW3.ViewModel.ForumModel
+
+@foreach (var mess in Model.Fmessage)
+{
+    @Model.pushGood.Where(a => a.fFM_ID == mess.fFM_ID).Count()
+}

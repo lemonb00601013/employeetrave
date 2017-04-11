@@ -1,0 +1,92 @@
+﻿@model MVC_HW3.Models.tBulletin
+
+@{
+    ViewBag.Title = "Create";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<style>
+    .input {
+        width: 100%;
+    }
+</style>
+@section styles{
+}
+@section scripts{
+    <script>
+        $(document).ready(function () { $("#input").cleditor(); });
+        $('#Demo').click(function () {
+            $('#DropDownListfBC_ID')[0].selectedIndex = 2;
+            $('#EditorForfBu_Title').val('[新聞] 布萊德比特主演《戰爭機器》正式預告登場');
+            $('#input').val('<p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><span style="color: rgb(51, 102, 255);"><span style="font-size: medium;"><strong>2017台北國際書展《你的名字》抽獎活動得獎名單揭曉──<br type="_moz"></strong></span></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><span style="color: rgb(0, 0, 128);"><span style="font-size: medium;"><strong>「新海誠導演親筆簽名板」究竟獎落誰家！？</strong></span></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><img src="https://www.kadokawa.com.tw/Upload/14879187111647096034.jpg" width="600" height="404" alt=""></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">　　台灣角川獨家限定活動──於2017台北國際書展期間台灣角川攤位，同時購買《你的名字》和《你的名字 Another Side：Earthbound》即可參加抽獎，有機會可以將「新海誠導演親筆簽名板」帶回家！<span style="color: rgb(0, 0, 128);"><strong>今天我們特別請來台灣角川的成田總經理來為我們抽出5為幸運兒喔！</strong></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;"><span style="color: rgb(255, 255, 255);"><strong><span style="background-color: rgb(51, 102, 255);">現在要開始抽獎囉！ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></strong></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><img src="https://www.kadokawa.com.tw/Upload/1487918937609523149.jpg" width="600" height="404" alt=""></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;"><span style="color: rgb(255, 255, 255);"><strong><span style="background-color: rgb(51, 102, 255);">到底會抽中哪5位讀者呢？ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span></strong></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><img src="https://www.kadokawa.com.tw/Upload/14879189981058650.jpg" width="404" height="535" alt=""></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;"><strong style="color: rgb(255, 255, 255);"><span style="background-color: rgb(51, 102, 255);">現在揭曉得獎者！恭喜這5位朋友！ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span></strong></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;"><span style="font-size: large;"><span style="color: rgb(0, 0, 128);"><strong>黃○珉、闕○佑、徐○蓁、張○興、邱○韻</strong></span></span><span style="font-size: medium;"><br type="_moz"></span></p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px; text-align: center;">&nbsp;</p><p style="margin: 0px; padding: 0px; font-family: 微軟正黑體; color: rgb(85, 85, 85); font-size: 14.6667px;">　　得獎的朋友將會於近日接到台灣角川編輯部的連絡電話確認，再次恭喜以上5位朋友以及所有喜愛《你的名字》的讀者，也請大家繼續支持本作喔！</p>').blur();
+
+
+        });
+
+    </script>
+}
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>發布公告</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @*<div class="form-group">
+                    @Html.LabelFor(model => model.fBu_Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @TempData["Date"]
+                        @Html.ValidationMessageFor(model => model.fBu_Date, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fBC_ID, "公告類別", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("fBC_ID", null, htmlAttributes: new { @class = "form-control", id = "DropDownListfBC_ID" })
+                    @Html.ValidationMessageFor(model => model.fBC_ID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fBu_Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fBu_Title, new { htmlAttributes = new { @class = "form-control", id = "EditorForfBu_Title" } })
+                    @Html.ValidationMessageFor(model => model.fBu_Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fBu_Content, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.fBu_Content, new { id = "input" })
+                    @Html.ValidationMessageFor(model => model.fBu_Content, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Demo" id="Demo" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" text="發布" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</body>
+
+
+
+
+<div>
+    @Html.ActionLink("回公告欄", "Bulletin")
+</div>
+
+
+

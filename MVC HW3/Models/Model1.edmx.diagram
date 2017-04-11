@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="924a85702e0846639e5d3d058116c957" Name="Diagram1">
+        <EntityTypeShape EntityType="TravelModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tActivityList" Width="1.5" PointX="11.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tActivitySelect" Width="1.5" PointX="13.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tAlbum" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tBulletin" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tBulletinClass" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tCityCountry" Width="1.5" PointX="9" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tConnection" Width="1.5" PointX="5.25" PointY="25.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tConnectionClass" Width="1.5" PointX="3" PointY="31" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tDayTravel" Width="1.5" PointX="8.25" PointY="45.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tDependents" Width="1.5" PointX="8.25" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tDependentsTravel" Width="1.5" PointX="13.5" PointY="32.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tDetailScore" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tEmployee" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tFamily" Width="1.5" PointX="10.5" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tFieldValue" Width="1.5" PointX="13.5" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tForumClass" Width="1.5" PointX="6" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tForumField" Width="1.5" PointX="11.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tForumMessage" Width="1.5" PointX="5.25" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tForumTitle" Width="1.5" PointX="8.25" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tIdentity" Width="1.5" PointX="0.75" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tManergerHistory" Width="1.5" PointX="5.25" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tMealClass" Width="1.5" PointX="16.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tMealList" Width="1.5" PointX="14.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tMessageCode" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tOpenTime" Width="1.5" PointX="13.5" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tPenalty" Width="1.5" PointX="8.25" PointY="48.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tPhoto" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tPushGood" Width="1.5" PointX="7.5" PointY="35" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tRegistrationDetail" Width="1.5" PointX="8.25" PointY="29.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tRegistrationOpen" Width="1.5" PointX="8.25" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tRelationship" Width="1.5" PointX="6" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tRestaurant" Width="1.5" PointX="11.25" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tRestaurantScores" Width="1.5" PointX="13.5" PointY="25.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tSampleProposal" Width="1.5" PointX="11.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tSector" Width="1.5" PointX="0.75" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tSpecialIdentity" Width="1.5" PointX="11.25" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tStatus" Width="1.5" PointX="6" PointY="41" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tTraveEat" Width="1.5" PointX="11.25" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tTravelCase" Width="1.5" PointX="6" PointY="46.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tTravelClass" Width="1.5" PointX="9" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tTravelDetail" Width="1.5" PointX="11.25" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tVoteDetail" Width="1.5" PointX="5.25" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tVoteItem" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tVoteOption" Width="1.5" PointX="3" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TravelModel.tVoteProject" Width="1.5" PointX="0.75" PointY="15.875" IsExpanded="true" />
+        <AssociationConnector Association="TravelModel.FK_tActivitySelect_fActivityList" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tActivitySelect_tSampleProposal" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tAlbum_tTravelCase" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tPhoto_tAlbum" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tBulletin_tBulletinClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tCityCountry_tCityCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tSampleProposal_tTravelPlace" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tTravelCase_tCityCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tTravelDetail_tCityCountry" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tConnection" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tConnectionClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tConnection_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDayTravel_tTravelCase" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependents_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependents_tRelationship" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependentsTravel_tDependents" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependentsTravel_tRegistrationDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependentsTravel_tSpecialIdentity" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependentsTravel_tStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDependentsTravel_tTraveEat" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDetailScore_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tDetailScore_tTravelDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_fRestaurantScores_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tEmployee_tIdentity" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tEmployee_tSector" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumArticle_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumTitle_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tManergerHistory_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tPushGood_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRegistrationDetail_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRestaurant_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tSampleProposal_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tTravelDetail_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteDetail_tEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFamily_tRegistrationDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFamily_tRelationship" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFamily_tSpecialIdentity" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFamily_tStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFamily_tTraveEat" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFieldValue_tForumField" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tFieldValue_tForumTitle" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumClass_tForumClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumField_tForumClass1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumTitle_tForumClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumMessage_tForumMessage" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumMessage_tMessageCode1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tPushGood_tForumMessage" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tForumTitle_tMessageCode1" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tMealClass_tMealList" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tMealClass_tRestaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tPhoto_tMessageCode" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRestaurant_tMessageCode" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tOpenTime_tRestaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tPenalty_tTravelCase" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRegistrationDetail_tStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRegistrationDetail_tTravelCase" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tRegistrationOpen_tTravelCase" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_fRestaurantScores_tRestaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tTravelDetail_tTravelClass" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteDetail_tVoteItem" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteDetail_tVoteOption" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteDetail_tVoteProject" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteItem_tVoteProject" ManuallyRouted="false" />
+        <AssociationConnector Association="TravelModel.FK_tVoteOption_tVoteItem" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

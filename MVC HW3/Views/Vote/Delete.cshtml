@@ -1,0 +1,64 @@
+﻿@model MVC_HW3.Models.tVoteProject
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tVoteProject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fVP_EndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fVP_EndDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

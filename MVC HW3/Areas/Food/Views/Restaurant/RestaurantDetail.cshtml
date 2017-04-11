@@ -37,6 +37,8 @@
     $(document).ready(function () {
    var a = $("#YorN").val()
    if (a == "True") { $("#isdelivery").text("有") }
+   else if (a == "有") { $("#isdelivery").text("有") }
+   else if (a == "無") { $("#isdelivery").text("無") }
    else { $("#isdelivery").text("無") }
 
     @*HTML格式的介紹*@

@@ -1,0 +1,121 @@
+﻿@model MVC_HW3.ViewModel.tVoteItemOptionViewModel
+
+@{
+    ViewBag.Title = "tVoteItemOptionViewMode";
+}
+@section styles{
+    <style>
+        .thumb {
+            width: 150px;
+        }
+                .items {
+        /*background-color:#70a4d3;*/
+        font-size:20px;
+        }
+        .options {
+        font-size:16px;
+        
+        }
+        #row {
+        /*background-color:azure;*/
+        
+        }
+    </style>
+}
+<div style="height:60px">
+
+</div>
+
+@using (Html.BeginForm("Index","Voting",FormMethod.Post,new {name="Form1"}))
+{
+    @Html.AntiForgeryToken()
+    <div class="row" id="row">
+
+        <div class="col-lg-3">
+            <div style="height:20px"></div>
+            <div class="list-group">
+                @foreach (var project in Model.tVoteProjects)
+                {
+                    @Html.ActionLink(project.fVP_Name, "Index", "Voting", new { id = project.fVP_ID }, new { @class = "list-group-item" });
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+          
+                <div >
+                    @foreach (var project1 in Model.tVoteProjects.Where(p => p.fVP_ID == ViewBag.id))
+                    {
+                    
+                        <h2 id="projectId">@Html.DisplayFor(p => project1.fVP_ID)</h2>
+                        <h2> @Html.DisplayFor(p => project1.fVP_Name)</h2>
+                        <h5>@Html.DisplayFor(p => project1.fVP_Description)</h5>
+                    }
+
+                </div>
+
+
+                <div>
+
+
+                    @foreach (var questionitem in Model.tVoteItems.Where(p => p.fVP_ID == ViewBag.id))
+                    {
+                        <p class="items">
+
+                            @Html.HiddenFor(p => questionitem.fVI_ID, new { fVI_ID = "p => questionitem.fVI_ID" })
+                            @Html.DisplayFor(p => questionitem.fVI_ID)
+                            @Html.DisplayFor(p => questionitem.fVI_Name)
+                        </p>
+
+
+
+                        <div class="options">
+                            @foreach (var questionoption in Model.tVoteOptions.Where(q => q.fVI_ID == questionitem.fVI_ID))
+                            {
+                   
+
+                               
+                                
+                                @*@Html.RadioButtonFor(m => m.tVoteOptions, questionoption.fVO_Name, new { id =questionoption.fVO_ID, name = @questionitem.fVI_ID })*@
+                                <input type=@questionitem.fVI_Type name="@questionitem.fVI_ID" value="@questionoption.fVO_ID" />@Html.DisplayFor(q => questionoption.fVO_Name)
+
+                                //@questionitem.fVP_Type;
+                            }
+                        </div>
+                        <hr />
+                    }
+                </div>
+                @Html.EditorForModel()
+                <div class="col-lg-offset-8">
+                <input type="hidden" name="datas" id="datas" />
+                <button type="button" id="buttonSubmit" class="btn btn-default">Submit</button></div>
+            
+
+        </div>
+    </div>
+
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+
+            //var path = location.pathname;
+            //$('.list-group').find('a[href ="' + path + '"]').addClass('active');
+
+        $('#buttonSubmit').click(function () {
+            var datas = [];
+            $(':checked').each(function () {
+                datas.push($('#projectId').text() + "," + $(this).attr('name') + "," + $(this).val());
+                
+            })
+            $('#datas').val(JSON.stringify(datas));
+
+            document.Form1.submit();
+        })
+
+
+
+    })
+</script>}

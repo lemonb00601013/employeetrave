@@ -38,7 +38,7 @@ namespace MVC_HW3.Models
         public int fTC_PerL { get; set; }
         public decimal fTC_Car { get; set; }
         public decimal fTC_Eat { get; set; }
-        public Nullable<decimal> fTC_hotel { get; set; }
+        public decimal fTC_hotel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tAlbum> tAlbum { get; set; }

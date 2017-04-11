@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MVC_HW3.Models.tRegistrationOpen>
+@{
+    foreach (var RO in Model)
+    {
+        <tr>
+            <td>@RO.fRO_ODate</td>
+            <td>@RO.fRO_CDate</td>
+            @{if (RO.fRO_CDate > DateTime.Now)
+                {
+                    <td class="text-right"><span name="OpenEnd" class="btn btn-danger" ro_id="@RO.fRO_ID">立刻截止</span></td>
+                    
+                }else
+                {<td></td> }
+
+            }
+
+
+        </tr>
+
+                }
+
+}

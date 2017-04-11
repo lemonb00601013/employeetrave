@@ -1,0 +1,92 @@
+﻿@model IEnumerable<MVC_HW3.Models.tTravelCase>
+
+<table class="table">
+    <thead>
+        <tr class="success">
+            <th>@Html.DisplayNameFor(a => a.fTC_LorD)</th>
+            <th>@Html.DisplayNameFor(a => a.fTC_Title)</th>
+            <th>@Html.DisplayNameFor(a => a.fTC_TDate)</th>
+            <th>報名截止時間</th>
+            <th>@Html.DisplayNameFor(a => a.fCC_ID)</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (MVC_HW3.Models.tTravelCase TCase in Model)
+            {
+                var LorD = (TCase.fTC_LorD > 0) ? TCase.fTC_LorD.ToString() : ((TCase.fTC_LorD < 0) ? "未成行方案" : (TCase.tRegistrationOpen.Any() ? "開放中方案" : "計畫中方案"));
+                
+                <tr class="active">
+                    <td>@LorD</td>
+                    <td><a href="@Url.Action("CaseDetail", "TraveCase", new { area = "EmployeeTrave", id = TCase.fTC_ID })">@TCase.fTC_Title</a></td>
+                    <td>@TCase.fTC_TDate</td>
+
+                    @{
+                        if (TCase.tRegistrationOpen.OrderByDescending(a => a.fRO_ID).Any())
+                        {
+                            var LDate = TCase.tRegistrationOpen.OrderByDescending(a => a.fRO_ID).First();
+                            if (LDate.fRO_CDate > DateTime.Now)
+                            {
+                              <td>@LDate.fRO_CDate 截止 </td>
+                            }
+                            else
+                            {
+                                <td>以截止</td>
+                            }
+                        }
+                        else
+                        {
+                            <td>-</td>
+                        }
+
+
+                    }
+<td>@TCase.tCityCountry.fCC_Place</td>
+                    <td>@Html.ActionLink("管理","TravelEdit","TraveCase",new {area="EmployeeTrave",id=TCase.fTC_ID},new {@class="btn btn-primary"})</td>
+                    @{
+                        if ((TCase.fTC_LorD == -1) | (TCase.fTC_LorD == 0 && !TCase.tRegistrationOpen.Any()))
+                        {
+                           <td><button name="delete" TC_ID="@TCase.fTC_ID" class="btn btn-danger">刪除</button></td>
+                        }
+                        else
+                        {
+                            <td>-</td>
+                        }
+
+                    }
+                   
+
+                </tr>
+
+
+
+    }
+
+
+        }
+        
+
+    </tbody>
+</table>
+
+<script>
+       
+            $("button[name='delete']").click(function () {
+               
+                var TC_ID=$(this).attr("TC_ID");
+                $.post("@Url.Action("DeleteCase","TraveCase",new {area="EmployeeTrave" })", { id: TC_ID }, function () {
+
+                    refleshList();
+                })
+            })
+
+
+            function refleshList() {
+
+                var status = $("#StatusLIst").val();
+                $("#ManageList").load("@Url.Action("Manage","TraveCase",new {area="EmployeeTrave" })", { "Status": status })
+            }
+     
+</script>

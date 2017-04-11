@@ -14,6 +14,12 @@ namespace MVC_HW3.Models
     
     public partial class tTravelDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tTravelDetail()
+        {
+            this.tDetailScore = new HashSet<tDetailScore>();
+        }
+    
         public int fTD_ID { get; set; }
         public int fCC_ID { get; set; }
         public int fTC_ID { get; set; }
@@ -22,8 +28,12 @@ namespace MVC_HW3.Models
         public Nullable<int> fEp_ID { get; set; }
         public byte[] fTD_Image { get; set; }
         public string fTD_site { get; set; }
+        public string fTD_Score { get; set; }
+        public Nullable<int> fMC_ID { get; set; }
     
         public virtual tCityCountry tCityCountry { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tDetailScore> tDetailScore { get; set; }
         public virtual tEmployee tEmployee { get; set; }
         public virtual tTravelClass tTravelClass { get; set; }
     }

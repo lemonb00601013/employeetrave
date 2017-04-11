@@ -4,139 +4,71 @@
 }
 
 @section styles{
-    <style>
-
+<link href="~/Content/hexagons.css" rel="stylesheet" />
+<style>
+      
 /*==================國家樣式==================*/  
+    .buttonss {
+        display:table;
+  height: 170px;
+  width:170px;
+}
 
-  figure {
-  width: 120px;
-  height: 60px;
-  margin: 50px auto;
+.container1 {
+    display:table-cell;
+  padding: 1em;
+}
+.btn-1 {
+  color: brown;
   cursor: pointer;
-  perspective: 500px;
-  -webkit-perspective: 500px;
-  float:left;
-}
- 
-figure div {
-  height: 100%;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
-  transition: 0.25s;
-  -webkit-transition: 0.25s;
-}
- 
-figure:hover div {
-  transform: rotateX(-90deg);
-}
- 
-span.face {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  box-sizing: border-box;
-  border: 5px solid #fff;
-  font-family: 'Source Sans Pro',sans-serif;
-  line-height: 50px;
-  font-size: 17pt;
-  text-align: center;
-  text-transform: uppercase;
-}
- 
-span.face:nth-child(1) {
-  color: #fff;
-  transform: translate3d(0, 0, 30px);
-  -webkit-transform: translate3d(0, 0, 30px);
-   background-color:dodgerblue;
-}
- 
-span.face:nth-child(2) {
-  color: #094b2c;
-  background: #fff;
-  transform: rotateX(90deg) translate3d(0, 0, 30px);
-  -webkit-transform: rotateX(90deg) translate3d(0, 0, 30px);
-}            
-    
-/*=================城市樣式=================*/  
-
-
-.image-effect-fall-back{
-  width: 1000px;
-  height: 300px;
+  display: block;
+  font-size: 24px;
+  font-family:DFKai-sb;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 0 auto 2em;
+  max-width: 160px;
   position: relative;
-  margin: 0 auto;
-  -webkit-perspective: 800px;
-  perspective: 800px;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  width: 100%;
 }
-.image-effect-fall-back .image-layer{
-  position: absolute;
-  top:0;
+.btn-1:hover {
+  text-decoration: none;
+  color:brown;
+  font-weight:900;
+}      
+
+.btn-1 {
+  background-color:transparent;
+  font-weight: 100;
+}
+.btn-1 svg {
+  height: 55px;
   left: 0;
-  height: 300px;
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-  z-index: 1;
-}
-.image-effect-fall-back:hover .image-layer{
-  -webkit-transform: rotateX(70deg);
-  transform: rotateX(70deg);
-  overflow: visible;
-}
-.image-effect-fall-back .image-layer img{
-  height: 100%;
-}
-.image-effect-fall-back .image-layer:before{
-  content: '';
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 0 100px 50px rgba(0, 0, 0, 0.5);
-  opacity: 0;
- 
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-transform: rotateX(114deg) translateZ(-26px)  translateY(110px) scale(0.75);
-  transform: rotateX(114deg) translateZ(-26px)  translateY(110px) scale(0.75);
-  -webkit-transform-origin: bottom;
-  -ms-transform-origin: bottom;
-  transform-origin: bottom;
 }
- 
-.image-effect-fall-back:hover .image-layer:before {
-  opacity: 0.3;
+.btn-1 rect {
+  fill: none;
+  stroke:brown;
+  stroke-width: 5;
+  stroke-dasharray: 422, 0;
 }
-.image-effect-fall-back .share-layer{
-  position: absolute;
-  bottom: 100px;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  opacity: 0;
-  z-index: 10;
-   
-  -webkit-transition: 0.6s;
-  transition: 0.6s;
-   
-  -webkit-transform: rotateX(70deg);
-  transform: rotateX(70deg);
+
+.btn-1:hover {
+  background: rgba(225, 51, 45, 0);
+  font-weight: 900;
+  letter-spacing: 1px;
 }
-.image-effect-fall-back:hover .share-layer {
-  opacity: 1;
- 
-  -webkit-transform: rotateX(0deg) translateY(-70px);
-  transform: rotateX(0deg) translateY(-70px);
-}
-.share-button{
-  display: inline-block;
-  text-decoration: none;
-  color: #ffffff;
-  padding: 4px;
-  width: 100px;
-  border-radius: 2px;
-  margin: 15px 8px;
+.btn-1:hover rect {
+  stroke-width: 5;
+  stroke-dasharray: 15, 310;
+  stroke-dashoffset: 48;
+  -webkit-transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+          transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
 }
     </style>
     }
@@ -144,37 +76,60 @@ span.face:nth-child(2) {
 @*選擇國家*@
 
 <div>
+    <div style="text-align:right">
+        <button class="btn btn-primary" data-toggle="modal" data-target="#CreateCity"><span class="glyphicon glyphicon-plane"></span>~新增地點~</button>
+        <a href="@Url.Action("ShowAll", "TravelMapHome")" class="btn btn-warning"><span class="glyphicon glyphicon-plane"></span>~地點管理~</a>
+        <input id="selectCity" type="text" style="width:150px;height:35px" placeholder="請輸入想找尋的地點..." />
+    </div>
     @Html.Action("country")
 </div>
+
 
 @*選擇城市*@
 
 
-@*<figure>
-    <div>
-        <span class="face"><a href="@Url.Action("Index", "Travel", new { cityID = _country.fCC_ID })" style="font-size:28px;color:darkred">@_country.fCC_Place</a></span>
-        <span class="face"><a href="@Url.Action("Index", "Travel", new { cityID = _country.fCC_ID })" style="font-size:28px;">@_country.fCC_Place</a></span>
-    </div>
-</figure>*@
+<ul id="hexGrid">
+    @foreach (var city in Model)
+    {
+        <li class="hex">
+            <a class="hexIn" href="@Url.Action("Index", "Travel", new { cityID = city.fCC_ID })">
+                <img id="CTimg" src="@Url.Action("GetImageByte", "TravelMapHome", new { id = city.fCC_ID })" />
+                
+                <h3 id="CTh3" style="color:brown;font-family:DFKai-sb;">@city.fCC_Place</h3>
+          
+                <span id="CTspan" class="glyphicon glyphicon-plane" style="color:brown">前往推薦區</span>
+            </a>
+        </li>
+    }
+</ul>
 
-@*<div>
-   
-        <a href="@Url.Action("Index", "Travel", new { cityID = _country.fCC_ID })" class="btn btn-success">@_country.fCC_Place</a>
-  
-</div>*@
-
-
-<div class="image-effect-fall-back" style="clear:both">
-    <div class="share-layer">
-@foreach (var _country in Model)
-{
-        <a href="@Url.Action("Index", "Travel", new { cityID = _country.fCC_ID })" class="share-button btn btn-success">
-            @_country.fCC_Place
-        </a>
-}
-    </div>
-    <div class="image-layer">
-        <img src="~/Images/22222.png" width="1000" height="800" alt="California surf"/>
+@*彈跳視窗(新增地點)*@
+<div class="modal fade" id="CreateCity" tabindex="-1" role="dialog" aria-labelledby="CreateDetialLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            @Html.Action("CreateCity", "TravelMapHome")"
+        </div>
     </div>
 </div>
+
+@section scripts{
+<script>
+    //搜尋地點
+
+    $('#selectCity').bind("enterKey", function (e) {
+        var _searchCT = $(this).val()
+        if ($(this).val() != "")
+        {
+            $("#hexGrid").load("@Url.Action("Index", "TravelMapHome", new{area="TravelMap"})searchCity=" + _searchCT)
+            $(this).val("")
+        }
+    });
+
+    $('#selectCity').keyup(function (e) {
+        if (e.keyCode == 13) {
+            $(this).trigger("enterKey");
+        }
+    });
+</script>
+    }
 

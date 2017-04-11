@@ -18,6 +18,7 @@ namespace MVC_HW3.Models
         public tForumMessage()
         {
             this.tForumMessage1 = new HashSet<tForumMessage>();
+            this.tPushGood = new HashSet<tPushGood>();
         }
     
         public int fFM_ID { get; set; }
@@ -32,5 +33,7 @@ namespace MVC_HW3.Models
         public virtual ICollection<tForumMessage> tForumMessage1 { get; set; }
         public virtual tForumMessage tForumMessage2 { get; set; }
         public virtual tMessageCode tMessageCode { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tPushGood> tPushGood { get; set; }
     }
 }

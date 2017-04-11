@@ -1,0 +1,19 @@
+﻿@model IEnumerable<MVC_HW3.Models.tTravelDetail>
+
+@foreach (var _Traveldetail in Model.OrderByDescending(t => t.fTD_ID).Take(5))
+{
+    <div class="grid">
+        <figure class="effect-apollo">
+            <img id="imgs" style="width:200px;height:140px;" src="@Url.Action("GetImageByte", "Travel", new { id = _Traveldetail.fTD_ID })" />
+            <figcaption>
+                <p style="color:brown;font-size:18px">@Html.DisplayFor(t => _Traveldetail.fTD_Title, new { id = "titleID" })</p>
+                @Html.HiddenFor(t => _Traveldetail.fTD_Title, new { id = "title" })
+                @Html.HiddenFor(t => _Traveldetail.fTD_Content, new { id = "ContentID" })
+                @Html.HiddenFor(t => _Traveldetail.fTD_site, new { id = "latlng" })
+                @Html.HiddenFor(t => _Traveldetail.fMC_ID, new { id = "selectID" })
+                @Html.HiddenFor(t => _Traveldetail.fTD_ID, new { id = "ScoreID" })
+                @*@Html.HiddenFor(t => _Traveldetail.fTD_Score,new { id="DetailScore"})*@
+            </figcaption>
+        </figure>
+    </div>
+}

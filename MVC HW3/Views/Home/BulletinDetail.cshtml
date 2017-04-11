@@ -2,17 +2,33 @@
 @model MVC_HW3.Models.tBulletin
 @{
     ViewBag.Title = "公告內容";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section styles{
 
 }
+
 <h2>@Model.fBu_Title</h2>
 <hr />
 
-<div>
-    @Model.fBu_Content
+<div class="div-white-bg">
+    @Html.Raw(Model.fBu_Content)
 </div>
 
+<div id="editbutton">
+    <a href="@Url.Action("tBulletinEdit","Bulletin",new {area="Bulletin",id=Model.fBu_ID})">
+        <input type="button" class="btn btn-group-xs" value="編輯" />
+    </a>
+</div>
 @section scripts{
-
+    <script>
+            $(document).ready(function () {
+                if ($.cookie("Manergers") == null) {
+                    $("#editbutton").hide();
+                }
+                else {
+                    $("#editbutton").show();
+                }
+            });
+    </script>
 }

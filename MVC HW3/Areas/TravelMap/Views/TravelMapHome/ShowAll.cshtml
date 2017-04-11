@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MVC_HW3.Models.tCityCountry>
+
+<h2>旅遊地點</h2>
+
+<div class="row">
+    @foreach (var _city in Model)
+    {
+        <div class="col-lg-3">
+            <h4 style="font-weight:bold;color:brown">@_city.fCC_Place</h4>
+            <img id="imgs" style="width:200px;height:140px" src="@Url.Action("GetImageByte", "TravelMapHome", new { id = _city.fCC_ID })" />
+            <div>
+                <a href="@Url.Action("Edit","TravelMapHome",new { id=_city.fCC_ID})" class="btn btn-info" style="width:95px"><span class="glyphicon glyphicon-pencil">修改</span></a>
+
+                <a href="@Url.Action("Delete","TravelMapHome",new { id=_city.fCC_ID})" class="btn btn-danger" style="width:95px"><span class="glyphicon glyphicon-remove">刪除</span></a>
+            </div>
+        </div>
+    }
+</div>

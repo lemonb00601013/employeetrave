@@ -1,0 +1,27 @@
+﻿@model MVC_HW3.Models.tDayTravel
+
+@using (Html.BeginForm("DayTravelE", "TraveCase", FormMethod.Post))
+{
+   @Html.HiddenFor(a=>a.fTC_ID)
+    @Html.HiddenFor(a=>a.fDT_ID)
+    @Html.EditorFor(a=>a.fDT_Content)  
+
+    <br />
+                                    <div>
+                                        <div class="col-xs-6">
+                                            <div class="form-group  row">
+
+                                                <div class="col-sm-2">@Html.LabelFor(a=>a.fDT_Date, htmlAttributes: new { @class = "control-label" })</div>
+                                                <div class="col-sm-6">
+                                                    @Html.EditorFor(a=>a.fDT_Date, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-xs-5"></div>
+                                        <div class="col-xs-1"><button type="submit" class="text-right btn btn-primary">儲存</button></div>
+
+                                    </div>
+                                    <br /><br />
+}
